@@ -2143,6 +2143,8 @@
 				.bollman-testimonials__viewport {
 					overflow: hidden;
 					width: 100%;
+					padding: 20px 0;
+					margin: -20px 0;
 				}
 				.bollman-testimonials__track {
 					display: flex;
@@ -2430,7 +2432,10 @@
 
 					function goTo(index) {
 						current = index;
-						var pct = (100 / totalSlides) * current;
+						// Each slide is (100/perView)% of viewport width
+						// Move by one slide width per step
+						var slideWidth = 100 / perView;
+						var pct = slideWidth * current;
 						track.style.transform = 'translateX(-' + pct + '%)';
 						// Update dots
 						var dots = dotsContainer.querySelectorAll('.bollman-testimonials__dot');
