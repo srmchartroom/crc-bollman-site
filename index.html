@@ -329,7 +329,7 @@
 
     <nav class="bollman-nav__inner" aria-label="Main navigation">
         <a href="/" class="bollman-nav__logo" aria-label="Bollman Landscape Home">
-            <img src="./assets/bollman-logo.png" alt="Bollman Landscape LLC - Landscaping and Hardscaping Design-Build Firm in Stokesdale NC" width="160" height="52">
+            <img src="./assets/bollman-landscape-hardscape-logo-v2.png" alt="Bollman Landscape LLC - Landscaping and Hardscaping Design-Build Firm in Stokesdale NC" width="160" height="52">
         </a>
         <ul class="bollman-nav__links">
             <li><a href="#about">About</a></li>
@@ -387,53 +387,85 @@
 
 
 <!-- ============================================================
-     SECTION 2: HERO
-     Full-viewport hero with background image, headline, subline, and CTA.
+     SECTION 2: SCROLL-EXPANSION HERO
+     Scroll-to-expand media hero with text blend effect.
+     Background: hero-pool-image.webp | Expanding media: fire-and-water.jpeg
+     Copy preserved from original hero section.
      ============================================================ -->
 <section class="bollman-hero" id="hero" aria-label="Hero banner">
     <style>
-        /* --- HERO SECTION STYLES --- */
+        /* --- SCROLL-EXPANSION HERO STYLES --- */
         .bollman-hero {
             position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            min-height: 100dvh;
+            overflow-x: hidden;
             background: #2b3543;
         }
+        .bollman-hero__viewport {
+            position: relative;
+            width: 100%;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Background image layer */
         .bollman-hero__bg {
             position: absolute;
             inset: 0;
-            background-image: url('https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bd05533147fdb4f5759a60.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: brightness(0.55);
-            transform: scale(1.05);
-            transition-property: transform;
-            transition-duration: 12s;
-            transition-timing-function: ease-out;
+            z-index: 0;
+            overflow: hidden;
         }
-        .bollman-hero.in-view .bollman-hero__bg {
-            transform: scale(1);
+        .bollman-hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
-        .bollman-hero__overlay {
+        .bollman-hero__bg-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(43, 53, 67, 0.4) 0%,
-                rgba(43, 53, 67, 0.2) 40%,
-                rgba(43, 53, 67, 0.6) 100%
-            );
+            background: rgba(0, 0, 0, 0.10);
         }
-        .bollman-hero__content {
+        /* Expanding media container */
+        .bollman-hero__media-wrap {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        }
+        .bollman-hero__media-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .bollman-hero__media-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.50);
+            border-radius: 16px;
+        }
+        /* Text layers — mix-blend-difference for text blend effect */
+        .bollman-hero__text-layer {
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100dvh;
             text-align: center;
-            max-width: 860px;
-            padding: 0 24px;
+            mix-blend-mode: difference;
+            pointer-events: none;
         }
         .bollman-hero__kicker {
             font-family: 'Nunito Sans', sans-serif;
@@ -443,14 +475,6 @@
             text-transform: uppercase;
             color: #4aa0a0;
             margin-bottom: 16px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .bollman-hero.in-view .bollman-hero__kicker {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.7s cubic-bezier(0.2, 0, 0, 1) 0.3s,
-                        transform 0.7s cubic-bezier(0.2, 0, 0, 1) 0.3s;
         }
         .bollman-hero__heading {
             font-family: 'Outfit', sans-serif;
@@ -458,32 +482,66 @@
             font-weight: 700;
             color: #ffffff;
             line-height: 1.1;
-            margin: 0 0 24px;
+            margin: 0;
             text-wrap: balance;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        .bollman-hero.in-view .bollman-hero__heading {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.2, 0, 0, 1) 0.5s,
-                        transform 0.8s cubic-bezier(0.2, 0, 0, 1) 0.5s;
         }
         .bollman-hero__sub {
             font-family: 'Nunito Sans', sans-serif;
             font-size: clamp(16px, 2vw, 20px);
             color: rgba(255, 255, 255, 0.88);
             line-height: 1.6;
-            margin: 0 0 40px;
+            margin: 24px 0 0;
             text-wrap: pretty;
-            opacity: 0;
-            transform: translateY(20px);
+            max-width: 700px;
+            padding: 0 24px;
         }
-        .bollman-hero.in-view .bollman-hero__sub {
+        /* Scroll indicator */
+        .bollman-hero__scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 12;
+            text-align: center;
+            pointer-events: none;
+        }
+        .bollman-hero__scroll-hint p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 8px;
+        }
+        .bollman-hero__scroll-hint svg {
+            width: 28px;
+            height: 28px;
+            stroke: rgba(255, 255, 255, 0.6);
+            fill: none;
+            stroke-width: 2;
+            animation: heroScrollBounce 2s infinite;
+        }
+        @keyframes heroScrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        /* Post-expansion content (CTA area revealed after full expand) */
+        .bollman-hero__expanded-content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            text-align: center;
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.7s;
+            transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+        }
+        .bollman-hero__expanded-content.visible {
             opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.7s cubic-bezier(0.2, 0, 0, 1) 0.7s,
-                        transform 0.7s cubic-bezier(0.2, 0, 0, 1) 0.7s;
         }
         .bollman-hero__cta {
             display: inline-flex;
@@ -503,14 +561,7 @@
             transition-property: transform, box-shadow;
             transition-duration: 0.25s;
             transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .bollman-hero.in-view .bollman-hero__cta {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.7s cubic-bezier(0.2, 0, 0, 1) 0.9s,
-                        transform 0.7s cubic-bezier(0.2, 0, 0, 1) 0.9s;
+            pointer-events: auto;
         }
         .bollman-hero__cta:hover {
             box-shadow: 0 6px 28px rgba(192, 34, 64, 0.5);
@@ -519,57 +570,161 @@
         .bollman-hero__cta:active {
             transform: scale(0.96);
         }
-        .bollman-hero__scroll {
-            position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            opacity: 0.6;
-            animation: heroScrollBounce 2s infinite;
-        }
-        .bollman-hero__scroll svg {
-            width: 28px;
-            height: 28px;
-            stroke: #ffffff;
-            fill: none;
-            stroke-width: 2;
-        }
-        @keyframes heroScrollBounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
         @media (max-width: 768px) {
-            .bollman-hero { min-height: 90vh; }
             .bollman-hero__cta { padding: 14px 32px; font-size: 14px; }
         }
     </style>
 
-    <div class="bollman-hero__bg" aria-hidden="true"></div>
-    <div class="bollman-hero__overlay" aria-hidden="true"></div>
-    <div class="bollman-hero__content">
-        <p class="bollman-hero__kicker">The Triad's Premiere</p>
-        <h1 class="bollman-hero__heading">Landscaping and Hardscaping<br>Design-Build Firm</h1>
-        <p class="bollman-hero__sub">Thoughtful design, quality craftsmanship, and build integrity that holds up for years to come.<br>This is <strong>BOLLMAN</strong> Landscape.</p>
+    <div class="bollman-hero__viewport">
+        <!-- Background image (fades as scroll progresses) -->
+        <div class="bollman-hero__bg" aria-hidden="true">
+            <img src="./assets/hero-pool-image.webp" alt="Background" width="1920" height="1080">
+            <div class="bollman-hero__bg-overlay"></div>
+        </div>
+
+        <!-- Expanding media center (grows from card to fullscreen on scroll) -->
+        <div class="bollman-hero__media-wrap" aria-hidden="true">
+            <img src="./assets/fire-and-water.jpeg" alt="Fire and water feature by Bollman Landscape" width="1280" height="720">
+            <div class="bollman-hero__media-overlay"></div>
+        </div>
+
+        <!-- Text with blend mode -->
+        <div class="bollman-hero__text-layer">
+            <p class="bollman-hero__kicker">The Triad's Premiere</p>
+            <h1 class="bollman-hero__heading">Landscaping and Hardscaping<br>Design-Build Firm</h1>
+            <p class="bollman-hero__sub">Thoughtful design, quality craftsmanship, and build integrity that holds up for years to come. This is <strong>BOLLMAN</strong> Landscape.</p>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="bollman-hero__scroll-hint" id="heroScrollHint">
+            <p>Scroll to Explore</p>
+            <svg viewBox="0 0 24 24"><path d="M12 5v14m-7-7 7 7 7-7"/></svg>
+        </div>
+    </div>
+
+    <!-- CTA revealed after expansion completes -->
+    <div class="bollman-hero__expanded-content" id="heroExpandedContent">
         <a href="#contact" class="bollman-hero__cta">
             Schedule a Consultation
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
     </div>
-    <div class="bollman-hero__scroll" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 5v14m-7-7 7 7 7-7"/></svg>
-    </div>
 
     <script>
     (function() {
-        var hero = document.querySelector('.bollman-hero');
-        requestAnimationFrame(function() {
-            hero.classList.add('in-view');
+        var scrollProgress = 0;
+        var mediaFullyExpanded = false;
+        var touchStartY = 0;
+        var isMobile = window.innerWidth < 768;
+
+        var bgLayer = document.querySelector('.bollman-hero__bg');
+        var mediaWrap = document.querySelector('.bollman-hero__media-wrap');
+        var mediaOverlay = document.querySelector('.bollman-hero__media-overlay');
+        var kicker = document.querySelector('.bollman-hero__kicker');
+        var heading = document.querySelector('.bollman-hero__heading');
+        var sub = document.querySelector('.bollman-hero__sub');
+        var scrollHint = document.getElementById('heroScrollHint');
+        var expandedContent = document.getElementById('heroExpandedContent');
+
+        function updateUI() {
+            /* Media dimensions: start small, grow to viewport */
+            var mediaWidth = 300 + scrollProgress * (isMobile ? 650 : 1250);
+            var mediaHeight = 400 + scrollProgress * (isMobile ? 200 : 400);
+
+            mediaWrap.style.width = mediaWidth + 'px';
+            mediaWrap.style.height = mediaHeight + 'px';
+
+            /* Background fades out */
+            bgLayer.style.opacity = 1 - scrollProgress;
+
+            /* Media overlay lightens */
+            var overlayOpacity = 0.5 - scrollProgress * 0.3;
+            mediaOverlay.style.opacity = Math.max(0, overlayOpacity);
+
+            /* Text slides apart (blend effect) */
+            var textTranslateX = scrollProgress * (isMobile ? 180 : 150);
+            kicker.style.transform = 'translateX(-' + textTranslateX + 'vw)';
+            heading.style.transform = 'translateX(-' + textTranslateX + 'vw)';
+            sub.style.transform = 'translateX(' + textTranslateX + 'vw)';
+
+            /* Scroll hint fades out */
+            scrollHint.style.opacity = Math.max(0, 1 - scrollProgress * 3);
+
+            /* Show CTA after full expansion */
+            if (scrollProgress >= 1) {
+                expandedContent.classList.add('visible');
+            } else if (scrollProgress < 0.75) {
+                expandedContent.classList.remove('visible');
+            }
+        }
+
+        /* Initialize */
+        updateUI();
+
+        /* Wheel handler */
+        window.addEventListener('wheel', function(e) {
+            if (mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
+                mediaFullyExpanded = false;
+                e.preventDefault();
+            } else if (!mediaFullyExpanded) {
+                e.preventDefault();
+                var scrollDelta = e.deltaY * 0.0009;
+                scrollProgress = Math.min(Math.max(scrollProgress + scrollDelta, 0), 1);
+
+                if (scrollProgress >= 1) {
+                    mediaFullyExpanded = true;
+                }
+                updateUI();
+            }
+        }, { passive: false });
+
+        /* Touch handlers for mobile */
+        window.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: false });
+
+        window.addEventListener('touchmove', function(e) {
+            if (!touchStartY) return;
+            var touchY = e.touches[0].clientY;
+            var deltaY = touchStartY - touchY;
+
+            if (mediaFullyExpanded && deltaY < -20 && window.scrollY <= 5) {
+                mediaFullyExpanded = false;
+                e.preventDefault();
+            } else if (!mediaFullyExpanded) {
+                e.preventDefault();
+                var scrollFactor = deltaY < 0 ? 0.008 : 0.005;
+                var scrollDelta = deltaY * scrollFactor;
+                scrollProgress = Math.min(Math.max(scrollProgress + scrollDelta, 0), 1);
+
+                if (scrollProgress >= 1) {
+                    mediaFullyExpanded = true;
+                }
+                updateUI();
+                touchStartY = touchY;
+            }
+        }, { passive: false });
+
+        window.addEventListener('touchend', function() {
+            touchStartY = 0;
+        });
+
+        /* Lock scroll position during expansion */
+        window.addEventListener('scroll', function() {
+            if (!mediaFullyExpanded) {
+                window.scrollTo(0, 0);
+            }
+        });
+
+        /* Resize listener */
+        window.addEventListener('resize', function() {
+            isMobile = window.innerWidth < 768;
+            updateUI();
         });
     })();
     </script>
 </section>
-<!-- END SECTION 2: HERO -->
+<!-- END SECTION 2: SCROLL-EXPANSION HERO -->
 
 
 <!-- ============================================================
@@ -2013,7 +2168,7 @@
 
     <div class="bollman-footer__inner">
         <div class="bollman-footer__brand">
-            <img src="./assets/bollman-logo.png" alt="Bollman Landscape LLC" loading="lazy" width="160" height="56">
+            <img src="./assets/bollman-landscape-hardscape-logo-v2.png" alt="Bollman Landscape LLC" loading="lazy" width="160" height="56">
             <p class="bollman-footer__brand-text">Family-owned landscaping and hardscaping design-build firm serving the Piedmont Triad since 1995. Licensed General Contractor. Certified Techo-Bloc Pro.</p>
         </div>
         <div>
