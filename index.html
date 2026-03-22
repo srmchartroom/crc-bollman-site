@@ -593,6 +593,12 @@
             <p class="bollman-hero__kicker">The Triad's Premiere</p>
             <h1 class="bollman-hero__heading">Landscaping and Hardscaping<br>Design-Build Firm</h1>
             <p class="bollman-hero__sub">Thoughtful design, quality craftsmanship, and build integrity that holds up for years to come. This is <strong>BOLLMAN</strong> Landscape.</p>
+            <div style="margin-top: 40px; mix-blend-mode: normal; pointer-events: auto;">
+                <a href="#contact" class="bollman-hero__cta bollman-hero__cta--initial" id="heroInitialCta">
+                    Schedule a Consultation
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
 
         <!-- Scroll hint -->
@@ -625,6 +631,7 @@
         var sub = document.querySelector('.bollman-hero__sub');
         var scrollHint = document.getElementById('heroScrollHint');
         var expandedContent = document.getElementById('heroExpandedContent');
+        var initialCta = document.getElementById('heroInitialCta');
 
         function updateUI() {
             /* Media dimensions: start small, grow to viewport */
@@ -647,8 +654,9 @@
             heading.style.transform = 'translateX(-' + textTranslateX + 'vw)';
             sub.style.transform = 'translateX(' + textTranslateX + 'vw)';
 
-            /* Scroll hint fades out */
+            /* Scroll hint and initial CTA fade out */
             scrollHint.style.opacity = Math.max(0, 1 - scrollProgress * 3);
+            initialCta.style.opacity = Math.max(0, 1 - scrollProgress * 4);
 
             /* Show CTA after full expansion */
             if (scrollProgress >= 1) {
