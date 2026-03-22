@@ -48,6 +48,423 @@
 		</script>
 	</head>
 	<body>
+		<header
+			class="bollman-nav"
+			id="bollman-nav"
+		>
+			<style>
+				/* --- NAV SECTION STYLES --- */
+				.bollman-nav {
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					z-index: 1000;
+					transition-property: background-color, box-shadow;
+					transition-duration: 0.4s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+					background: transparent;
+				}
+				.bollman-nav.scrolled {
+					background: rgba(43, 53, 67, 0.97);
+					box-shadow:
+						0 2px 20px rgba(0, 0, 0, 0.3),
+						0 1px 6px rgba(0, 0, 0, 0.15);
+				}
+				.bollman-nav__inner {
+					max-width: 1280px;
+					margin: 0 auto;
+					padding: 18px 40px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+				}
+				.bollman-nav__logo img {
+					height: 52px;
+					width: auto;
+					filter: brightness(0) invert(1);
+					transition-property: transform;
+					transition-duration: 0.3s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-nav__logo img:hover {
+					transform: scale(1.03);
+				}
+				.bollman-nav__links {
+					display: flex;
+					align-items: center;
+					gap: 32px;
+					list-style: none;
+					margin: 0;
+					padding: 0;
+				}
+				.bollman-nav__links a {
+					color: #ffffff;
+					text-decoration: none;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 15px;
+					font-weight: 600;
+					letter-spacing: 0.3px;
+					transition-property: opacity;
+					transition-duration: 0.25s;
+					transition-timing-function: ease;
+					position: relative;
+				}
+				.bollman-nav__links a::after {
+					content: "";
+					position: absolute;
+					bottom: -4px;
+					left: 0;
+					width: 0;
+					height: 2px;
+					background: #1a222c;
+					transition-property: width;
+					transition-duration: 0.3s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-nav__links a:hover::after {
+					width: 100%;
+				}
+				/* --- DROPDOWN MENU STYLES --- */
+				.bollman-nav__dropdown {
+					position: relative;
+				}
+				.bollman-nav__dropdown > a {
+					display: flex;
+					align-items: center;
+					gap: 5px;
+				}
+				.bollman-nav__dropdown > a .nav-chevron {
+					display: inline-block;
+					width: 8px;
+					height: 8px;
+					border-right: 2px solid #ffffff;
+					border-bottom: 2px solid #ffffff;
+					transform: rotate(45deg);
+					margin-top: -3px;
+					transition-property: transform;
+					transition-duration: 0.25s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-nav__dropdown:hover > a .nav-chevron {
+					transform: rotate(-135deg);
+				}
+				.bollman-nav__dropdown-menu {
+					position: absolute;
+					top: calc(100% + 12px);
+					left: 50%;
+					transform: translateX(-50%);
+					background: rgba(26, 34, 44, 0.97);
+					backdrop-filter: blur(12px);
+					border: 1px solid rgba(255, 255, 255, 0.08);
+					border-radius: 10px;
+					padding: 10px 0;
+					min-width: 220px;
+					opacity: 0;
+					visibility: hidden;
+					transition-property: opacity, visibility, transform;
+					transition-duration: 0.25s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+					transform: translateX(-50%) translateY(8px);
+					box-shadow:
+						0 8px 32px rgba(0, 0, 0, 0.4),
+						0 2px 8px rgba(0, 0, 0, 0.2);
+					z-index: 1000;
+				}
+				.bollman-nav__dropdown:hover .bollman-nav__dropdown-menu {
+					opacity: 1;
+					visibility: visible;
+					transform: translateX(-50%) translateY(0);
+				}
+				.bollman-nav__dropdown-menu a {
+					display: block;
+					padding: 10px 24px;
+					white-space: nowrap;
+					font-size: 14px !important;
+					font-weight: 500 !important;
+				}
+				.bollman-nav__dropdown-menu a::after {
+					display: none !important;
+				}
+				.bollman-nav__dropdown-menu a:hover {
+					background: rgba(255, 255, 255, 0.08);
+				}
+				.bollman-nav__cta {
+					display: inline-flex;
+					align-items: center;
+					padding: 12px 28px;
+					background: #c02240;
+					color: #ffffff !important;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					border-radius: 6px;
+					text-decoration: none !important;
+					transition-property: transform, box-shadow;
+					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+					/* min hit area 40x40 */
+					min-height: 44px;
+				}
+				.bollman-nav__cta::after {
+					display: none !important;
+				}
+				.bollman-nav__cta:hover {
+					box-shadow: 0 4px 16px rgba(192, 34, 64, 0.4);
+				}
+				.bollman-nav__cta:active {
+					transform: scale(0.96);
+				}
+				/* Hamburger */
+				.bollman-nav__hamburger {
+					display: none;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					width: 44px;
+					height: 44px;
+					background: none;
+					border: none;
+					cursor: pointer;
+					padding: 0;
+					position: relative;
+					z-index: 1001;
+				}
+				.bollman-nav__hamburger span {
+					display: block;
+					width: 24px;
+					height: 2px;
+					background: #ffffff;
+					margin: 3px 0;
+					transition-property: transform, opacity;
+					transition-duration: 0.3s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-nav__hamburger.active span:nth-child(1) {
+					transform: rotate(45deg) translate(4px, 4px);
+				}
+				.bollman-nav__hamburger.active span:nth-child(2) {
+					opacity: 0;
+				}
+				.bollman-nav__hamburger.active span:nth-child(3) {
+					transform: rotate(-45deg) translate(5px, -5px);
+				}
+				/* Mobile nav */
+				.bollman-nav__mobile {
+					display: none;
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100vh;
+					background: rgba(43, 53, 67, 0.98);
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					gap: 28px;
+					z-index: 999;
+				}
+				.bollman-nav__mobile.open {
+					display: flex;
+				}
+				.bollman-nav__mobile a {
+					color: #ffffff;
+					text-decoration: none;
+					font-family: "Outfit", sans-serif;
+					font-size: 24px;
+					font-weight: 500;
+					letter-spacing: 1px;
+					transition-property: color;
+					transition-duration: 0.2s;
+				}
+				.bollman-nav__mobile a:hover {
+					color: #4aa0a0;
+				}
+				.bollman-nav__mobile-group {
+					display: flex;
+					flex-direction: column;
+				}
+				.bollman-nav__mobile-parent {
+					color: #ffffff;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 18px;
+					font-weight: 500;
+					letter-spacing: 1px;
+				}
+				.bollman-nav__mobile-sub {
+					display: flex;
+					flex-direction: column;
+					padding-left: 20px;
+					margin-top: 8px;
+					gap: 6px;
+				}
+				.bollman-nav__mobile-sub a {
+					font-size: 15px !important;
+					opacity: 0.75;
+				}
+				.bollman-nav__mobile-sub a:hover {
+					opacity: 1;
+				}
+				/* Sticky phone bar */
+				.bollman-nav__phone-bar {
+					display: none;
+					position: fixed;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					background: #c02240;
+					z-index: 1000;
+					text-align: center;
+					padding: 12px;
+				}
+				.bollman-nav__phone-bar a {
+					color: #ffffff;
+					text-decoration: none;
+					font-family: "Nunito Sans", sans-serif;
+					font-weight: 700;
+					font-size: 16px;
+					letter-spacing: 0.5px;
+				}
+				@media (max-width: 900px) {
+					.bollman-nav__links {
+						display: none;
+					}
+					.bollman-nav__hamburger {
+						display: flex;
+					}
+					.bollman-nav__inner {
+						padding: 14px 20px;
+					}
+					.bollman-nav__logo img {
+						height: 40px;
+					}
+					.bollman-nav__phone-bar {
+						display: block;
+					}
+				}
+			</style>
+
+			<nav
+				class="bollman-nav__inner"
+				aria-label="Main navigation"
+			>
+				<a
+					href="/"
+					class="bollman-nav__logo"
+					aria-label="Bollman Landscape Home"
+				>
+					<img
+						src="../assets/bollman-landscape-hardscape-logo-v2.png"
+						alt="Bollman Landscape LLC - Landscaping and Hardscaping Design-Build Firm in Stokesdale NC"
+						width="160"
+						height="52"
+					/>
+				</a>
+				<ul class="bollman-nav__links">
+					<li><a href="/about/">About</a></li>
+					<li class="bollman-nav__dropdown">
+						<a href="/hardscaping-services/">Outdoor Living <span class="nav-chevron"></span></a>
+						<div class="bollman-nav__dropdown-menu">
+							<a href="/hardscaping-services/outdoor-kitchen-builders/">Outdoor Kitchens</a>
+							<a href="/hardscaping-services/paver-patio-builders/">Paver Patios</a>
+							<a href="/hardscaping-services/fiberglass-pool-builders/">Inground Pools</a>
+							<a href="/hardscaping-services/retaining-wall-builders/">Retaining Walls</a>
+						</div>
+					</li>
+					<li class="bollman-nav__dropdown">
+						<a href="javascript:void(0)">Areas Served <span class="nav-chevron"></span></a>
+						<div class="bollman-nav__dropdown-menu">
+							<a href="/locations/greensboro/">Greensboro</a>
+							<a href="/locations/winston-salem/">Winston-Salem</a>
+							<a href="/locations/kernersville/">Kernersville</a>
+						</div>
+					</li>
+					<li><a href="/blog/">Design Journal</a></li>
+					<li><a href="/contact/">Contact</a></li>
+				</ul>
+				<button
+					class="bollman-nav__hamburger"
+					aria-label="Open navigation menu"
+					aria-expanded="false"
+				>
+					<span></span><span></span><span></span>
+				</button>
+			</nav>
+			<div
+				class="bollman-nav__mobile"
+				aria-hidden="true"
+			>
+				<a href="/about/">About</a>
+				<div class="bollman-nav__mobile-group">
+					<a
+						href="/hardscaping-services/"
+						class="bollman-nav__mobile-parent"
+						>Outdoor Living</a
+					>
+					<div class="bollman-nav__mobile-sub">
+						<a href="/hardscaping-services/outdoor-kitchen-builders/">Outdoor Kitchens</a>
+						<a href="/hardscaping-services/paver-patio-builders/">Paver Patios</a>
+						<a href="/hardscaping-services/fiberglass-pool-builders/">Inground Pools</a>
+						<a href="/hardscaping-services/retaining-wall-builders/">Retaining Walls</a>
+					</div>
+				</div>
+				<div class="bollman-nav__mobile-group">
+					<span
+						class="bollman-nav__mobile-parent"
+						style="cursor: pointer"
+						>Areas Served</span
+					>
+					<div class="bollman-nav__mobile-sub">
+						<a href="/locations/greensboro/">Greensboro</a>
+						<a href="/locations/winston-salem/">Winston-Salem</a>
+						<a href="/locations/kernersville/">Kernersville</a>
+					</div>
+				</div>
+				<a href="/blog/">Design Journal</a>
+				<a href="/contact/">Contact</a>
+			</div>
+			<div class="bollman-nav__phone-bar">
+				<a href="tel:+13369701391">Call Now: (336) 970-1391</a>
+			</div>
+
+			<script>
+				(function () {
+					var nav = document.getElementById("bollman-nav");
+					var hamburger = nav.querySelector(".bollman-nav__hamburger");
+					var mobileMenu = nav.querySelector(".bollman-nav__mobile");
+
+					window.addEventListener(
+						"scroll",
+						function () {
+							nav.classList.toggle("scrolled", window.scrollY > 60);
+						},
+						{ passive: true }
+					);
+
+					hamburger.addEventListener("click", function () {
+						var isOpen = hamburger.classList.toggle("active");
+						mobileMenu.classList.toggle("open", isOpen);
+						hamburger.setAttribute("aria-expanded", isOpen);
+						mobileMenu.setAttribute("aria-hidden", !isOpen);
+						document.body.style.overflow = isOpen ? "hidden" : "";
+					});
+
+					mobileMenu.querySelectorAll("a").forEach(function (link) {
+						link.addEventListener("click", function () {
+							hamburger.classList.remove("active");
+							mobileMenu.classList.remove("open");
+							hamburger.setAttribute("aria-expanded", "false");
+							mobileMenu.setAttribute("aria-hidden", "true");
+							document.body.style.overflow = "";
+						});
+					});
+				})();
+			</script>
+		</header>
+		<!-- END SECTION 1: NAVIGATION BAR -->
+
 		<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;text-align:center;padding:40px;">
 			<div>
 				<a href="/" style="display:inline-block;margin-bottom:32px;">
@@ -58,5 +475,337 @@
 				<a href="/contact/" style="display:inline-flex;align-items:center;gap:8px;background:#c02240;color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;">Get in Touch</a>
 			</div>
 		</div>
+		<footer
+			class="bollman-footer"
+			aria-label="Site footer"
+		>
+			<style>
+				/* --- FOOTER SECTION STYLES --- */
+				.bollman-footer {
+					background: #1a222c;
+					color: #ffffff;
+					padding: 72px 24px 0;
+				}
+				.bollman-footer__inner {
+					max-width: 1200px;
+					margin: 0 auto;
+					display: grid;
+					grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+					gap: 48px;
+				}
+				.bollman-footer__brand img {
+					height: 56px;
+					width: auto;
+					filter: brightness(0) invert(1);
+					margin-bottom: 20px;
+				}
+				.bollman-footer__brand-text {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					line-height: 1.25;
+					color: rgba(255, 255, 255, 0.5);
+					margin: 0;
+					max-width: 280px;
+				}
+				.bollman-footer__heading {
+					font-family: "Outfit", sans-serif;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: uppercase;
+					letter-spacing: 2px;
+					color: rgba(255, 255, 255, 0.4);
+					margin: 0 0 20px;
+				}
+				.bollman-footer__links {
+					list-style: none;
+					padding: 0;
+					margin: 0;
+				}
+				.bollman-footer__links li {
+					margin-bottom: 12px;
+				}
+				.bollman-footer__links a {
+					color: rgba(255, 255, 255, 0.65);
+					text-decoration: none;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					transition-property: color;
+					transition-duration: 0.2s;
+					min-height: 40px;
+					display: inline-flex;
+					align-items: center;
+				}
+				.bollman-footer__links a:hover {
+					color: #4aa0a0;
+				}
+				.bollman-footer__contact-item {
+					display: flex;
+					gap: 10px;
+					align-items: flex-start;
+					margin-bottom: 16px;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					color: rgba(255, 255, 255, 0.65);
+				}
+				.bollman-footer__contact-item svg {
+					flex-shrink: 0;
+					margin-top: 2px;
+					stroke: #4aa0a0;
+				}
+				.bollman-footer__contact-item a {
+					color: rgba(255, 255, 255, 0.65);
+					text-decoration: none;
+					transition-property: color;
+					transition-duration: 0.2s;
+				}
+				.bollman-footer__contact-item a:hover {
+					color: #4aa0a0;
+				}
+				.bollman-footer__social {
+					display: flex;
+					gap: 12px;
+					margin-top: 24px;
+				}
+				.bollman-footer__social a {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					width: 40px;
+					height: 40px;
+					border-radius: 8px;
+					/* Concentric: outer 8, no padding needed */
+					background: rgba(255, 255, 255, 0.06);
+					color: rgba(255, 255, 255, 0.6);
+					transition-property: background, color;
+					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-footer__social a:hover {
+					background: #4aa0a0;
+					color: #ffffff;
+				}
+				.bollman-footer__bottom {
+					max-width: 1200px;
+					margin: 48px auto 0;
+					padding: 24px 0;
+					border-top: 1px solid rgba(255, 255, 255, 0.08);
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					flex-wrap: wrap;
+					gap: 12px;
+				}
+				.bollman-footer__copy {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 13px;
+					color: rgba(255, 255, 255, 0.35);
+				}
+				.bollman-footer__legal {
+					display: flex;
+					gap: 24px;
+				}
+				.bollman-footer__legal a {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 13px;
+					color: rgba(255, 255, 255, 0.35);
+					text-decoration: none;
+					transition-property: color;
+					transition-duration: 0.2s;
+					min-height: 40px;
+					display: inline-flex;
+					align-items: center;
+				}
+				.bollman-footer__legal a:hover {
+					color: rgba(255, 255, 255, 0.7);
+				}
+				/* Footer SEO area keywords */
+				.bollman-footer__seo {
+					max-width: 1200px;
+					margin: 0 auto;
+					padding: 16px 0 24px;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 12px;
+					color: rgba(255, 255, 255, 0.2);
+					line-height: 1.25;
+				}
+				@media (max-width: 900px) {
+					.bollman-footer__inner {
+						grid-template-columns: 1fr 1fr;
+						gap: 36px;
+					}
+				}
+				@media (max-width: 600px) {
+					.bollman-footer {
+						padding: 48px 20px 0;
+					}
+					.bollman-footer__inner {
+						grid-template-columns: 1fr;
+						gap: 32px;
+					}
+					.bollman-footer__bottom {
+						flex-direction: column;
+						text-align: center;
+					}
+				}
+			</style>
+
+			<div class="bollman-footer__inner">
+				<div class="bollman-footer__brand">
+					<img
+						src="../assets/bollman-landscape-hardscape-logo-v2.png"
+						alt="Bollman Landscape LLC"
+						loading="lazy"
+						width="160"
+						height="56"
+					/>
+					<p class="bollman-footer__brand-text">
+						Family-owned landscaping and hardscaping design-build firm serving the Piedmont Triad since 1995. Licensed
+						General Contractor. Certified Techo-Bloc Pro.
+					</p>
+				</div>
+				<div>
+					<h3 class="bollman-footer__heading">Outdoor Living</h3>
+					<ul class="bollman-footer__links">
+						<li><a href="/hardscaping-services/">All Services</a></li>
+						<li><a href="/hardscaping-services/paver-patio-builders/">Paver Patios</a></li>
+						<li><a href="/hardscaping-services/retaining-wall-builders/">Retaining Walls</a></li>
+						<li><a href="/hardscaping-services/outdoor-kitchen-builders/">Outdoor Kitchens</a></li>
+						<li><a href="/hardscaping-services/fiberglass-pool-builders/">Inground Pools</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="bollman-footer__heading">Company</h3>
+					<ul class="bollman-footer__links">
+						<li><a href="/about/">About Us</a></li>
+						<li><a href="/blog/">Design Journal</a></li>
+						<li><a href="/locations/greensboro/">Greensboro</a></li>
+						<li><a href="/locations/winston-salem/">Winston-Salem</a></li>
+						<li><a href="/locations/kernersville/">Kernersville</a></li>
+						<li><a href="/contact/">Contact</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="bollman-footer__heading">Contact</h3>
+					<div class="bollman-footer__contact-item">
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+						>
+							<path
+								d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+							/>
+						</svg>
+						<a href="tel:+13369701391">(336) 970-1391</a>
+					</div>
+					<div class="bollman-footer__contact-item">
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+						>
+							<rect
+								width="20"
+								height="16"
+								x="2"
+								y="4"
+								rx="2"
+							/>
+							<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+						</svg>
+						<a href="mailto:bollmanlandscape@verizon.net">bollmanlandscape@verizon.net</a>
+					</div>
+					<div class="bollman-footer__contact-item">
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+						>
+							<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+							<circle
+								cx="12"
+								cy="10"
+								r="3"
+							/>
+						</svg>
+						<span>Stokesdale, NC<br />Mon-Fri 8am-4pm</span>
+					</div>
+					<div class="bollman-footer__social">
+						<a
+							href="https://www.facebook.com/Bollmanlandscape/"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Facebook"
+						>
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+								/>
+							</svg>
+						</a>
+						<a
+							href="https://www.instagram.com/bollmanlandscape/"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Instagram"
+						>
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+								/>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="bollman-footer__bottom">
+				<span class="bollman-footer__copy">&copy; 2026 Bollman Landscape Mgmt LLC. All rights reserved.</span>
+				<div class="bollman-footer__legal">
+					<a href="/privacy-policy/">Privacy Policy</a>
+					<a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+				</div>
+			</div>
+			<!-- SEO keyword area for search engines -->
+			<div
+				class="bollman-footer__seo"
+				aria-hidden="true"
+			>
+				<p>
+					Bollman Landscape provides landscaping and hardscaping services in Stokesdale, Greensboro, Winston-Salem,
+					Kernersville, High Point, Summerfield, Oak Ridge, and Jamestown, North Carolina. Services include landscape
+					design, paver patios, retaining walls, outdoor kitchens, inground fiberglass pools, outdoor living spaces,
+					pergolas, pavilions, gazebos, fire features, water features, walkways, driveways, excavating, grading,
+					hydroseeding, and landscape renovations. Licensed General Contractor and Certified Techo-Bloc Pro serving the
+					Piedmont Triad since 1995.
+				</p>
+			</div>
+		</footer>
+		<!-- END SECTION 11: FOOTER -->
+
 	</body>
 </html>
