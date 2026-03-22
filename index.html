@@ -2101,9 +2101,9 @@
 		<!-- END SECTION 7: STATS / COUNTERS -->
 
 		<!-- ============================================================
-     SECTION 8: TESTIMONIALS — COMPASS-STYLE 3-COLUMN AUTO-SCROLL
-     Infinite vertical scroll in 3 columns, different speeds/directions.
-     All 5 real client testimonials, duplicated for seamless looping.
+     SECTION 8: TESTIMONIALS — HORIZONTAL AUTO-SCROLL CAROUSEL
+     Auto-advancing carousel showing 2 cards at a time on desktop.
+     All 5 real client testimonials with auto-advance every 4 seconds.
      ============================================================ -->
 		<section
 			class="bollman-testimonials"
@@ -2111,19 +2111,16 @@
 			aria-labelledby="testimonials-heading"
 		>
 			<style>
-				/* --- TESTIMONIALS SECTION STYLES --- */
+				/* --- TESTIMONIALS CAROUSEL SECTION STYLES --- */
 				.bollman-testimonials {
 					background: #f8f9fa;
 					padding: 100px 24px;
 					position: relative;
 					overflow: hidden;
 				}
-				.bollman-testimonials__header {
-					text-align: center;
-					max-width: 680px;
-					margin: 0 auto 56px;
-					position: relative;
-					z-index: 2;
+				.bollman-testimonials__inner {
+					max-width: 1100px;
+					margin: 0 auto;
 				}
 				.bollman-testimonials__kicker {
 					font-family: "Nunito Sans", sans-serif;
@@ -2139,70 +2136,35 @@
 					font-size: clamp(28px, 3.5vw, 40px);
 					font-weight: 700;
 					color: #2b3543;
-					margin: 0;
+					margin: 0 0 48px;
 					text-wrap: balance;
 				}
-				/* 3-column scrolling container */
-				.bollman-testimonials__columns {
-					display: grid;
-					grid-template-columns: repeat(3, 1fr);
-					gap: 24px;
-					max-width: 1100px;
-					margin: 0 auto;
-					height: 620px;
+				/* Carousel viewport */
+				.bollman-testimonials__viewport {
 					overflow: hidden;
-					position: relative;
-					/* Fade mask at top/bottom */
-					-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-					mask-image: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+					width: 100%;
 				}
-				.bollman-testimonials__col {
-					overflow: hidden;
-					position: relative;
-				}
-				.bollman-testimonials__col-inner {
+				.bollman-testimonials__track {
 					display: flex;
-					flex-direction: column;
-					gap: 20px;
-					will-change: transform;
+					transition-property: transform;
+					transition-duration: 0.6s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 				}
-				/* Column 1: scroll up, 20s */
-				.bollman-testimonials__col:nth-child(1) .bollman-testimonials__col-inner {
-					animation: tColScrollUp 22s linear infinite;
-				}
-				/* Column 2: scroll down (reverse), 26s */
-				.bollman-testimonials__col:nth-child(2) .bollman-testimonials__col-inner {
-					animation: tColScrollDown 28s linear infinite;
-				}
-				/* Column 3: scroll up, 24s */
-				.bollman-testimonials__col:nth-child(3) .bollman-testimonials__col-inner {
-					animation: tColScrollUp 25s linear infinite;
-				}
-				@keyframes tColScrollUp {
-					0% {
-						transform: translateY(0);
-					}
-					100% {
-						transform: translateY(-50%);
-					}
-				}
-				@keyframes tColScrollDown {
-					0% {
-						transform: translateY(-50%);
-					}
-					100% {
-						transform: translateY(0);
-					}
-				}
-				/* Pause on hover */
-				.bollman-testimonials__columns:hover .bollman-testimonials__col-inner {
-					animation-play-state: paused;
+				.bollman-testimonials__slide {
+					flex: 0 0 50%;
+					min-width: 0;
+					padding: 0 12px;
+					box-sizing: border-box;
 				}
 				/* Card styles */
 				.bollman-testimonials__card {
 					background: #ffffff;
 					border-radius: 12px;
-					padding: 28px 24px;
+					padding: 32px 28px;
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
 					box-shadow:
 						0 1px 3px rgba(0, 0, 0, 0.04),
 						0 4px 16px rgba(0, 0, 0, 0.04);
@@ -2210,45 +2172,52 @@
 					transition-property: transform, box-shadow;
 					transition-duration: 0.3s;
 					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-					flex-shrink: 0;
 				}
 				.bollman-testimonials__card:hover {
-					transform: translateY(-6px);
+					transform: translateY(-4px);
 					box-shadow:
 						0 2px 6px rgba(0, 0, 0, 0.06),
 						0 12px 40px rgba(0, 0, 0, 0.1);
 				}
-				.bollman-testimonials__stars {
-					color: #f6c445;
-					font-size: 14px;
-					letter-spacing: 2px;
-					margin-bottom: 12px;
+				.bollman-testimonials__card-icon {
+					width: 32px;
+					height: 32px;
+					color: #2b3543;
+					opacity: 0.2;
+					margin-bottom: 20px;
 				}
-				.bollman-testimonials__quote-mark {
+				.bollman-testimonials__card-body {
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+				}
+				.bollman-testimonials__card-title {
 					font-family: "Outfit", sans-serif;
-					font-size: 32px;
-					line-height: 1;
-					color: #4aa0a0;
-					opacity: 0.3;
-					margin-bottom: 4px;
+					font-size: 18px;
+					font-weight: 600;
+					color: #2b3543;
+					margin: 0 0 8px;
 				}
 				.bollman-testimonials__quote {
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 14px;
-					line-height: 1.25;
-					color: rgba(0, 0, 0, 0.6);
-					margin: 0 0 16px;
-					font-style: italic;
+					line-height: 1.5;
+					color: rgba(0, 0, 0, 0.55);
+					margin: 0 0 20px;
 					text-wrap: pretty;
+					flex: 1;
 				}
 				.bollman-testimonials__footer {
 					display: flex;
 					align-items: center;
-					gap: 12px;
+					gap: 10px;
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					color: rgba(0, 0, 0, 0.4);
 				}
 				.bollman-testimonials__avatar {
-					width: 36px;
-					height: 36px;
+					width: 28px;
+					height: 28px;
 					border-radius: 50%;
 					background: linear-gradient(135deg, #4aa0a0 0%, #2b3543 100%);
 					display: flex;
@@ -2256,52 +2225,64 @@
 					justify-content: center;
 					color: #ffffff;
 					font-family: "Outfit", sans-serif;
-					font-size: 14px;
+					font-size: 11px;
 					font-weight: 700;
 					flex-shrink: 0;
 				}
-				.bollman-testimonials__author {
-					font-family: "Outfit", sans-serif;
-					font-size: 14px;
+				.bollman-testimonials__author-name {
 					font-weight: 600;
 					color: #2b3543;
-					margin: 0;
 				}
-				.bollman-testimonials__role {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 12px;
-					color: rgba(0, 0, 0, 0.4);
-					margin: 1px 0 0;
-				}
-				/* Google logo in card footer */
 				.bollman-testimonials__google {
 					margin-left: auto;
-					opacity: 0.3;
+					opacity: 0.25;
 				}
-				@media (max-width: 900px) {
-					.bollman-testimonials__columns {
-						grid-template-columns: repeat(2, 1fr);
-						height: 500px;
-					}
-					.bollman-testimonials__col:nth-child(3) {
-						display: none;
-					}
+				/* Dots indicator */
+				.bollman-testimonials__dots {
+					display: flex;
+					justify-content: center;
+					gap: 8px;
+					margin-top: 36px;
 				}
-				@media (max-width: 600px) {
-					.bollman-testimonials {
-						padding: 64px 16px;
-					}
-					.bollman-testimonials__columns {
-						grid-template-columns: 1fr;
-						height: 460px;
-					}
-					.bollman-testimonials__col:nth-child(2) {
-						display: none;
-					}
+				.bollman-testimonials__dot {
+					width: 8px;
+					height: 8px;
+					border-radius: 50%;
+					background: #2b3543;
+					opacity: 0.15;
+					border: none;
+					padding: 0;
+					cursor: pointer;
+					transition-property: opacity, transform;
+					transition-duration: 0.3s;
+					min-height: 40px;
+					min-width: 40px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.bollman-testimonials__dot::after {
+					content: '';
+					width: 8px;
+					height: 8px;
+					border-radius: 50%;
+					background: #2b3543;
+					display: block;
+				}
+				.bollman-testimonials__dot { background: transparent; }
+				.bollman-testimonials__dot::after { opacity: 0.2; }
+				.bollman-testimonials__dot--active::after {
+					opacity: 1;
+					background: #4aa0a0;
+					transform: scale(1.3);
+				}
+				@media (max-width: 768px) {
+					.bollman-testimonials { padding: 64px 16px; }
+					.bollman-testimonials__slide { flex: 0 0 100%; }
 				}
 			</style>
 
-			<div class="bollman-testimonials__header">
+			<div class="bollman-testimonials__inner">
 				<p class="bollman-testimonials__kicker">Hired for Beauty, Trusted for Quality</p>
 				<h2
 					class="bollman-testimonials__heading"
@@ -2309,491 +2290,178 @@
 				>
 					Landscaping and Hardscaping Client Testimonials
 				</h2>
-			</div>
 
-			<div
-				class="bollman-testimonials__columns"
-				aria-label="Scrolling client testimonials"
-			>
-				<!-- COLUMN 1 -->
-				<div class="bollman-testimonials__col">
-					<div class="bollman-testimonials__col-inner">
-						<!-- Testimonial: Junelyn F. -->
+			<!-- Carousel -->
+			<!-- Carousel -->
+			<div class="bollman-testimonials__viewport" aria-label="Client testimonials carousel">
+				<div class="bollman-testimonials__track" id="testimonials-track">
+					<!-- Slide 1: Junelyn F. -->
+					<div class="bollman-testimonials__slide">
 						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								Nikki with Bollman Landscape is amazing! She has the perfect eye in landscape design and truly
-								remarkable in making sure that this space becomes your new favorite place to be in! What I love most
-								about this family owned company is just that, they treat you like family. They provide honest work and
-								wonderful customer service!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">JF</div>
-								<div>
-									<p class="bollman-testimonials__author">Junelyn F.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- Testimonial: Susan B. -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								Bollman Landscaping is extremely professional, great work ethic and most productive business I've used
-								at my home.
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">SB</div>
-								<div>
-									<p class="bollman-testimonials__author">Susan B.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- DUPLICATE SET for seamless loop -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								Nikki with Bollman Landscape is amazing! She has the perfect eye in landscape design and truly
-								remarkable in making sure that this space becomes your new favorite place to be in! What I love most
-								about this family owned company is just that, they treat you like family. They provide honest work and
-								wonderful customer service!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">JF</div>
-								<div>
-									<p class="bollman-testimonials__author">Junelyn F.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-							</div>
-						</div>
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								Bollman Landscaping is extremely professional, great work ethic and most productive business I've used
-								at my home.
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">SB</div>
-								<div>
-									<p class="bollman-testimonials__author">Susan B.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
+							<svg class="bollman-testimonials__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+							<div class="bollman-testimonials__card-body">
+								<h3 class="bollman-testimonials__card-title">Like Family</h3>
+								<p class="bollman-testimonials__quote">Nikki with Bollman Landscape is amazing! She has the perfect eye in landscape design and truly remarkable in making sure that this space becomes your new favorite place to be in! What I love most about this family owned company is just that, they treat you like family.</p>
+								<div class="bollman-testimonials__footer">
+									<span style="color:rgba(0,0,0,0.4)">By</span>
+									<div class="bollman-testimonials__avatar">JF</div>
+									<span class="bollman-testimonials__author-name">Junelyn F.</span>
+									<svg class="bollman-testimonials__google" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<!-- COLUMN 2 -->
-				<div class="bollman-testimonials__col">
-					<div class="bollman-testimonials__col-inner">
-						<!-- Testimonial: Sean M. -->
+					<!-- Slide 2: Susan B. -->
+					<div class="bollman-testimonials__slide">
 						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								No other company has the same work ethic, attention to detail, creativity, or ability to make some of
-								the best looking landscapes around. They have landscaping knowledge and passion like none other and will
-								bring just about any idea to fruition. From start to finish you will be satisfied with their
-								attentiveness, quality, and time management.
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">SM</div>
-								<div>
-									<p class="bollman-testimonials__author">Sean M.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- Testimonial: Kristen O. -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								You can't find anyone better than the Bollmans at Bollman Landscape. Great people with an amazing work
-								ethic!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">KO</div>
-								<div>
-									<p class="bollman-testimonials__author">Kristen O.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- DUPLICATE SET -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								No other company has the same work ethic, attention to detail, creativity, or ability to make some of
-								the best looking landscapes around. They have landscaping knowledge and passion like none other and will
-								bring just about any idea to fruition. From start to finish you will be satisfied with their
-								attentiveness, quality, and time management.
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">SM</div>
-								<div>
-									<p class="bollman-testimonials__author">Sean M.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-							</div>
-						</div>
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								You can't find anyone better than the Bollmans at Bollman Landscape. Great people with an amazing work
-								ethic!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">KO</div>
-								<div>
-									<p class="bollman-testimonials__author">Kristen O.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
+							<svg class="bollman-testimonials__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+							<div class="bollman-testimonials__card-body">
+								<h3 class="bollman-testimonials__card-title">Extremely Professional</h3>
+								<p class="bollman-testimonials__quote">Bollman Landscaping is extremely professional, great work ethic and most productive business I've used at my home.</p>
+								<div class="bollman-testimonials__footer">
+									<span style="color:rgba(0,0,0,0.4)">By</span>
+									<div class="bollman-testimonials__avatar">SB</div>
+									<span class="bollman-testimonials__author-name">Susan B.</span>
+									<svg class="bollman-testimonials__google" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<!-- COLUMN 3 -->
-				<div class="bollman-testimonials__col">
-					<div class="bollman-testimonials__col-inner">
-						<!-- Testimonial: Ginger R. -->
+					<!-- Slide 3: Sean M. -->
+					<div class="bollman-testimonials__slide">
 						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								We hired Bollman Landscape for several projects including moving gardens and expanding our patio. Jobs
-								were completed on time and we are so happy with the results. Definitely recommend them!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">GR</div>
-								<div>
-									<p class="bollman-testimonials__author">Ginger R.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- Testimonial: Junelyn F. (extended) -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								If you are looking for someone to make your backyard dreams come to life or needing that curb appeal
-								that will impress your neighbors, Bollman Landscape is the one to call! I can't recommend them enough!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">JF</div>
-								<div>
-									<p class="bollman-testimonials__author">Junelyn F.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
-								</div>
-								<svg
-									class="bollman-testimonials__google"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									aria-hidden="true"
-								>
-									<path
-										d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-										fill="#4285F4"
-									/>
-									<path
-										d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-										fill="#34A853"
-									/>
-									<path
-										d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-										fill="#FBBC05"
-									/>
-									<path
-										d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-										fill="#EA4335"
-									/>
-								</svg>
-							</div>
-						</div>
-						<!-- DUPLICATE SET -->
-						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
-							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								We hired Bollman Landscape for several projects including moving gardens and expanding our patio. Jobs
-								were completed on time and we are so happy with the results. Definitely recommend them!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">GR</div>
-								<div>
-									<p class="bollman-testimonials__author">Ginger R.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
+							<svg class="bollman-testimonials__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+							<div class="bollman-testimonials__card-body">
+								<h3 class="bollman-testimonials__card-title">Best Decision</h3>
+								<p class="bollman-testimonials__quote">No other company has the same work ethic, attention to detail, creativity, or ability to make some of the best looking landscapes around. They have landscaping knowledge and passion like none other and will bring just about any idea to fruition.</p>
+								<div class="bollman-testimonials__footer">
+									<span style="color:rgba(0,0,0,0.4)">By</span>
+									<div class="bollman-testimonials__avatar">SM</div>
+									<span class="bollman-testimonials__author-name">Sean M.</span>
+									<svg class="bollman-testimonials__google" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
 								</div>
 							</div>
 						</div>
+					</div>
+					<!-- Slide 4: Kristen O. -->
+					<div class="bollman-testimonials__slide">
 						<div class="bollman-testimonials__card">
-							<div
-								class="bollman-testimonials__stars"
-								aria-label="5 out of 5 stars"
-							>
-								&#9733;&#9733;&#9733;&#9733;&#9733;
+							<svg class="bollman-testimonials__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+							<div class="bollman-testimonials__card-body">
+								<h3 class="bollman-testimonials__card-title">Can't Find Better</h3>
+								<p class="bollman-testimonials__quote">You can't find anyone better than the Bollmans at Bollman Landscape. Great people with an amazing work ethic!</p>
+								<div class="bollman-testimonials__footer">
+									<span style="color:rgba(0,0,0,0.4)">By</span>
+									<div class="bollman-testimonials__avatar">KO</div>
+									<span class="bollman-testimonials__author-name">Kristen O.</span>
+									<svg class="bollman-testimonials__google" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+								</div>
 							</div>
-							<div
-								class="bollman-testimonials__quote-mark"
-								aria-hidden="true"
-							>
-								&ldquo;
-							</div>
-							<p class="bollman-testimonials__quote">
-								If you are looking for someone to make your backyard dreams come to life or needing that curb appeal
-								that will impress your neighbors, Bollman Landscape is the one to call! I can't recommend them enough!
-							</p>
-							<div class="bollman-testimonials__footer">
-								<div class="bollman-testimonials__avatar">JF</div>
-								<div>
-									<p class="bollman-testimonials__author">Junelyn F.</p>
-									<p class="bollman-testimonials__role">Verified Google Review</p>
+						</div>
+					</div>
+					<!-- Slide 5: Ginger R. -->
+					<div class="bollman-testimonials__slide">
+						<div class="bollman-testimonials__card">
+							<svg class="bollman-testimonials__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+							<div class="bollman-testimonials__card-body">
+								<h3 class="bollman-testimonials__card-title">Dreams Come to Life</h3>
+								<p class="bollman-testimonials__quote">We hired Bollman Landscape for several projects including moving gardens and expanding our patio. Jobs were completed on time and we are so happy with the results. Definitely recommend them!</p>
+								<div class="bollman-testimonials__footer">
+									<span style="color:rgba(0,0,0,0.4)">By</span>
+									<div class="bollman-testimonials__avatar">GR</div>
+									<span class="bollman-testimonials__author-name">Ginger R.</span>
+									<svg class="bollman-testimonials__google" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- Dot indicators -->
+			<div class="bollman-testimonials__dots" id="testimonials-dots"></div>
+			</div>
+
+			<script>
+				(function() {
+					var track = document.getElementById('testimonials-track');
+					var slides = track.querySelectorAll('.bollman-testimonials__slide');
+					var dotsContainer = document.getElementById('testimonials-dots');
+					var current = 0;
+					var isMobile = window.innerWidth < 769;
+					var perView = isMobile ? 1 : 2;
+					var totalSlides = slides.length;
+					var maxIndex = totalSlides - perView;
+					var interval = 4000;
+					var timer;
+
+					// Create dots
+					for (var i = 0; i <= maxIndex; i++) {
+						var dot = document.createElement('button');
+						dot.className = 'bollman-testimonials__dot' + (i === 0 ? ' bollman-testimonials__dot--active' : '');
+						dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+						dot.dataset.index = i;
+						dot.addEventListener('click', function() {
+							goTo(parseInt(this.dataset.index));
+							resetTimer();
+						});
+						dotsContainer.appendChild(dot);
+					}
+
+					function goTo(index) {
+						current = index;
+						var pct = (100 / totalSlides) * current;
+						track.style.transform = 'translateX(-' + pct + '%)';
+						// Update dots
+						var dots = dotsContainer.querySelectorAll('.bollman-testimonials__dot');
+						for (var j = 0; j < dots.length; j++) {
+							dots[j].classList.toggle('bollman-testimonials__dot--active', j === current);
+						}
+					}
+
+					function next() {
+						var nextIndex = current + 1;
+						if (nextIndex > maxIndex) nextIndex = 0;
+						goTo(nextIndex);
+					}
+
+					function resetTimer() {
+						clearInterval(timer);
+						timer = setInterval(next, interval);
+					}
+
+					// Auto-advance
+					timer = setInterval(next, interval);
+
+					// Pause on hover
+					var viewport = track.closest('.bollman-testimonials__viewport');
+					viewport.addEventListener('mouseenter', function() { clearInterval(timer); });
+					viewport.addEventListener('mouseleave', function() { resetTimer(); });
+
+					// Handle resize
+					window.addEventListener('resize', function() {
+						var wasMobile = isMobile;
+						isMobile = window.innerWidth < 769;
+						if (wasMobile !== isMobile) {
+							perView = isMobile ? 1 : 2;
+							maxIndex = totalSlides - perView;
+							// Rebuild dots
+							dotsContainer.innerHTML = '';
+							for (var i = 0; i <= maxIndex; i++) {
+								var dot = document.createElement('button');
+								dot.className = 'bollman-testimonials__dot' + (i === current ? ' bollman-testimonials__dot--active' : '');
+								dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+								dot.dataset.index = i;
+								dot.addEventListener('click', function() {
+									goTo(parseInt(this.dataset.index));
+									resetTimer();
+								});
+								dotsContainer.appendChild(dot);
+							}
+							if (current > maxIndex) goTo(maxIndex);
+						}
+					});
+				})();
+			</script>
 		</section>
 		<!-- END SECTION 8: TESTIMONIALS -->
 
