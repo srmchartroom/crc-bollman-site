@@ -1390,5 +1390,136 @@
 				color: inherit;
 			}
 		</style>
+
+<!-- ============================================================
+     SHARED: ABOUT / INTRO
+     ============================================================ -->
+<section class="bollman-about" aria-labelledby="about-heading-shared">
+    <style>
+        .bollman-about { background: #ffffff; padding: 100px 24px; }
+        .bollman-about__inner { max-width: 1100px; margin: 0 auto; }
+        .bollman-about__heading { font-family: "Outfit", sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; color: #2b3543; line-height: 1.15; margin: 0 0 44px; text-wrap: balance; opacity: 0; transform: translateY(24px); }
+        .bollman-about__heading span { color: #4aa0a0; }
+        .bollman-about__body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        .bollman-about__image { width: 100%; border-radius: 0; outline: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04); opacity: 0; transform: translateY(24px); }
+        .bollman-about__text { font-family: "Nunito Sans", sans-serif; font-size: 17px; line-height: 1.25; color: rgba(0,0,0,0.68); margin: 0 0 20px; text-wrap: pretty; opacity: 0; transform: translateY(16px); }
+        .bollman-about__text strong { color: #2b3543; font-weight: 700; }
+        .bollman-about__highlight { display: block; font-family: "Outfit", sans-serif; font-size: 22px; font-weight: 600; color: #2b3543; margin: 32px 0; padding-left: 20px; border-left: 3px solid #4aa0a0; line-height: 1.4; }
+        .bollman-about__cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: #c02240; color: #ffffff; font-family: "Nunito Sans", sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; text-decoration: none; border-radius: 6px; margin-top: 16px; min-height: 44px; transition-property: transform, box-shadow; transition-duration: 0.2s; transition-timing-function: cubic-bezier(0.2,0,0,1); opacity: 0; transform: translateY(16px); }
+        .bollman-about__cta:hover { box-shadow: 0 4px 16px rgba(192,34,64,0.35); }
+        .bollman-about__cta:active { transform: scale(0.96); }
+        @media (max-width: 768px) { .bollman-about { padding: 64px 20px; } .bollman-about__body { grid-template-columns: 1fr; gap: 32px; } }
+    </style>
+    <div class="bollman-about__inner">
+        <h2 class="bollman-about__heading" id="about-heading-shared">Landscape and Hardscape Design,<br /><span>Beautifully Built</span> + Built to Last</h2>
+        <div class="bollman-about__body">
+            <div class="bollman-about__image-wrap">
+                <img class="bollman-about__image" src="../assets/who-why-house-hardscape-section2.jpg" alt="Luxury hardscape patio and outdoor living space designed and built by Bollman Landscape in the Piedmont Triad, NC" loading="lazy" width="540" height="400" />
+            </div>
+            <div class="bollman-about__content">
+                <p class="bollman-about__text">Plenty of outdoor projects look good on day one... but far less still perform years later. At <strong>BOLLMAN Landscape</strong>, we believe your outdoor space should do both.</p>
+                <p class="bollman-about__text">As a landscape and hardscape design company owned and operated by a <strong>licensed General Contractor</strong>, we understand that extraordinary results come from more than surface-level style. They come from thoughtful planning, structural integrity, drainage expertise, material performance, code awareness, and a build process that respects your home as much as the final result.</p>
+                <span class="bollman-about__highlight">That's the BOLLMAN difference.</span>
+                <p class="bollman-about__text">For homeowners investing seriously in their property, that difference matters.</p>
+                <a href="/contact/" class="bollman-about__cta">Learn More <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function(){var s=document.querySelector(".bollman-about");if(!s)return;var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll(".bollman-about__heading,.bollman-about__image,.bollman-about__text,.bollman-about__highlight,.bollman-about__cta").forEach(function(el,i){el.style.transition="opacity 0.7s cubic-bezier(0.2,0,0,1) "+i*0.1+"s, transform 0.7s cubic-bezier(0.2,0,0,1) "+i*0.1+"s";el.style.opacity="1";el.style.transform="translateY(0)";});o.unobserve(e.target);}});},{threshold:0.15});o.observe(s.querySelector(".bollman-about__inner"));})();
+    </script>
+</section>
+
+<!-- ============================================================
+     SHARED: EXPERTISE / DIFFERENTIATOR
+     ============================================================ -->
+<section class="bollman-expertise" aria-labelledby="expertise-heading-shared">
+    <style>
+        .bollman-expertise { background: #ffffff; padding: 100px 24px; }
+        .bollman-expertise__inner { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .bollman-expertise__heading { font-family: "Outfit", sans-serif; font-size: clamp(24px, 3vw, 34px); font-weight: 700; color: #2b3543; line-height: 1.1; margin: 0 0 24px; text-wrap: balance; }
+        .bollman-expertise__text { font-family: "Nunito Sans", sans-serif; font-size: 16px; line-height: 1.25; color: rgba(0,0,0,0.65); margin: 0 0 20px; text-wrap: pretty; }
+        .bollman-expertise__text strong { color: #2b3543; }
+        .bollman-expertise__visual { position: relative; }
+        .bollman-expertise__img { width: 100%; height: auto; border-radius: 0; outline: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 2px 12px rgba(0,0,0,0.06); }
+        .bollman-expertise__badge { position: absolute; bottom: -16px; right: -16px; background: #2b3543; color: #ffffff; padding: 16px 24px; border-radius: 10px; font-family: "Outfit", sans-serif; box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center; }
+        .bollman-expertise__badge-icon { display: block; margin: 0 auto 6px; }
+        .bollman-expertise__badge-number { font-size: 18px; font-weight: 800; display: block; line-height: 1; }
+        .bollman-expertise__badge-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
+        @media (max-width: 768px) { .bollman-expertise { padding: 64px 20px; } .bollman-expertise__inner { grid-template-columns: 1fr; gap: 40px; } .bollman-expertise__badge { bottom: -12px; right: 12px; } }
+        .bollman-partners { max-width: 1100px; margin: 80px auto 0; padding: 0 24px; }
+        .bollman-partners__heading { font-family: "Outfit", sans-serif; font-size: clamp(18px, 2.2vw, 24px); font-weight: 700; color: #ffffff; text-align: center; margin: 0 auto 60px; background: #2b3543; display: inline-block; padding: 14px 80px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); letter-spacing: 0.5px; }
+        .bollman-partners__heading-wrap { text-align: center; }
+        .bollman-partners__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 48px; margin-bottom: 85px; align-items: center; justify-items: center; }
+        .bollman-partners__grid img { max-height: 48px; width: auto; max-width: 100%; object-fit: contain; transition-property: transform; transition-duration: 0.3s; transition-timing-function: cubic-bezier(0.2,0,0,1); }
+        .bollman-partners__grid img:hover { transform: scale(1.08); }
+        .bollman-partners__grid img:last-child:nth-child(3n+1) { grid-column: 2; }
+        @media (max-width: 600px) { .bollman-partners__grid { grid-template-columns: repeat(2, 1fr); gap: 24px 32px; } .bollman-partners__grid img { max-height: 36px; } .bollman-partners__grid img:last-child:nth-child(3n+1) { grid-column: auto; } }
+    </style>
+    <div class="bollman-expertise__inner">
+        <div>
+            <h2 class="bollman-expertise__heading" id="expertise-heading-shared">Expert Knowledge,<br /><span style="color:#4aa0a0">Uncompromising</span> Durability</h2>
+            <p class="bollman-expertise__text">We're a landscape design company that brings <strong>decades of experience, licensed expertise, and a deep understanding of the structural side of outdoor construction</strong> — the part that determines whether a project ages gracefully or becomes an expensive lesson.</p>
+            <p class="bollman-expertise__text">What sets us apart isn't just what you see when the project is finished. It's what you don't have to worry about 2 years — or 20 years — down the line. Unlike some hardscape landscapers, <strong>we design and build outdoor spaces that are as dependable as they are beautiful</strong> for every client, every time.</p>
+        </div>
+        <div class="bollman-expertise__visual">
+            <img class="bollman-expertise__img" src="../assets/hardscape-team.jpg" alt="Bollman Landscape hardscape team at work on a professional installation" loading="lazy" width="520" height="400" />
+            <div class="bollman-expertise__badge" aria-label="Certified Techo-Bloc Partner">
+                <svg class="bollman-expertise__badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4aa0a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span class="bollman-expertise__badge-number">CERTIFIED</span>
+                <span class="bollman-expertise__badge-label">TECHO-BLOC PARTNER</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function(){var s=document.querySelector(".bollman-expertise__inner");if(!s)return;var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll(":scope > *").forEach(function(el,i){el.style.opacity="0";el.style.transform="translateY(20px)";el.style.transition="opacity 0.7s cubic-bezier(0.2,0,0,1) "+i*0.15+"s, transform 0.7s cubic-bezier(0.2,0,0,1) "+i*0.15+"s";requestAnimationFrame(function(){el.style.opacity="1";el.style.transform="translateY(0)";});});o.unobserve(e.target);}});},{threshold:0.15});o.observe(s);})();
+    </script>
+    <div class="bollman-partners">
+        <div class="bollman-partners__heading-wrap">
+            <h3 class="bollman-partners__heading"><span style="color:#4aa0a0">Trusted by</span> Industry Leaders</h3>
+        </div>
+        <div class="bollman-partners__grid">
+            <img src="../assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc certified partner" loading="lazy">
+            <img src="../assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers partner" loading="lazy">
+            <img src="../assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok retaining wall systems" loading="lazy">
+            <img src="../assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick partner" loading="lazy">
+            <img src="../assets/partner-logos/Aquascape Logo.png" alt="Aquascape water features partner" loading="lazy">
+            <img src="../assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools fiberglass pools" loading="lazy">
+            <img src="../assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys outdoor kitchen partner" loading="lazy">
+            <img src="../assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools partner" loading="lazy">
+            <img src="../assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand polymeric sand" loading="lazy">
+            <img src="../assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf synthetic turf" loading="lazy">
+            <img src="../assets/partner-logos/SEK Sand.png" alt="SEK Surebond polymeric products" loading="lazy">
+            <img src="../assets/partner-logos/hgtv-logo.png" alt="HGTV featured partner" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SHARED: CTA / CALL TO ACTION
+     ============================================================ -->
+<section class="bollman-cta" aria-labelledby="cta-heading-shared">
+    <style>
+        .bollman-cta { background-image: url('../assets/final-cta-background-image.JPG'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; padding: 120px 24px; text-align: center; position: relative; overflow: hidden; }
+        .bollman-cta::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.45); pointer-events: none; }
+        .bollman-cta__inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 2; background: rgba(255,255,255,0.95); padding: 56px 48px; border-radius: 0; box-shadow: 0 8px 40px rgba(0,0,0,0.2), 0 2px 12px rgba(0,0,0,0.1); }
+        .bollman-cta__heading { font-family: "Outfit", sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; color: #2b3543; margin: 0 0 20px; text-wrap: balance; }
+        .bollman-cta__text { font-family: "Nunito Sans", sans-serif; font-size: 17px; line-height: 1.25; color: rgba(43,53,67,0.7); margin: 0 0 36px; text-wrap: pretty; }
+        .bollman-cta__buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .bollman-cta__btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; font-family: "Nunito Sans", sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; text-decoration: none; border-radius: 8px; min-height: 52px; transition-property: transform, box-shadow; transition-duration: 0.25s; transition-timing-function: cubic-bezier(0.2,0,0,1); }
+        .bollman-cta__btn--primary { background: #c02240; color: #ffffff; }
+        .bollman-cta__btn--primary:hover { box-shadow: 0 6px 24px rgba(192,34,64,0.4); }
+        .bollman-cta__btn:active { transform: scale(0.96); }
+        @media (max-width: 768px) { .bollman-cta { padding: 80px 20px; background-attachment: scroll; } .bollman-cta__inner { padding: 40px 28px; } .bollman-cta__buttons { flex-direction: column; align-items: center; } }
+    </style>
+    <div class="bollman-cta__inner">
+        <h2 class="bollman-cta__heading" id="cta-heading-shared"><span style="color:#4aa0a0">Let's Build</span> a Better Outdoor Space.</h2>
+        <p class="bollman-cta__text">From custom landscape design to complete landscaping and hardscaping builds, BOLLMAN brings the design vision and construction expertise to deliver premium outdoor living spaces with lasting integrity.</p>
+        <div class="bollman-cta__buttons">
+            <a href="/contact/" class="bollman-cta__btn bollman-cta__btn--primary">Get Started Now <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a>
+        </div>
+    </div>
+</section>
+
 	</body>
 </html>
