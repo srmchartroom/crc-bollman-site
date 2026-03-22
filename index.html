@@ -1825,9 +1825,13 @@
 					color: #ffffff;
 					padding: 16px 24px;
 					border-radius: 10px;
-					/* Concentric: outer 10px, inner text has 0 padding so inner radius = 10 - 0 = 10 */
 					font-family: "Outfit", sans-serif;
 					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+					text-align: center;
+				}
+				.bollman-expertise__badge-icon {
+					display: block;
+					margin: 0 auto 6px;
 				}
 				.bollman-expertise__badge-number {
 					font-size: 18px;
@@ -1864,7 +1868,7 @@
 						class="bollman-expertise__heading"
 						id="expertise-heading"
 					>
-						Expert Knowledge,<br />Uncompromising Durability
+						Expert Knowledge,<br /><span style="color:#4aa0a0">Uncompromising</span> Durability
 					</h2>
 					<p class="bollman-expertise__text">
 						We're a landscape design company that brings
@@ -1894,6 +1898,7 @@
 						class="bollman-expertise__badge"
 						aria-label="Certified Techo-Bloc Partner"
 					>
+						<svg class="bollman-expertise__badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4aa0a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
 						<span class="bollman-expertise__badge-number">CERTIFIED</span>
 						<span class="bollman-expertise__badge-label">TECHO-BLOC PARTNER</span>
 					</div>
