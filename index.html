@@ -867,7 +867,7 @@
             padding: 100px 24px;
         }
         .bollman-about__inner {
-            max-width: 880px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         .bollman-about__heading {
@@ -876,13 +876,27 @@
             font-weight: 700;
             color: #2b3543;
             line-height: 1.15;
-            margin: 0 0 36px;
+            margin: 0 0 44px;
             text-wrap: balance;
             opacity: 0;
             transform: translateY(24px);
         }
         .bollman-about__heading span {
             color: #4aa0a0;
+        }
+        .bollman-about__body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .bollman-about__image {
+            width: 100%;
+            border-radius: 12px;
+            outline: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+            opacity: 0;
+            transform: translateY(24px);
         }
         .bollman-about__text {
             font-family: 'Nunito Sans', sans-serif;
@@ -939,6 +953,10 @@
         }
         @media (max-width: 768px) {
             .bollman-about { padding: 64px 20px; }
+            .bollman-about__body {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
         }
     </style>
 
@@ -947,25 +965,31 @@
             Landscape and Hardscape Design,<br>
             <span>Beautifully Built</span> + Built to Last
         </h2>
-        <p class="bollman-about__text">Plenty of outdoor projects look good on day one... but far less still perform years later.</p>
-        <p class="bollman-about__text">At <strong>BOLLMAN Landscape</strong>, we believe your outdoor space should do both.</p>
-        <p class="bollman-about__text">As a landscape and hardscape design company owned and operated by a <strong>licensed General Contractor</strong>, we understand that extraordinary results come from more than surface-level style. They come from thoughtful planning, structural integrity, drainage expertise, material performance, code awareness, and a build process that respects your home as much as the final result.</p>
-        <span class="bollman-about__highlight">That's the BOLLMAN difference.</span>
-        <p class="bollman-about__text">For homeowners investing seriously in their property, that difference matters.</p>
-        <a href="#services" class="bollman-about__cta">
-            Learn More
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+        <div class="bollman-about__body">
+            <div class="bollman-about__image-wrap">
+                <img class="bollman-about__image" src="./assets/who-why-house-hardscape-section2.jpg" alt="Luxury hardscape patio and outdoor living space designed and built by Bollman Landscape in the Piedmont Triad, NC" loading="lazy" width="540" height="400">
+            </div>
+            <div class="bollman-about__content">
+                <p class="bollman-about__text">Plenty of outdoor projects look good on day one... but far less still perform years later.</p>
+                <p class="bollman-about__text">At <strong>BOLLMAN Landscape</strong>, we believe your outdoor space should do both.</p>
+                <p class="bollman-about__text">As a landscape and hardscape design company owned and operated by a <strong>licensed General Contractor</strong>, we understand that extraordinary results come from more than surface-level style. They come from thoughtful planning, structural integrity, drainage expertise, material performance, code awareness, and a build process that respects your home as much as the final result.</p>
+                <span class="bollman-about__highlight">That's the BOLLMAN difference.</span>
+                <p class="bollman-about__text">For homeowners investing seriously in their property, that difference matters.</p>
+                <a href="#services" class="bollman-about__cta">
+                    Learn More
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
     </div>
 
     <script>
     (function() {
         var section = document.querySelector('.bollman-about');
-        var els = section.querySelectorAll('.bollman-about__heading, .bollman-about__text, .bollman-about__cta');
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    var items = entry.target.querySelectorAll('.bollman-about__heading, .bollman-about__text, .bollman-about__highlight, .bollman-about__cta');
+                    var items = entry.target.querySelectorAll('.bollman-about__heading, .bollman-about__image, .bollman-about__text, .bollman-about__highlight, .bollman-about__cta');
                     items.forEach(function(el, i) {
                         el.style.transition = 'opacity 0.7s cubic-bezier(0.2,0,0,1) ' + (i * 0.1) + 's, transform 0.7s cubic-bezier(0.2,0,0,1) ' + (i * 0.1) + 's';
                         el.style.opacity = '1';
