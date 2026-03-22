@@ -1945,11 +1945,20 @@
 				}
 				.bollman-partners__heading {
 					font-family: "Outfit", sans-serif;
-					font-size: 22px;
+					font-size: 16px;
 					font-weight: 700;
-					color: #2b3543;
+					color: #ffffff;
 					text-align: center;
-					margin: 0 0 40px;
+					margin: 0 auto 40px;
+					background: #2b3543;
+					display: inline-block;
+					padding: 14px 28px;
+					border-radius: 10px;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+					letter-spacing: 0.5px;
+				}
+				.bollman-partners__heading-wrap {
+					text-align: center;
 				}
 				.bollman-partners__grid {
 					display: grid;
@@ -1988,7 +1997,9 @@
 				}
 			</style>
 			<div class="bollman-partners">
-				<h3 class="bollman-partners__heading">Trusted by Industry Leaders</h3>
+				<div class="bollman-partners__heading-wrap">
+					<h3 class="bollman-partners__heading">Trusted by Industry Leaders</h3>
+				</div>
 				<div class="bollman-partners__grid">
 					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc certified partner" loading="lazy">
 					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers partner" loading="lazy">
