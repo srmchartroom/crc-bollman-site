@@ -1280,445 +1280,612 @@
 		<!-- END SECTION 4: ABOUT / INTRO -->
 
 		<!-- ============================================================
-     SECTION 5: SERVICES GRID
-     Six service cards with images, descriptions, and CTAs.
+     SECTION 5: SERVICES — 3-COLUMN LAYOUT WITH CENTER IMAGE
+     Six service items flanking a center image, stats bar, and CTA.
+     Vanilla HTML/CSS/JS conversion of 21st.dev about-us-section.
      ============================================================ -->
-		<section
-			class="bollman-services"
-			id="services"
-			aria-labelledby="services-heading"
-		>
+		<section class="bollman-services2" id="services" aria-labelledby="services-heading">
 			<style>
-				/* --- SERVICES SECTION STYLES --- */
-				.bollman-services {
-					background: #0a0f16;
+				/* --- SERVICES SECTION STYLES (3-COL LAYOUT) --- */
+				.bollman-services2 {
+					background: linear-gradient(180deg, #f2f2eb 0%, #f8f8f2 100%);
 					padding: 100px 24px;
 					position: relative;
+					overflow: hidden;
+					color: #2b3543;
 				}
-				.bollman-services::before {
-					content: "";
+				/* Decorative blurred orbs */
+				.bollman-services2__orb {
 					position: absolute;
-					inset: 0;
-					background:
-						radial-gradient(ellipse at 20% 50%, rgba(74, 160, 160, 0.04) 0%, transparent 60%),
-						radial-gradient(ellipse at 80% 20%, rgba(192, 34, 64, 0.03) 0%, transparent 50%);
+					border-radius: 50%;
+					filter: blur(80px);
 					pointer-events: none;
 				}
-				.bollman-services__header {
+				.bollman-services2__orb--1 { top: 80px; left: 40px; width: 260px; height: 260px; background: rgba(43,53,67,0.04); }
+				.bollman-services2__orb--2 { bottom: 80px; right: 40px; width: 320px; height: 320px; background: rgba(74,160,160,0.04); }
+
+				/* Header */
+				.bollman-services2__header {
 					text-align: center;
-					max-width: 720px;
-					margin: 0 auto 64px;
+					max-width: 680px;
+					margin: 0 auto 20px;
 					position: relative;
-				}
-				.bollman-services__heading {
-					font-family: "Outfit", sans-serif;
-					font-size: clamp(28px, 4vw, 44px);
-					font-weight: 700;
-					color: #ffffff;
-					line-height: 1.15;
-					margin: 0;
-					text-wrap: balance;
-				}
-				.bollman-services__sub {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 16px;
-					color: rgba(255, 255, 255, 0.5);
-					margin: 16px 0 0;
-					text-wrap: pretty;
-				}
-				.bollman-services__grid {
-					display: grid;
-					grid-template-columns: repeat(3, 1fr);
-					gap: 24px;
-					max-width: 1200px;
-					margin: 0 auto;
-					position: relative;
-				}
-				.bollman-services__card {
-					position: relative;
-					border-radius: 12px;
-					overflow: hidden;
-					aspect-ratio: 4 / 5;
-					cursor: pointer;
-					/* Concentric radius: outer=12, inner content padding=0, so inner matches */
-				}
-				.bollman-services__card-img {
-					position: absolute;
-					inset: 0;
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					transition-property: transform;
-					transition-duration: 0.6s;
-					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-					outline: 1px solid rgba(255, 255, 255, 0.06);
-				}
-				.bollman-services__card:hover .bollman-services__card-img {
-					transform: scale(1.05);
-				}
-				.bollman-services__card-overlay {
-					position: absolute;
-					inset: 0;
-					background: linear-gradient(180deg, transparent 30%, rgba(4, 6, 11, 0.85) 100%);
-					transition-property: background;
-					transition-duration: 0.4s;
-				}
-				.bollman-services__card:hover .bollman-services__card-overlay {
-					background: linear-gradient(180deg, transparent 10%, rgba(4, 6, 11, 0.92) 100%);
-				}
-				.bollman-services__card-content {
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					right: 0;
-					padding: 32px 28px;
 					z-index: 2;
 				}
-				.bollman-services__card-title {
-					font-family: "Outfit", sans-serif;
-					font-size: 22px;
-					font-weight: 600;
-					color: #ffffff;
-					margin: 0 0 10px;
-				}
-				.bollman-services__card-desc {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 14px;
-					color: rgba(255, 255, 255, 0.7);
-					line-height: 1.6;
-					margin: 0 0 16px;
-					max-height: 0;
-					overflow: hidden;
-					opacity: 0;
-					transition-property: max-height, opacity;
-					transition-duration: 0.4s;
-					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-					text-wrap: pretty;
-				}
-				.bollman-services__card:hover .bollman-services__card-desc {
-					max-height: 200px;
-					opacity: 1;
-				}
-				.bollman-services__card-link {
-					display: inline-flex;
-					align-items: center;
-					gap: 6px;
-					color: #4aa0a0;
-					font-family: "Nunito Sans", sans-serif;
+				.bollman-services2__eyebrow {
+					font-family: 'Nunito Sans', sans-serif;
 					font-size: 13px;
 					font-weight: 700;
+					letter-spacing: 2px;
 					text-transform: uppercase;
-					letter-spacing: 1px;
+					color: #2b3543;
+					margin: 0 0 12px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 8px;
+				}
+				.bollman-services2__eyebrow svg { stroke: #2b3543; }
+				.bollman-services2__heading {
+					font-family: 'Outfit', sans-serif;
+					font-size: clamp(28px, 4vw, 44px);
+					font-weight: 300;
+					color: #2b3543;
+					line-height: 1.2;
+					margin: 0 0 16px;
+					text-wrap: balance;
+				}
+				.bollman-services2__rule {
+					width: 96px;
+					height: 4px;
+					background: #2b3543;
+					margin: 0 auto 24px;
+					border: none;
+				}
+				.bollman-services2__intro {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 16px;
+					line-height: 1.7;
+					color: rgba(43,53,67,0.75);
+					margin: 0 auto 64px;
+					max-width: 600px;
+					text-wrap: pretty;
+				}
+
+				/* 3-column grid: services | image | services */
+				.bollman-services2__grid {
+					display: grid;
+					grid-template-columns: 1fr 300px 1fr;
+					gap: 48px;
+					max-width: 1100px;
+					margin: 0 auto;
+					position: relative;
+					z-index: 2;
+					align-items: center;
+				}
+				.bollman-services2__col {
+					display: flex;
+					flex-direction: column;
+					gap: 48px;
+				}
+
+				/* Service items */
+				.bollman-services2__item {
+					opacity: 0;
+					transform: translateY(20px);
+					cursor: default;
+					transition-property: transform;
+					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-services2__item:hover {
+					transform: translateY(-4px);
+				}
+				.bollman-services2__item-head {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					margin-bottom: 10px;
+				}
+				.bollman-services2__icon {
+					width: 48px;
+					height: 48px;
+					min-width: 48px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: rgba(43,53,67,0.08);
+					border-radius: 10px;
+					color: #2b3543;
+					transition-property: background;
+					transition-duration: 0.3s;
+				}
+				.bollman-services2__item:hover .bollman-services2__icon {
+					background: rgba(43,53,67,0.15);
+				}
+				.bollman-services2__icon svg {
+					width: 22px;
+					height: 22px;
+					stroke: #2b3543;
+					fill: none;
+					stroke-width: 1.8;
+					stroke-linecap: round;
+					stroke-linejoin: round;
+				}
+				.bollman-services2__item-title {
+					font-family: 'Outfit', sans-serif;
+					font-size: 20px;
+					font-weight: 500;
+					color: #2b3543;
+					margin: 0;
+					transition-property: color;
+					transition-duration: 0.3s;
+				}
+				.bollman-services2__item:hover .bollman-services2__item-title {
+					color: #1a222c;
+				}
+				.bollman-services2__item-desc {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 14px;
+					line-height: 1.65;
+					color: rgba(43,53,67,0.72);
+					margin: 0;
+					padding-left: 60px;
+					text-wrap: pretty;
+				}
+				.bollman-services2__item-more {
+					display: flex;
+					align-items: center;
+					gap: 4px;
+					padding-left: 60px;
+					margin-top: 8px;
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 12px;
+					font-weight: 700;
+					color: #2b3543;
+					text-decoration: none;
+					text-transform: uppercase;
+					letter-spacing: 0.5px;
+					opacity: 0;
+					transition-property: opacity;
+					transition-duration: 0.3s;
+				}
+				.bollman-services2__item:hover .bollman-services2__item-more {
+					opacity: 1;
+				}
+
+				/* Center image */
+				.bollman-services2__center {
+					position: relative;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.bollman-services2__img-wrap {
+					position: relative;
+					width: 100%;
+					border-radius: 8px;
+					overflow: hidden;
+					box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+				}
+				.bollman-services2__img-wrap img {
+					width: 100%;
+					height: auto;
+					display: block;
+					object-fit: cover;
+					aspect-ratio: 3/4;
+				}
+				.bollman-services2__img-overlay {
+					position: absolute;
+					inset: 0;
+					background: linear-gradient(180deg, transparent 50%, rgba(43,53,67,0.5) 100%);
+					display: flex;
+					align-items: flex-end;
+					justify-content: center;
+					padding: 20px;
+				}
+				.bollman-services2__img-btn {
+					display: inline-flex;
+					align-items: center;
+					gap: 8px;
+					background: #ffffff;
+					color: #2b3543;
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 13px;
+					font-weight: 600;
+					padding: 10px 20px;
+					border-radius: 24px;
 					text-decoration: none;
 					min-height: 40px;
-					transition-property: gap;
+					transition-property: transform, box-shadow;
 					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 				}
-				.bollman-services__card:hover .bollman-services__card-link {
-					gap: 10px;
+				.bollman-services2__img-btn:hover {
+					transform: scale(1.04);
+					box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 				}
+				.bollman-services2__img-btn:active {
+					transform: scale(0.96);
+				}
+				.bollman-services2__img-border {
+					position: absolute;
+					inset: -12px;
+					border: 4px solid rgba(74,160,160,0.25);
+					border-radius: 12px;
+					z-index: -1;
+				}
+
+				/* Stats row */
+				.bollman-services2__stats {
+					display: grid;
+					grid-template-columns: repeat(4, 1fr);
+					gap: 24px;
+					max-width: 1100px;
+					margin: 80px auto 0;
+					position: relative;
+					z-index: 2;
+				}
+				.bollman-services2__stat {
+					background: rgba(255,255,255,0.5);
+					backdrop-filter: blur(8px);
+					padding: 32px 20px;
+					border-radius: 12px;
+					text-align: center;
+					opacity: 0;
+					transform: translateY(20px);
+					transition-property: background, transform;
+					transition-duration: 0.3s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-services2__stat:hover {
+					background: #ffffff;
+					transform: translateY(-4px);
+				}
+				.bollman-services2__stat-icon {
+					width: 56px;
+					height: 56px;
+					border-radius: 50%;
+					background: rgba(43,53,67,0.05);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto 16px;
+					color: #2b3543;
+				}
+				.bollman-services2__stat:hover .bollman-services2__stat-icon {
+					background: rgba(43,53,67,0.1);
+				}
+				.bollman-services2__stat-icon svg {
+					width: 24px;
+					height: 24px;
+					stroke: #2b3543;
+					fill: none;
+					stroke-width: 1.8;
+					stroke-linecap: round;
+					stroke-linejoin: round;
+				}
+				.bollman-services2__stat-value {
+					font-family: 'Outfit', sans-serif;
+					font-size: 32px;
+					font-weight: 700;
+					color: #2b3543;
+					font-variant-numeric: tabular-nums;
+					margin: 0;
+				}
+				.bollman-services2__stat-label {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 14px;
+					color: rgba(43,53,67,0.65);
+					margin: 4px 0 0;
+				}
+				.bollman-services2__stat-bar {
+					width: 40px;
+					height: 3px;
+					background: #2b3543;
+					margin: 12px auto 0;
+					transition-property: width;
+					transition-duration: 0.3s;
+				}
+				.bollman-services2__stat:hover .bollman-services2__stat-bar {
+					width: 64px;
+				}
+
+				/* CTA bar */
+				.bollman-services2__cta-bar {
+					max-width: 1100px;
+					margin: 64px auto 0;
+					background: #2b3543;
+					color: #ffffff;
+					padding: 40px 48px;
+					border-radius: 12px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					gap: 24px;
+					position: relative;
+					z-index: 2;
+					opacity: 0;
+					transform: translateY(24px);
+				}
+				.bollman-services2__cta-text h3 {
+					font-family: 'Outfit', sans-serif;
+					font-size: 24px;
+					font-weight: 500;
+					margin: 0 0 8px;
+				}
+				.bollman-services2__cta-text p {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 15px;
+					color: rgba(255,255,255,0.75);
+					margin: 0;
+				}
+				.bollman-services2__cta-btn {
+					display: inline-flex;
+					align-items: center;
+					gap: 8px;
+					background: #c02240;
+					color: #ffffff;
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 14px;
+					font-weight: 700;
+					padding: 14px 28px;
+					border-radius: 8px;
+					text-decoration: none;
+					white-space: nowrap;
+					min-height: 44px;
+					transition-property: transform, box-shadow;
+					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-services2__cta-btn:hover {
+					box-shadow: 0 4px 16px rgba(192, 34, 64, 0.35);
+				}
+				.bollman-services2__cta-btn:active {
+					transform: scale(0.96);
+				}
+
+				/* Responsive */
 				@media (max-width: 900px) {
-					.bollman-services__grid {
-						grid-template-columns: repeat(2, 1fr);
-						gap: 16px;
+					.bollman-services2__grid {
+						grid-template-columns: 1fr;
+						gap: 40px;
 					}
+					.bollman-services2__center {
+						order: -1;
+						max-width: 320px;
+						margin: 0 auto;
+					}
+					.bollman-services2__stats {
+						grid-template-columns: repeat(2, 1fr);
+					}
+					.bollman-services2__item-desc { padding-left: 60px; }
+					.bollman-services2__item-more { padding-left: 60px; }
 				}
 				@media (max-width: 600px) {
-					.bollman-services {
-						padding: 64px 16px;
-					}
-					.bollman-services__grid {
-						grid-template-columns: 1fr;
-						gap: 16px;
-					}
-					.bollman-services__card {
-						aspect-ratio: 3 / 4;
-					}
-					.bollman-services__card-desc {
-						max-height: 200px;
-						opacity: 1;
+					.bollman-services2 { padding: 64px 16px; }
+					.bollman-services2__stats { grid-template-columns: 1fr; }
+					.bollman-services2__cta-bar {
+						flex-direction: column;
+						text-align: center;
+						padding: 32px 24px;
 					}
 				}
 			</style>
 
-			<div class="bollman-services__header">
-				<h2
-					class="bollman-services__heading"
-					id="services-heading"
-				>
+			<!-- Decorative orbs -->
+			<div class="bollman-services2__orb bollman-services2__orb--1" aria-hidden="true"></div>
+			<div class="bollman-services2__orb bollman-services2__orb--2" aria-hidden="true"></div>
+
+			<!-- Header -->
+			<div class="bollman-services2__header">
+				<p class="bollman-services2__eyebrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+					OUR SERVICES
+				</p>
+				<h2 class="bollman-services2__heading" id="services-heading">
 					Landscape Design. Hardscape Builds. Outdoor Spaces You'll Love for Years to Come
 				</h2>
-				<p class="bollman-services__sub">Premium design-build services for homeowners across the Piedmont Triad.</p>
+				<hr class="bollman-services2__rule" />
 			</div>
-			<div class="bollman-services__grid">
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="./assets/service-outdoor-living.png"
-						alt="Custom outdoor living space with paver patio and pergola in Greensboro NC"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Outdoor Living</h3>
-						<p class="bollman-services__card-desc">
-							Thoughtfully designed outdoor spaces that extend the home and create a natural place for gathering,
-							relaxing, and everyday living. This is where hardscape backyard design meets comfort, flow, and long-term
-							usability.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+			<p class="bollman-services2__intro">Premium design-build services for homeowners across the Piedmont Triad. As a licensed General Contractor, we bring structural integrity and refined craftsmanship to every project.</p>
+
+			<!-- 3-column grid -->
+			<div class="bollman-services2__grid">
+				<!-- Left column: 3 services -->
+				<div class="bollman-services2__col">
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Outdoor Living</h3>
+						</div>
+						<p class="bollman-services2__item-desc">Thoughtfully designed outdoor spaces that extend the home and create a natural place for gathering, relaxing, and everyday living. This is where hardscape backyard design meets comfort, flow, and long-term usability.</p>
+						<a href="/hardscaping-services/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 					</div>
-				</article>
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="./assets/service-outdoor-kitchens.png"
-						alt="Professional outdoor kitchen with stone countertops and built-in grill"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Outdoor Kitchens</h3>
-						<p class="bollman-services__card-desc">
-							Functional, high-end outdoor kitchens built for hosting, cooking, and making the space more usable
-							year-round. Designed as stand-alone features, or seamlessly woven into full landscape hardscape design
-							plans.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/><line x1="12" y1="11" x2="12" y2="15"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Outdoor Kitchens</h3>
+						</div>
+						<p class="bollman-services2__item-desc">Functional, high-end outdoor kitchens built for hosting, cooking, and making the space more usable year-round. Designed as stand-alone features, or seamlessly woven into full landscape hardscape design plans.</p>
+						<a href="/hardscaping-services/outdoor-kitchen-builders/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 					</div>
-				</article>
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="./assets/service-inground-pools.png"
-						alt="Inground fiberglass pool with custom paver surround in Winston-Salem NC"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Inground Pools</h3>
-						<p class="bollman-services__card-desc">
-							Structurally sound, beautifully integrated pool environments designed with the full property, circulation,
-							and long-term experience in mind — by a team that understands both form and function.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><path d="M2 12h4l2-8 4 16 4-16 2 8h4"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Inground Pools</h3>
+						</div>
+						<p class="bollman-services2__item-desc">Structurally sound, beautifully integrated pool environments designed with the full property, circulation, and long-term experience in mind — by a team that understands both form and function.</p>
+						<a href="/hardscaping-services/fiberglass-pool-builders/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 					</div>
-				</article>
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="./assets/service-paver-patios.png"
-						alt="Custom paver patio design with fire pit and seating area in Kernersville NC"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Paver Patios</h3>
-						<p class="bollman-services__card-desc">
-							Durable, refined patio spaces that bring structure, usability, and visual continuity to the outdoor
-							environment. For homeowners seeking elevated hardscape design across the Triad, this is where
-							craftsmanship matters most.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+				</div>
+
+				<!-- Center image -->
+				<div class="bollman-services2__center">
+					<div class="bollman-services2__img-wrap">
+						<img src="./assets/fire-and-water.jpeg" alt="Luxury outdoor fire and water feature designed and built by Bollman Landscape" loading="lazy" width="300" height="400" />
+						<div class="bollman-services2__img-overlay">
+							<a href="/hardscaping-services/" class="bollman-services2__img-btn">
+								Our Services
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+							</a>
+						</div>
 					</div>
-				</article>
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bceec87c805c46a37fbd0c.jpg"
-						alt="Structural retaining wall with natural stone in the Piedmont Triad"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Retaining Walls</h3>
-						<p class="bollman-services__card-desc">
-							Structural retaining wall solutions that protect the property, solve site challenges, and support the
-							overall design. As experienced landscape hardscape contractors, we know the parts you do not see are often
-							the ones that matter most.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+					<div class="bollman-services2__img-border" aria-hidden="true"></div>
+				</div>
+
+				<!-- Right column: 3 services -->
+				<div class="bollman-services2__col">
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Paver Patios</h3>
+						</div>
+						<p class="bollman-services2__item-desc">Durable, refined patio spaces that bring structure, usability, and visual continuity to the outdoor environment. For homeowners seeking elevated hardscape design across the Triad, this is where craftsmanship matters most.</p>
+						<a href="/hardscaping-services/paver-patio-builders/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 					</div>
-				</article>
-				<article class="bollman-services__card">
-					<img
-						class="bollman-services__card-img"
-						src="./assets/service-design.png"
-						alt="Landscape design services with CAD rendering in the Triad NC"
-						loading="lazy"
-						width="400"
-						height="500"
-					/>
-					<div
-						class="bollman-services__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-services__card-content">
-						<h3 class="bollman-services__card-title">Design Services</h3>
-						<p class="bollman-services__card-desc">
-							From concept to completion, our in-house design team creates detailed CAD renderings and photo-realistic
-							visualizations so you can see your dream outdoor space before a single stone is laid.
-						</p>
-						<a
-							href="#"
-							class="bollman-services__card-link"
-							>Learn More
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M5 12h14" />
-								<path d="m12 5 7 7-7 7" /></svg
-						></a>
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Retaining Walls</h3>
+						</div>
+						<p class="bollman-services2__item-desc">Structural retaining wall solutions that protect the property, solve site challenges, and support the overall design. As experienced landscape hardscape contractors, we know the parts you do not see are often the ones that matter most.</p>
+						<a href="/hardscaping-services/retaining-wall-builders/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 					</div>
-				</article>
+					<div class="bollman-services2__item">
+						<div class="bollman-services2__item-head">
+							<div class="bollman-services2__icon">
+								<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+							</div>
+							<h3 class="bollman-services2__item-title">Design Services</h3>
+						</div>
+						<p class="bollman-services2__item-desc">From concept to completion, our in-house design team creates detailed CAD renderings and photo-realistic visualizations so you can see your dream outdoor space before a single stone is laid.</p>
+						<a href="/hardscaping-services/" class="bollman-services2__item-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Stats row -->
+			<div class="bollman-services2__stats">
+				<div class="bollman-services2__stat">
+					<div class="bollman-services2__stat-icon">
+						<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+					</div>
+					<p class="bollman-services2__stat-value"><span data-count="500">0</span>+</p>
+					<p class="bollman-services2__stat-label">Projects Completed</p>
+					<div class="bollman-services2__stat-bar"></div>
+				</div>
+				<div class="bollman-services2__stat">
+					<div class="bollman-services2__stat-icon">
+						<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+					</div>
+					<p class="bollman-services2__stat-value"><span data-count="300">0</span>+</p>
+					<p class="bollman-services2__stat-label">Happy Clients</p>
+					<div class="bollman-services2__stat-bar"></div>
+				</div>
+				<div class="bollman-services2__stat">
+					<div class="bollman-services2__stat-icon">
+						<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+					</div>
+					<p class="bollman-services2__stat-value"><span data-count="29">0</span>+</p>
+					<p class="bollman-services2__stat-label">Years Experience</p>
+					<div class="bollman-services2__stat-bar"></div>
+				</div>
+				<div class="bollman-services2__stat">
+					<div class="bollman-services2__stat-icon">
+						<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+					</div>
+					<p class="bollman-services2__stat-value"><span data-count="100">0</span>%</p>
+					<p class="bollman-services2__stat-label">Satisfaction Rate</p>
+					<div class="bollman-services2__stat-bar"></div>
+				</div>
+			</div>
+
+			<!-- CTA bar -->
+			<div class="bollman-services2__cta-bar">
+				<div class="bollman-services2__cta-text">
+					<h3>Ready to transform your outdoor space?</h3>
+					<p>Let's create something beautiful together — built to last for years to come.</p>
+				</div>
+				<a href="/contact/" class="bollman-services2__cta-btn">
+					Get Started
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+				</a>
 			</div>
 
 			<script>
-				(function () {
-					var cards = document.querySelectorAll(".bollman-services__card");
-					var observer = new IntersectionObserver(
-						function (entries) {
-							entries.forEach(function (entry) {
-								if (entry.isIntersecting) {
-									var idx = Array.from(cards).indexOf(entry.target);
-									entry.target.style.transition =
-										"opacity 0.6s cubic-bezier(0.2,0,0,1) " +
-										(idx % 3) * 0.12 +
-										"s, transform 0.6s cubic-bezier(0.2,0,0,1) " +
-										(idx % 3) * 0.12 +
-										"s";
-									entry.target.style.opacity = "1";
-									entry.target.style.transform = "translateY(0)";
-									observer.unobserve(entry.target);
-								}
-							});
-						},
-						{ threshold: 0.1 }
-					);
-					cards.forEach(function (card) {
-						card.style.opacity = "0";
-						card.style.transform = "translateY(24px)";
-						observer.observe(card);
+			(function() {
+				/* Staggered reveal for service items */
+				var items = document.querySelectorAll('.bollman-services2__item');
+				var itemObs = new IntersectionObserver(function(entries) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							var idx = Array.from(items).indexOf(entry.target);
+							entry.target.style.transition = 'opacity 0.6s cubic-bezier(0.2,0,0,1) ' + (idx * 0.1) + 's, transform 0.6s cubic-bezier(0.2,0,0,1) ' + (idx * 0.1) + 's';
+							entry.target.style.opacity = '1';
+							entry.target.style.transform = 'translateY(0)';
+							itemObs.unobserve(entry.target);
+						}
 					});
-				})();
+				}, { threshold: 0.15 });
+				items.forEach(function(item) { itemObs.observe(item); });
+
+				/* Staggered reveal for stat cards */
+				var stats = document.querySelectorAll('.bollman-services2__stat');
+				var statObs = new IntersectionObserver(function(entries) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							var idx = Array.from(stats).indexOf(entry.target);
+							entry.target.style.transition = 'opacity 0.6s cubic-bezier(0.2,0,0,1) ' + (idx * 0.1) + 's, transform 0.6s cubic-bezier(0.2,0,0,1) ' + (idx * 0.1) + 's';
+							entry.target.style.opacity = '1';
+							entry.target.style.transform = 'translateY(0)';
+							statObs.unobserve(entry.target);
+							/* Animate counter */
+							var counter = entry.target.querySelector('[data-count]');
+							if (counter) {
+								var target = parseInt(counter.getAttribute('data-count'), 10);
+								var duration = 1500;
+								var start = performance.now();
+								function tick(now) {
+									var elapsed = now - start;
+									var progress = Math.min(elapsed / duration, 1);
+									var eased = 1 - Math.pow(1 - progress, 3);
+									counter.textContent = Math.floor(eased * target);
+									if (progress < 1) requestAnimationFrame(tick);
+								}
+								requestAnimationFrame(tick);
+							}
+						}
+					});
+				}, { threshold: 0.3 });
+				stats.forEach(function(stat) { statObs.observe(stat); });
+
+				/* CTA bar reveal */
+				var ctaBar = document.querySelector('.bollman-services2__cta-bar');
+				if (ctaBar) {
+					var ctaObs = new IntersectionObserver(function(entries) {
+						entries.forEach(function(entry) {
+							if (entry.isIntersecting) {
+								ctaBar.style.transition = 'opacity 0.8s cubic-bezier(0.2,0,0,1) 0.3s, transform 0.8s cubic-bezier(0.2,0,0,1) 0.3s';
+								ctaBar.style.opacity = '1';
+								ctaBar.style.transform = 'translateY(0)';
+								ctaObs.unobserve(entry.target);
+							}
+						});
+					}, { threshold: 0.2 });
+					ctaObs.observe(ctaBar);
+				}
+			})();
 			</script>
 		</section>
 		<!-- END SECTION 5: SERVICES GRID -->
