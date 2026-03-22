@@ -2139,12 +2139,15 @@
 					margin: 0 0 48px;
 					text-wrap: balance;
 				}
-				/* Carousel viewport */
+				/* Carousel viewport — use clip-path to allow shadow overflow */
 				.bollman-testimonials__viewport {
-					overflow: hidden;
+					overflow: visible;
 					width: 100%;
-					padding: 20px 0;
-					margin: -20px 0;
+				}
+				.bollman-testimonials__viewport-clip {
+					overflow: hidden;
+					padding: 40px 24px;
+					margin: -40px -24px;
 				}
 				.bollman-testimonials__track {
 					display: flex;
@@ -2300,6 +2303,7 @@
 
 			<!-- Carousel -->
 			<!-- Carousel -->
+			<div class="bollman-testimonials__viewport-clip">
 			<div class="bollman-testimonials__viewport" aria-label="Client testimonials carousel">
 				<div class="bollman-testimonials__track" id="testimonials-track">
 					<!-- Slide 1: Junelyn F. -->
@@ -2400,6 +2404,7 @@
 					</div>
 				</div>
 			</div>
+			</div><!-- end viewport-clip -->
 			<!-- Dot indicators -->
 			<div class="bollman-testimonials__dots" id="testimonials-dots"></div>
 			</div>
