@@ -1967,13 +1967,15 @@
 				.bollman-expertise__img {
 					width: 100%;
 					height: auto;
+					display: block;
 					border-radius: 0;
 					outline: 1px solid rgba(0, 0, 0, 0.06);
 					box-shadow:
 						0 8px 40px rgba(0, 0, 0, 0.1),
 						0 2px 12px rgba(0, 0, 0, 0.06);
 					transform: scale(1);
-					transition: none;
+					transform-origin: center center;
+					will-change: transform;
 				}
 				/* zoom driven by JS scroll — no CSS transition needed */
 				.bollman-expertise__badge {
@@ -2104,7 +2106,7 @@
 					var img = document.querySelector('.bollman-expertise__img');
 					if (!img) return;
 					var visual = img.closest('.bollman-expertise__visual') || img.parentElement;
-					var maxZoom = 0.08; /* scale from 1.0 to 1.08 */
+					var maxZoom = 0.15; /* scale from 1.0 to 1.15 */
 					function onScroll() {
 						var rect = visual.getBoundingClientRect();
 						var vh = window.innerHeight;
