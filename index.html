@@ -701,6 +701,7 @@
 					border-radius: 0;
 					overflow: hidden;
 					box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+					opacity: 0;
 				}
 				.bollman-hero__media-wrap img {
 					width: 100%;
@@ -987,6 +988,9 @@
 
 						mediaWrap.style.width = mediaWidth + "px";
 						mediaWrap.style.height = mediaHeight + "px";
+
+						/* Media fades in quickly over first 20% of scroll */
+						mediaWrap.style.opacity = Math.min(1, scrollProgress / 0.2);
 
 						/* Background fades out */
 						bgLayer.style.opacity = 1 - scrollProgress;
