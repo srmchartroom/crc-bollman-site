@@ -2110,8 +2110,10 @@
 					function onScroll() {
 						var rect = visual.getBoundingClientRect();
 						var vh = window.innerHeight;
-						/* progress: 0 when bottom edge enters viewport, 1 when top edge exits */
-						var progress = (vh - rect.top) / (vh + rect.height);
+						/* full progress through section: 0 at entry, 1 at exit */
+						var fullProgress = (vh - rect.top) / (vh + rect.height);
+						/* zoom starts at 50% of section scroll, then ramps 0→1 over the remaining 50% */
+						var progress = (fullProgress - 0.5) / 0.5;
 						progress = Math.max(0, Math.min(1, progress));
 						var scale = 1 + (progress * maxZoom);
 						img.style.transform = 'scale(' + scale + ')';
