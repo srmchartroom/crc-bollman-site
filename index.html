@@ -466,8 +466,8 @@
 				}
 				.bollman-nav__mobile-parent {
 					color: #ffffff;
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 18px;
+					font-family: "Outfit", sans-serif;
+					font-size: 24px;
 					font-weight: 500;
 					letter-spacing: 1px;
 				}
@@ -1253,7 +1253,6 @@
 				.bollman-logo-slider {
 					background: #ffffff;
 					padding: 40px 24px 80px;
-					overflow: hidden;
 				}
 				.bollman-logo-slider__heading {
 					font-family: 'Outfit', sans-serif;
@@ -1270,6 +1269,9 @@
 					animation: logoSlide 70s linear infinite;
 					gap: 64px;
 					align-items: center;
+					will-change: transform;
+					-webkit-backface-visibility: hidden;
+					backface-visibility: hidden;
 				}
 				.bollman-logo-slider__track:hover {
 					animation-play-state: paused;
@@ -1288,6 +1290,7 @@
 				}
 				.bollman-logo-slider__mask {
 					position: relative;
+					overflow: hidden;
 				}
 				@keyframes logoSlide {
 					0% { transform: translateX(0); }
@@ -1305,33 +1308,33 @@
 			<div class="bollman-logo-slider__mask">
 				<div class="bollman-logo-slider__track">
 					<!-- First set -->
-					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc" loading="lazy">
-					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers" loading="lazy">
-					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok" loading="lazy">
-					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick" loading="lazy">
-					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape" loading="lazy">
-					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools" loading="lazy">
-					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys" loading="lazy">
-					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools" loading="lazy">
-					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand" loading="lazy">
-					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf" loading="lazy">
-					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond" loading="lazy">
-					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV" loading="lazy">
-					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living" loading="lazy">
+					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc">
+					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers">
+					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok">
+					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick">
+					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape">
+					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools">
+					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys">
+					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools">
+					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand">
+					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf">
+					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond">
+					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV">
+					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living">
 					<!-- Duplicate set for seamless loop -->
-					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc" loading="lazy">
-					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers" loading="lazy">
-					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok" loading="lazy">
-					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick" loading="lazy">
-					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape" loading="lazy">
-					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools" loading="lazy">
-					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys" loading="lazy">
-					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools" loading="lazy">
-					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand" loading="lazy">
-					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf" loading="lazy">
-					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond" loading="lazy">
-					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV" loading="lazy">
-					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living" loading="lazy">
+					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc">
+					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers">
+					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok">
+					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick">
+					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape">
+					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools">
+					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys">
+					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools">
+					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand">
+					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf">
+					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond">
+					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV">
+					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living">
 				</div>
 			</div>
 		</section>
