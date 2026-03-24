@@ -670,6 +670,262 @@
 				})();
 			</script>
 		</section>
+
+		<!-- ============================================================
+     SECTION: EXPERTISE / DIFFERENTIATOR
+     Two-column layout highlighting expert knowledge + partner logos.
+     ============================================================ -->
+		<section
+			class="bollman-expertise"
+			aria-labelledby="expertise-heading"
+		>
+			<style>
+				/* --- EXPERTISE SECTION STYLES --- */
+				.bollman-expertise {
+					background: #ffffff;
+					padding: 100px 24px;
+				}
+				.bollman-expertise__inner {
+					max-width: 1040px;
+					margin: 0 auto;
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 64px;
+					align-items: center;
+				}
+				.bollman-expertise__heading {
+					font-family: "Outfit", sans-serif;
+					font-size: clamp(24px, 3vw, 34px);
+					font-weight: 700;
+					color: #2b3543;
+					line-height: 1.1;
+					margin: 0 0 24px;
+					text-wrap: balance;
+				}
+				.bollman-expertise__text {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 16px;
+					line-height: 1.25;
+					color: rgba(0, 0, 0, 0.65);
+					margin: 0 0 20px;
+					text-wrap: pretty;
+				}
+				.bollman-expertise__text strong {
+					color: #2b3543;
+				}
+				.bollman-expertise__visual {
+					position: relative;
+				}
+				.bollman-expertise__img {
+					width: 100%;
+					height: auto;
+					border-radius: 0;
+					outline: 1px solid rgba(0, 0, 0, 0.06);
+					box-shadow:
+						0 8px 40px rgba(0, 0, 0, 0.1),
+						0 2px 12px rgba(0, 0, 0, 0.06);
+				}
+				.bollman-expertise__badge {
+					position: absolute;
+					bottom: -16px;
+					right: -16px;
+					background: #2b3543;
+					color: #ffffff;
+					padding: 16px 24px;
+					border-radius: 10px;
+					font-family: "Outfit", sans-serif;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+					text-align: center;
+				}
+				.bollman-expertise__badge-icon {
+					display: block;
+					margin: 0 auto 6px;
+				}
+				.bollman-expertise__badge-number {
+					font-size: 18px;
+					font-weight: 800;
+					display: block;
+					line-height: 1;
+					font-variant-numeric: tabular-nums;
+				}
+				.bollman-expertise__badge-label {
+					font-size: 12px;
+					font-weight: 600;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					opacity: 0.7;
+				}
+				@media (max-width: 768px) {
+					.bollman-expertise {
+						padding: 64px 20px;
+					}
+					.bollman-expertise__inner {
+						grid-template-columns: 1fr;
+						gap: 40px;
+					}
+					.bollman-expertise__badge {
+						bottom: -12px;
+						right: 12px;
+					}
+				}
+			</style>
+
+			<div class="bollman-expertise__inner">
+				<div>
+					<h2
+						class="bollman-expertise__heading"
+						id="expertise-heading"
+					>
+						Expert Knowledge,<br /><span style="color:#4aa0a0">Uncompromising</span> Durability
+					</h2>
+					<p class="bollman-expertise__text">
+						We're a landscape design company that brings
+						<strong
+							>decades of experience, licensed expertise, and a deep understanding of the structural side of outdoor
+							construction</strong
+						>
+						— the part that determines whether a project ages gracefully or becomes an expensive lesson.
+					</p>
+					<p class="bollman-expertise__text">
+						What sets us apart isn't just what you see when the project is finished. It's what you don't have to worry
+						about 2 years — or 20 years — down the line. Unlike some hardscape landscapers,
+						<strong>we design and build outdoor spaces that are as dependable as they are beautiful</strong> for every
+						client, every time.
+					</p>
+				</div>
+				<div class="bollman-expertise__visual">
+					<img
+						class="bollman-expertise__img"
+						src="../assets/hardscape-team.jpg"
+						alt="Bollman Landscape hardscape team at work on a professional installation"
+						loading="lazy"
+						width="520"
+						height="400"
+					/>
+					<div
+						class="bollman-expertise__badge"
+						aria-label="Certified Techo-Bloc Partner"
+					>
+						<svg class="bollman-expertise__badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4aa0a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+						<span class="bollman-expertise__badge-number">CERTIFIED</span>
+						<span class="bollman-expertise__badge-label">TECHO-BLOC PARTNER</span>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				(function () {
+					var section = document.querySelector(".bollman-expertise__inner");
+					var observer = new IntersectionObserver(
+						function (entries) {
+							entries.forEach(function (entry) {
+								if (entry.isIntersecting) {
+									entry.target.querySelectorAll(":scope > *").forEach(function (el, i) {
+										el.style.opacity = "0";
+										el.style.transform = "translateY(20px)";
+										el.style.transition =
+											"opacity 0.7s cubic-bezier(0.2,0,0,1) " +
+											i * 0.15 +
+											"s, transform 0.7s cubic-bezier(0.2,0,0,1) " +
+											i * 0.15 +
+											"s";
+										requestAnimationFrame(function () {
+											el.style.opacity = "1";
+											el.style.transform = "translateY(0)";
+										});
+									});
+									observer.unobserve(entry.target);
+								}
+							});
+						},
+						{ threshold: 0.15 }
+					);
+					observer.observe(section);
+				})();
+			</script>
+
+			<!-- Trusted by Industry Leaders - Partner Logos -->
+			<style>
+				.bollman-partners {
+					max-width: 1100px;
+					margin: 80px auto 0;
+					padding: 0 24px;
+				}
+				.bollman-partners__heading {
+					font-family: "Outfit", sans-serif;
+					font-size: clamp(18px, 2.2vw, 24px);
+					font-weight: 700;
+					color: #ffffff;
+					text-align: center;
+					margin: 0 auto 60px;
+					background: #2b3543;
+					display: inline-block;
+					padding: 14px 80px;
+					border-radius: 10px;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+					letter-spacing: 0.5px;
+				}
+				.bollman-partners__heading-wrap {
+					text-align: center;
+				}
+				.bollman-partners__grid {
+					display: grid;
+					grid-template-columns: repeat(3, 1fr);
+					gap: 48px 48px;
+					margin-bottom: 85px;
+					align-items: center;
+					justify-items: center;
+				}
+				.bollman-partners__grid img {
+					max-height: 48px;
+					width: auto;
+					max-width: 100%;
+					object-fit: contain;
+					transition-property: transform;
+					transition-duration: 0.3s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+				}
+				.bollman-partners__grid img:hover {
+					transform: scale(1.08);
+				}
+				.bollman-partners__grid img:last-child:nth-child(3n+1) {
+					grid-column: 2;
+				}
+				@media (max-width: 600px) {
+					.bollman-partners__grid {
+						grid-template-columns: repeat(2, 1fr);
+						gap: 24px 32px;
+					}
+					.bollman-partners__grid img {
+						max-height: 36px;
+					}
+					.bollman-partners__grid img:last-child:nth-child(3n+1) {
+						grid-column: auto;
+					}
+				}
+			</style>
+			<div class="bollman-partners">
+				<div class="bollman-partners__heading-wrap">
+					<h3 class="bollman-partners__heading"><span style="color:#4aa0a0">Trusted by</span> Industry Leaders</h3>
+				</div>
+				<div class="bollman-partners__grid">
+					<img src="../assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc certified partner" loading="lazy">
+					<img src="../assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers partner" loading="lazy">
+					<img src="../assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok retaining wall systems" loading="lazy">
+					<img src="../assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick partner" loading="lazy">
+					<img src="../assets/partner-logos/Aquascape Logo.png" alt="Aquascape water features partner" loading="lazy">
+					<img src="../assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools fiberglass pools" loading="lazy">
+					<img src="../assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys outdoor kitchen partner" loading="lazy">
+					<img src="../assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools partner" loading="lazy">
+					<img src="../assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand polymeric sand" loading="lazy">
+					<img src="../assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf synthetic turf" loading="lazy">
+					<img src="../assets/partner-logos/SEK Sand.png" alt="SEK Surebond polymeric products" loading="lazy">
+					<img src="../assets/partner-logos/hgtv-logo.png" alt="HGTV featured partner" loading="lazy">
+				</div>
+			</div>
+		</section>
+		<!-- END SECTION: EXPERTISE / DIFFERENTIATOR -->
+
 		<footer
 			class="bollman-footer"
 			aria-label="Site footer"
