@@ -1129,9 +1129,10 @@
 				}
 				@media (max-width: 768px) {
 					.bollman-emotional {
-						padding: 50px 20px 80px;
+						padding: 50px 12px 80px;
 					}
 					.bollman-emotional__inner {
+						max-width: 92vw;
 						grid-template-columns: 1fr;
 						gap: 40px;
 					}
@@ -2435,6 +2436,7 @@
 					color: #4aa0a0;
 					margin: 0 0 12px;
 				}
+				.bollman-testimonials__kicker br.mobile-break { display: none; }
 				.bollman-testimonials__heading {
 					font-family: "Outfit", sans-serif;
 					font-size: clamp(28px, 3.5vw, 40px);
@@ -2593,11 +2595,14 @@
 				@media (max-width: 768px) {
 					.bollman-testimonials { padding: 64px 16px; }
 					.bollman-testimonials__slide { flex: 0 0 100%; }
+					.bollman-testimonials__kicker,
+					.bollman-testimonials__heading { text-align: center; }
+					.bollman-testimonials__kicker br.mobile-break { display: inline; }
 				}
 			</style>
 
 			<div class="bollman-testimonials__inner">
-				<p class="bollman-testimonials__kicker">Hired for Beauty, Trusted for Quality</p>
+				<p class="bollman-testimonials__kicker">Hired for Beauty,<br class="mobile-break"> Trusted for Quality</p>
 				<h2
 					class="bollman-testimonials__heading"
 					id="testimonials-heading"
@@ -2972,6 +2977,7 @@
 					.bollman-legacy__kicker br.mobile-break { display: inline; }
 					.bollman-legacy__text { text-align: left; }
 					.bollman-legacy__cta { margin-top: 40px; }
+					.bollman-legacy__text--kicker { line-height: 1.3; }
 					.bollman-tiles { height: 620px; width: 220px; margin: 40px auto 0; }
 					.bollman-tiles__card { width: 220px; height: 220px; }
 					.bollman-tiles--revealed .bollman-tiles__card--left {
@@ -3029,7 +3035,7 @@
 				<p class="bollman-legacy__text">
 					From our beginnings in New York to serving families across North Carolina, we've built our business the same way we build our projects: with integrity, attention to detail, and pride in doing things the right way.
 				</p>
-				<p class="bollman-legacy__text" style="font-weight:700; font-size:1.25em;">
+				<p class="bollman-legacy__text bollman-legacy__text--kicker" style="font-weight:700; font-size:1.25em;">
 					Because at the end of the day, this work is about family - ours and yours.
 				</p>
 			</div>
