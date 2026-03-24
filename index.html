@@ -2165,87 +2165,221 @@
 				})();
 			</script>
 
-			<!-- Trusted by Industry Leaders - Partner Logos -->
+		</section>
+		<!-- END SECTION 6: EXPERTISE / DIFFERENTIATOR -->
+
+		<!-- ============================================================
+     SECTION 6B: TEXT PARALLAX CONTENT SCROLL — EXPERT KNOWLEDGE
+     ============================================================ -->
+		<section class="tpcs2" aria-label="Expert knowledge, uncompromising durability">
 			<style>
-				.bollman-partners {
-					max-width: 1100px;
-					margin: 80px auto 0;
+				.tpcs2 {
+					position: relative;
+					height: 150vh;
+				}
+				.tpcs2__sticky {
+					position: sticky;
+					top: 0;
+					width: 100%;
+					height: 100vh;
+					overflow: hidden;
+					will-change: transform;
+				}
+				.tpcs2__image {
+					position: absolute;
+					inset: 0;
+					background-image: url('assets/hardscape-team.jpg');
+					background-size: cover;
+					background-position: center;
+				}
+				.tpcs2__overlay {
+					position: absolute;
+					inset: 0;
+					background: rgba(0, 0, 0, 0.55);
+					will-change: opacity;
+				}
+				.tpcs2__copy {
+					position: absolute;
+					inset: 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					color: #ffffff;
+					will-change: transform, opacity;
 					padding: 0 24px;
 				}
-				.bollman-partners__heading {
-					font-family: "Outfit", sans-serif;
-					font-size: clamp(18px, 2.2vw, 24px);
+				.tpcs2__eyebrow {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: clamp(14px, 2.5vw, 20px);
+					letter-spacing: 0.15em;
+					text-transform: uppercase;
+					margin-bottom: 16px;
+					opacity: 0.85;
+				}
+				.tpcs2__heading {
+					font-family: 'Outfit', sans-serif;
+					font-size: clamp(36px, 6vw, 80px);
 					font-weight: 700;
-					color: #ffffff;
+					line-height: 1.1;
 					text-align: center;
-					margin: 0 auto 60px;
-					background: #2b3543;
-					display: inline-block;
-					padding: 14px 80px;
-					border-radius: 10px;
-					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-					letter-spacing: 0.5px;
-				}
-				.bollman-partners__heading-wrap {
-					text-align: center;
-				}
-				.bollman-partners__grid {
-					display: grid;
-					grid-template-columns: repeat(3, 1fr);
-					gap: 48px 48px;
-					margin-bottom: 85px;
-					align-items: center;
-					justify-items: center;
-				}
-				.bollman-partners__grid img {
-					max-height: 48px;
-					width: auto;
-					max-width: 100%;
-					object-fit: contain;
-					transition-property: transform;
-					transition-duration: 0.3s;
-					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-				}
-				.bollman-partners__grid img:hover {
-					transform: scale(1.08);
-				}
-				.bollman-partners__grid img:last-child:nth-child(3n+1) {
-					grid-column: 2;
-				}
-				@media (max-width: 600px) {
-					.bollman-partners__grid {
-						grid-template-columns: repeat(2, 1fr);
-						gap: 24px 32px;
-					}
-					.bollman-partners__grid img {
-						max-height: 36px;
-					}
-					.bollman-partners__grid img:last-child:nth-child(3n+1) {
-						grid-column: auto;
-					}
 				}
 			</style>
-			<div class="bollman-partners">
-				<div class="bollman-partners__heading-wrap">
-					<h3 class="bollman-partners__heading"><span style="color:#4aa0a0">Trusted by</span> Industry Leaders</h3>
+
+			<div class="tpcs2__sticky" id="tpcs2-sticky">
+				<div class="tpcs2__image"></div>
+				<div class="tpcs2__overlay" id="tpcs2-overlay"></div>
+				<div class="tpcs2__copy" id="tpcs2-copy">
+					<p class="tpcs2__eyebrow">Expert Knowledge.</p>
+					<h2 class="tpcs2__heading">Uncompromising Durability.</h2>
 				</div>
-				<div class="bollman-partners__grid">
-					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc certified partner" loading="lazy">
-					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers partner" loading="lazy">
-					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok retaining wall systems" loading="lazy">
-					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick partner" loading="lazy">
-					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape water features partner" loading="lazy">
-					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools fiberglass pools" loading="lazy">
-					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys outdoor kitchen partner" loading="lazy">
-					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools partner" loading="lazy">
-					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand polymeric sand" loading="lazy">
-					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf synthetic turf" loading="lazy">
-					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond polymeric products" loading="lazy">
-					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV featured partner" loading="lazy">
+			</div>
+
+			<script>
+				(function () {
+					const section = document.querySelector('.tpcs2');
+					const sticky = document.getElementById('tpcs2-sticky');
+					const overlay = document.getElementById('tpcs2-overlay');
+					const copy = document.getElementById('tpcs2-copy');
+
+					function update() {
+						const rect = section.getBoundingClientRect();
+						const sectionH = section.offsetHeight;
+						const raw = -rect.top / (sectionH - window.innerHeight);
+						const progress = Math.min(Math.max(raw, 0), 1);
+
+						const yShift = -250 * progress;
+						const copyOpacity = 1 - progress;
+						copy.style.transform = 'translateY(' + yShift + 'px)';
+						copy.style.opacity = copyOpacity;
+
+						overlay.style.opacity = 1 - progress;
+
+						const scale = 1 - 0.15 * progress;
+						sticky.style.transform = 'scale(' + scale + ')';
+
+						requestAnimationFrame(update);
+					}
+					requestAnimationFrame(update);
+				})();
+			</script>
+		</section>
+		<!-- END SECTION 6B: TEXT PARALLAX CONTENT SCROLL -->
+
+		<!-- ============================================================
+     SECTION 6C: TRUSTED PARTNER — INFINITE LOGO SLIDER
+     ============================================================ -->
+		<section class="bollman-logo-slider" aria-label="Trusted industry partners">
+			<style>
+				.bollman-logo-slider {
+					background: #ffffff;
+					padding: 80px 24px 64px;
+					overflow: hidden;
+				}
+				.bollman-logo-slider__heading {
+					font-family: 'Outfit', sans-serif;
+					font-size: clamp(24px, 3vw, 38px);
+					font-weight: 700;
+					color: #2b3543;
+					text-align: center;
+					margin: 0 0 48px;
+					line-height: 1.15;
+				}
+				/* Infinite slider track */
+				.bollman-logo-slider__track {
+					display: flex;
+					width: max-content;
+					animation: logoSlide 40s linear infinite;
+					gap: 64px;
+					align-items: center;
+				}
+				.bollman-logo-slider__track:hover {
+					animation-play-state: paused;
+				}
+				.bollman-logo-slider__track img {
+					height: 48px;
+					width: auto;
+					max-width: 160px;
+					object-fit: contain;
+					flex-shrink: 0;
+					opacity: 0.7;
+					transition: opacity 0.3s ease, transform 0.3s ease;
+				}
+				.bollman-logo-slider__track img:hover {
+					opacity: 1;
+					transform: scale(1.08);
+				}
+				/* Edge fade masks */
+				.bollman-logo-slider__mask {
+					position: relative;
+				}
+				.bollman-logo-slider__mask::before,
+				.bollman-logo-slider__mask::after {
+					content: '';
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					width: 120px;
+					z-index: 2;
+					pointer-events: none;
+				}
+				.bollman-logo-slider__mask::before {
+					left: 0;
+					background: linear-gradient(to right, #ffffff, transparent);
+				}
+				.bollman-logo-slider__mask::after {
+					right: 0;
+					background: linear-gradient(to left, #ffffff, transparent);
+				}
+				@keyframes logoSlide {
+					0% { transform: translateX(0); }
+					100% { transform: translateX(-50%); }
+				}
+				@media (max-width: 600px) {
+					.bollman-logo-slider { padding: 56px 16px 48px; }
+					.bollman-logo-slider__track { gap: 40px; }
+					.bollman-logo-slider__track img { height: 36px; max-width: 120px; }
+					.bollman-logo-slider__mask::before,
+					.bollman-logo-slider__mask::after { width: 48px; }
+				}
+			</style>
+
+			<h2 class="bollman-logo-slider__heading"><span style="color:#4aa0a0">Trusted Partner</span> of Industry-Leading Brands</h2>
+
+			<div class="bollman-logo-slider__mask">
+				<div class="bollman-logo-slider__track">
+					<!-- First set -->
+					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc" loading="lazy">
+					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers" loading="lazy">
+					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok" loading="lazy">
+					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick" loading="lazy">
+					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape" loading="lazy">
+					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools" loading="lazy">
+					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys" loading="lazy">
+					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools" loading="lazy">
+					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand" loading="lazy">
+					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf" loading="lazy">
+					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond" loading="lazy">
+					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV" loading="lazy">
+					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living" loading="lazy">
+					<!-- Duplicate set for seamless loop -->
+					<img src="./assets/partner-logos/Techo-bloc logo.jpg" alt="Techo-Bloc" loading="lazy">
+					<img src="./assets/partner-logos/Cambridge Logo.png" alt="Cambridge Pavers" loading="lazy">
+					<img src="./assets/partner-logos/Versa-Lok Walls Logo.svg" alt="Versa-Lok" loading="lazy">
+					<img src="./assets/partner-logos/Pine Hall Brick Logo.webp" alt="Pine Hall Brick" loading="lazy">
+					<img src="./assets/partner-logos/Aquascape Logo.png" alt="Aquascape" loading="lazy">
+					<img src="./assets/partner-logos/liberty-pool-logo.png" alt="Liberty Pools" loading="lazy">
+					<img src="./assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys" loading="lazy">
+					<img src="./assets/partner-logos/barrier-reef-pools.webp" alt="Barrier Reef Pools" loading="lazy">
+					<img src="./assets/partner-logos/Gator Sand Logo.png" alt="Gator Sand" loading="lazy">
+					<img src="./assets/partner-logos/Gator Turf Logo .webp" alt="Gator Turf" loading="lazy">
+					<img src="./assets/partner-logos/SEK Sand.png" alt="SEK Surebond" loading="lazy">
+					<img src="./assets/partner-logos/hgtv-logo.png" alt="HGTV" loading="lazy">
+					<img src="./assets/partner-logos/southern-living.webp" alt="Southern Living" loading="lazy">
 				</div>
 			</div>
 		</section>
-		<!-- END SECTION 6: EXPERTISE / DIFFERENTIATOR -->
+		<!-- END SECTION 6C: TRUSTED PARTNER LOGO SLIDER -->
 
 		<!-- SECTION 7: STATS / COUNTERS — MOVED TO SECTION 3D -->
 
