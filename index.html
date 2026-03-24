@@ -378,7 +378,7 @@
 					font-weight: 700;
 					text-transform: uppercase;
 					letter-spacing: 1px;
-					border-radius: 6px;
+					border-radius: 0;
 					text-decoration: none !important;
 					transition-property: transform, box-shadow;
 					transition-duration: 0.2s;
@@ -842,7 +842,7 @@
 					text-transform: uppercase;
 					letter-spacing: 1.5px;
 					text-decoration: none;
-					border-radius: 8px;
+					border-radius: 0;
 					min-height: 52px;
 					transition-property: transform, box-shadow;
 					transition-duration: 0.25s;
@@ -1285,21 +1285,27 @@
 					margin-bottom: 36px;
 				}
 				.bollman-emotional__cta {
-					display: inline-block;
-					font-family: 'Outfit', sans-serif;
-					font-size: 16px;
-					font-weight: 600;
-					letter-spacing: 0.05em;
-					color: #ffffff;
-					background: #2c2c2c;
+					display: inline-flex;
+					align-items: center;
+					gap: 10px;
 					padding: 16px 40px;
-					border: none;
-					cursor: pointer;
+					background: #c02240;
+					color: #ffffff;
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 16px;
+					font-weight: 700;
+					text-transform: uppercase;
+					letter-spacing: 1.5px;
 					text-decoration: none;
-					transition: background 0.3s ease;
+					border-radius: 0;
+					min-height: 52px;
+					transition-property: transform, box-shadow;
+					transition-duration: 0.25s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 				}
 				.bollman-emotional__cta:hover {
-					background: #8B7355;
+					box-shadow: 0 6px 28px rgba(192, 34, 64, 0.5);
+					transform: translateY(-2px);
 				}
 			</style>
 
@@ -1583,7 +1589,7 @@
 					text-transform: uppercase;
 					letter-spacing: 1.2px;
 					text-decoration: none;
-					border-radius: 6px;
+					border-radius: 0;
 					margin-top: 16px;
 					min-height: 44px;
 					transition-property: transform, box-shadow;
@@ -3159,7 +3165,7 @@
 					text-transform: uppercase;
 					letter-spacing: 1.2px;
 					text-decoration: none;
-					border-radius: 8px;
+					border-radius: 0;
 					min-height: 52px;
 					transition-property: transform, box-shadow;
 					transition-duration: 0.25s;
@@ -3173,11 +3179,11 @@
 					box-shadow: 0 6px 24px rgba(192, 34, 64, 0.4);
 				}
 				.bollman-cta__btn--secondary {
-					background: #2b3543;
+					background: #c02240;
 					color: #ffffff;
 				}
 				.bollman-cta__btn--secondary:hover {
-					box-shadow: 0 6px 24px rgba(43, 53, 67, 0.3);
+					box-shadow: 0 6px 24px rgba(192, 34, 64, 0.4);
 				}
 				.bollman-cta__btn:active {
 					transform: scale(0.96);
