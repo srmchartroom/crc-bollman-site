@@ -2865,16 +2865,16 @@
 				.bollman-tiles {
 					position: relative;
 					width: 100%;
-					height: 480px;
-					margin: 16px auto 32px;
+					height: 560px;
+					margin: -8px auto 32px;
 					display: flex;
 					align-items: center;
 					justify-content: center;
 				}
 				.bollman-tiles__card {
 					position: absolute;
-					width: 340px;
-					height: 340px;
+					width: 425px;
+					height: 425px;
 					border-radius: 12px;
 					overflow: hidden;
 					background: #ffffff;
@@ -2904,23 +2904,23 @@
 				}
 				/* Fanned-out state */
 				.bollman-tiles--revealed .bollman-tiles__card--left {
-					transform: rotate(-8deg) translate(-280px, 10px);
+					transform: rotate(-8deg) translate(-350px, 10px);
 				}
 				.bollman-tiles--revealed .bollman-tiles__card--middle {
 					transform: rotate(6deg) translate(0, 0);
 				}
 				.bollman-tiles--revealed .bollman-tiles__card--right {
-					transform: rotate(-6deg) translate(300px, 20px);
+					transform: rotate(-6deg) translate(375px, 20px);
 				}
 				/* Hover lifts */
 				.bollman-tiles--revealed .bollman-tiles__card--left:hover {
-					transform: rotate(1deg) translate(-290px, 0);
+					transform: rotate(1deg) translate(-360px, 0);
 				}
 				.bollman-tiles--revealed .bollman-tiles__card--middle:hover {
 					transform: rotate(0deg) translate(0, -10px);
 				}
 				.bollman-tiles--revealed .bollman-tiles__card--right:hover {
-					transform: rotate(3deg) translate(300px, 10px);
+					transform: rotate(3deg) translate(375px, 10px);
 				}
 
 				@media (max-width: 768px) {
