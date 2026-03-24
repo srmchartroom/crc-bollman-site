@@ -14,7 +14,8 @@
 
 		<style>
 			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-			html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+			html { -webkit-font-smoothing: antialiased; }
+			html.smooth-scroll { scroll-behavior: smooth; }
 			body { font-family: 'Nunito Sans', sans-serif; color: #2b3543; background: #ffffff; }
 		</style>
 	</head>
@@ -778,5 +779,17 @@
 		</footer>
 		<!-- END SECTION 11: FOOTER -->
 
+	<script>
+		/* Enable smooth scrolling only for anchor-link navigation */
+		document.addEventListener('click', function(e) {
+			var link = e.target.closest('a[href*="#"]');
+			if (link) {
+				document.documentElement.classList.add('smooth-scroll');
+				setTimeout(function() {
+					document.documentElement.classList.remove('smooth-scroll');
+				}, 1000);
+			}
+		});
+	</script>
 	</body>
 </html>

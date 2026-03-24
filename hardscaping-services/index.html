@@ -1670,9 +1670,11 @@
 				padding: 0;
 			}
 			html {
-				scroll-behavior: smooth;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
+			}
+			html.smooth-scroll {
+				scroll-behavior: smooth;
 			}
 			body {
 				margin: 0;
@@ -1906,5 +1908,17 @@
     </div>
 </footer>
 
+	<script>
+		/* Enable smooth scrolling only for anchor-link navigation */
+		document.addEventListener('click', function(e) {
+			var link = e.target.closest('a[href*="#"]');
+			if (link) {
+				document.documentElement.classList.add('smooth-scroll');
+				setTimeout(function() {
+					document.documentElement.classList.remove('smooth-scroll');
+				}, 1000);
+			}
+		});
+	</script>
 	</body>
 </html>
