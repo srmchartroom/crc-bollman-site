@@ -1141,7 +1141,7 @@
 					font-family: 'Nunito Sans', sans-serif;
 					font-size: 17px;
 					line-height: 1.5;
-					color: rgba(0, 0, 0, 0.68);
+					color: rgba(0, 0, 0, 0.78);
 					margin: 0 0 8px;
 				}
 				.bollman-emotional__list {
@@ -1153,7 +1153,7 @@
 					font-family: 'Nunito Sans', sans-serif;
 					font-size: 17px;
 					line-height: 1.5;
-					color: rgba(0, 0, 0, 0.68);
+					color: rgba(0, 0, 0, 0.78);
 					font-style: italic;
 					padding-left: 20px;
 					position: relative;
@@ -1172,7 +1172,7 @@
 					font-family: 'Nunito Sans', sans-serif;
 					font-size: 17px;
 					line-height: 1.5;
-					color: rgba(0, 0, 0, 0.68);
+					color: rgba(0, 0, 0, 0.78);
 					margin: 0 0 12px;
 				}
 				.bollman-emotional__body--closing {
@@ -1935,7 +1935,7 @@
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 16px;
 					line-height: 1.25;
-					color: rgba(0, 0, 0, 0.65);
+					color: rgba(0, 0, 0, 0.78);
 					margin: 0 0 20px;
 					text-wrap: pretty;
 				}
@@ -1953,7 +1953,7 @@
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 15px;
 					line-height: 1.6;
-					color: rgba(0, 0, 0, 0.65);
+					color: rgba(0, 0, 0, 0.78);
 					margin: 0 0 20px;
 					padding-left: 20px;
 				}
@@ -1962,6 +1962,7 @@
 				}
 				.bollman-expertise__visual {
 					position: relative;
+					overflow: hidden;
 				}
 				.bollman-expertise__img {
 					width: 100%;
@@ -1971,6 +1972,12 @@
 					box-shadow:
 						0 8px 40px rgba(0, 0, 0, 0.1),
 						0 2px 12px rgba(0, 0, 0, 0.06);
+					transform: scale(1);
+					transition: none;
+				}
+				.bollman-expertise__img.zoom-in {
+					transform: scale(1.06);
+					transition: transform 2s ease-out;
 				}
 				.bollman-expertise__badge {
 					position: absolute;
@@ -2008,8 +2015,17 @@
 					}
 					.bollman-expertise__inner {
 						grid-template-columns: 1fr;
-						gap: 40px;
+						gap: 0;
 					}
+					.bollman-expertise__inner > div:first-child {
+						display: contents;
+					}
+					.bollman-expertise__heading { order: 1; }
+					.bollman-expertise__text:first-of-type { order: 2; }
+					.bollman-expertise__subtitle { order: 3; }
+					.bollman-expertise__list { order: 4; }
+					.bollman-expertise__inner > .bollman-expertise__visual { order: 5; margin: 24px 0; }
+					.bollman-expertise__text:last-of-type { order: 6; }
 					.bollman-expertise__badge {
 						bottom: -12px;
 						right: 12px;
@@ -2028,7 +2044,7 @@
 					<p class="bollman-expertise__text">
 						BOLLMAN designs outdoor spaces for the way your family lives — and builds them for the way land, water, structure, and time actually behave. The result is a space that does more than look beautiful; it lives beautifully, too.
 					</p>
-					<p class="bollman-expertise__subtitle">Why homeowners trust BOLLMAN</p>
+					<p class="bollman-expertise__subtitle">Why Homeowners Trust BOLLMAN</p>
 					<ul class="bollman-expertise__list">
 						<li>30+ Years of Experience</li>
 						<li>Turnkey Design-Build Solutions</li>
@@ -2040,7 +2056,7 @@
 					<p class="bollman-expertise__text">
 						What sets us apart isn't just what you see when the project is finished. It's what you don't have to worry
 						about 2 years — or 20 years — down the line. Unlike some hardscape landscapers,
-						<strong>we design and build outdoor spaces that are as dependable as they are beautiful</strong> for every
+						we design and build outdoor spaces that are as dependable as they are beautiful for every
 						client, every time.
 					</p>
 				</div>
@@ -2084,6 +2100,23 @@
 						{ threshold: 0.15 }
 					);
 					observer.observe(section);
+				})();
+
+				/* Slow zoom-in on expertise image */
+				(function () {
+					var img = document.querySelector('.bollman-expertise__img');
+					if (!img) return;
+					var zoomObs = new IntersectionObserver(function (entries) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								requestAnimationFrame(function () {
+									img.classList.add('zoom-in');
+								});
+								zoomObs.unobserve(entry.target);
+							}
+						});
+					}, { threshold: 0.3 });
+					zoomObs.observe(img);
 				})();
 			</script>
 
@@ -2792,7 +2825,7 @@
 			<style>
 				/* --- FAMILY LEGACY SECTION STYLES --- */
 				.bollman-legacy {
-					background: #2e3033;
+					background: #ffffff;
 					padding: 100px 24px 120px;
 				}
 				.bollman-legacy__inner {
