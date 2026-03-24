@@ -1179,11 +1179,9 @@
 						const raw = -rect.top / (sectionH - window.innerHeight);
 						const progress = Math.min(Math.max(raw, 0), 1);
 
-						/* Copy: translate upward & fade out */
+						/* Copy: visible at start, then translate up & fade out */
 						const yShift = -250 * progress;
-						const copyOpacity = progress < 0.5
-							? progress * 2          /* fade in  0→0.5 */
-							: 2 - progress * 2;     /* fade out 0.5→1 */
+						const copyOpacity = 1 - progress;
 						copy.style.transform = 'translateY(' + yShift + 'px)';
 						copy.style.opacity = copyOpacity;
 
