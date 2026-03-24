@@ -2791,26 +2791,26 @@
 		<!-- END SECTION 8: TESTIMONIALS -->
 
 		<!-- ============================================================
-     SECTION 9: FEATURED PROJECTS
-     Three project showcase cards with location and year.
+     SECTION 9: FAMILY LEGACY
+     Bollman family story with animated image tiles.
      ============================================================ -->
 		<section
-			class="bollman-projects"
-			id="projects"
-			aria-labelledby="projects-heading"
+			class="bollman-legacy"
+			id="legacy"
+			aria-labelledby="legacy-heading"
 		>
 			<style>
-				/* --- FEATURED PROJECTS SECTION STYLES --- */
-				.bollman-projects {
+				/* --- FAMILY LEGACY SECTION STYLES --- */
+				.bollman-legacy {
 					background: #2b3543;
 					padding: 100px 24px 120px;
 				}
-				.bollman-projects__header {
-					text-align: center;
+				.bollman-legacy__inner {
 					max-width: 780px;
-					margin: 0 auto 56px;
+					margin: 0 auto;
+					text-align: center;
 				}
-				.bollman-projects__kicker {
+				.bollman-legacy__kicker {
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 13px;
 					font-weight: 700;
@@ -2819,188 +2819,200 @@
 					color: #4aa0a0;
 					margin: 0 0 12px;
 				}
-				.bollman-projects__heading {
+				.bollman-legacy__heading {
 					font-family: "Outfit", sans-serif;
 					font-size: clamp(28px, 3.5vw, 40px);
 					font-weight: 700;
 					color: #ffffff;
-					margin: 0 0 16px;
+					margin: 0 0 40px;
 					text-wrap: balance;
 				}
-				.bollman-projects__sub {
+				.bollman-legacy__text {
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 16px;
-					line-height: 1.25;
-					color: rgba(255, 255, 255, 0.65);
-					margin: 0;
+					line-height: 1.6;
+					color: rgba(255, 255, 255, 0.75);
+					margin: 0 0 20px;
 					text-wrap: pretty;
 				}
-				.bollman-projects__grid {
-					display: grid;
-					grid-template-columns: repeat(3, 1fr);
-					gap: 28px;
-					max-width: 1200px;
-					margin: 0 auto;
+				.bollman-legacy__cta {
+					display: inline-flex;
+					align-items: center;
+					gap: 8px;
+					background: #c02240;
+					color: #ffffff;
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: 14px;
+					font-weight: 700;
+					padding: 14px 28px;
+					border-radius: 0;
+					text-decoration: none;
+					white-space: nowrap;
+					min-height: 44px;
+					margin-top: 24px;
+					transition-property: transform, box-shadow;
+					transition-duration: 0.2s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 				}
-				.bollman-projects__card {
+				.bollman-legacy__cta:hover {
+					box-shadow: 0 4px 16px rgba(192, 34, 64, 0.35);
+				}
+				.bollman-legacy__cta:active {
+					transform: scale(0.96);
+				}
+
+				/* --- IMAGE TILES --- */
+				.bollman-tiles {
 					position: relative;
+					width: 100%;
+					height: 340px;
+					margin: 48px auto;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.bollman-tiles__card {
+					position: absolute;
+					width: 220px;
+					height: 220px;
 					border-radius: 12px;
 					overflow: hidden;
-					aspect-ratio: 4 / 3;
-					cursor: pointer;
+					background: #ffffff;
+					padding: 8px;
+					box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+					transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+					cursor: default;
 				}
-				.bollman-projects__card img {
+				.bollman-tiles__card img {
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
-					transition-property: transform;
-					transition-duration: 0.7s;
-					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-					outline: 1px solid rgba(0, 0, 0, 0.06);
+					border-radius: 8px;
 				}
-				.bollman-projects__card:hover img {
-					transform: scale(1.06);
+				/* Default stacked state */
+				.bollman-tiles__card--left {
+					z-index: 3;
+					transform: rotate(0deg) translate(0, 0);
 				}
-				.bollman-projects__card-overlay {
-					position: absolute;
-					inset: 0;
-					background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
-					transition-property: background;
-					transition-duration: 0.4s;
-				}
-				.bollman-projects__card:hover .bollman-projects__card-overlay {
-					background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
-				}
-				.bollman-projects__card-content {
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					right: 0;
-					padding: 28px;
+				.bollman-tiles__card--middle {
 					z-index: 2;
+					transform: rotate(0deg) translate(0, 0);
 				}
-				.bollman-projects__card-title {
-					font-family: "Outfit", sans-serif;
-					font-size: 20px;
-					font-weight: 600;
-					color: #ffffff;
-					margin: 0 0 4px;
+				.bollman-tiles__card--right {
+					z-index: 1;
+					transform: rotate(0deg) translate(0, 0);
 				}
-				.bollman-projects__card-location {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 14px;
-					color: rgba(255, 255, 255, 0.65);
+				/* Fanned-out state */
+				.bollman-tiles--revealed .bollman-tiles__card--left {
+					transform: rotate(-8deg) translate(-180px, 10px);
 				}
+				.bollman-tiles--revealed .bollman-tiles__card--middle {
+					transform: rotate(6deg) translate(0, 0);
+				}
+				.bollman-tiles--revealed .bollman-tiles__card--right {
+					transform: rotate(-6deg) translate(200px, 20px);
+				}
+				/* Hover lifts */
+				.bollman-tiles--revealed .bollman-tiles__card--left:hover {
+					transform: rotate(1deg) translate(-190px, 0);
+				}
+				.bollman-tiles--revealed .bollman-tiles__card--middle:hover {
+					transform: rotate(0deg) translate(0, -10px);
+				}
+				.bollman-tiles--revealed .bollman-tiles__card--right:hover {
+					transform: rotate(3deg) translate(200px, 10px);
+				}
+
 				@media (max-width: 768px) {
-					.bollman-projects {
-						padding: 64px 20px;
+					.bollman-legacy { padding: 64px 20px; }
+					.bollman-tiles { height: 260px; }
+					.bollman-tiles__card { width: 160px; height: 160px; }
+					.bollman-tiles--revealed .bollman-tiles__card--left {
+						transform: rotate(-8deg) translate(-110px, 10px);
 					}
-					.bollman-projects__grid {
-						grid-template-columns: 1fr;
-						max-width: 500px;
+					.bollman-tiles--revealed .bollman-tiles__card--right {
+						transform: rotate(-6deg) translate(130px, 20px);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--left:hover {
+						transform: rotate(1deg) translate(-120px, 0);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--right:hover {
+						transform: rotate(3deg) translate(130px, 10px);
+					}
+				}
+				@media (max-width: 480px) {
+					.bollman-tiles { height: 220px; }
+					.bollman-tiles__card { width: 130px; height: 130px; }
+					.bollman-tiles--revealed .bollman-tiles__card--left {
+						transform: rotate(-8deg) translate(-80px, 8px);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--right {
+						transform: rotate(-6deg) translate(100px, 16px);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--left:hover {
+						transform: rotate(1deg) translate(-90px, 0);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--right:hover {
+						transform: rotate(3deg) translate(100px, 8px);
 					}
 				}
 			</style>
 
-			<div class="bollman-projects__header">
-				<p class="bollman-projects__kicker">Landscaping and Hardscaping</p>
-				<h2
-					class="bollman-projects__heading"
-					id="projects-heading"
-				>
-					Featured Projects
-				</h2>
-				<p class="bollman-projects__sub">
-					From full outdoor living environments to custom entertaining spaces and specialized structural elements, our
-					hardscaping and landscape design and build work features elevated style, seamless functionality and lasting
-					durability.
+			<div class="bollman-legacy__inner">
+				<p class="bollman-legacy__kicker">Built by Family. Made for Family.</p>
+				<h2 class="bollman-legacy__heading" id="legacy-heading">Creating lasting outdoor spaces for over 30 years.</h2>
+
+				<p class="bollman-legacy__text">
+					BOLLMAN Landscape is a second-generation, family-owned business known for honest guidance, thoughtful work, and the kind of care people don't forget.
+				</p>
+				<p class="bollman-legacy__text">
+					We know an outdoor project is never just about stone, plants, or construction — it's about your home, your investment, and the life you want to live there.
 				</p>
 			</div>
-			<div class="bollman-projects__grid">
-				<article class="bollman-projects__card">
-					<img
-						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bd05533147fdb4f5759a60.jpeg"
-						alt="Inground pool and paver patio project completed in Greensboro NC by Bollman Landscape"
-						loading="lazy"
-						width="400"
-						height="300"
-					/>
-					<div
-						class="bollman-projects__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-projects__card-content">
-						<h3 class="bollman-projects__card-title">Inground Pool and Paver Patio</h3>
-						<p class="bollman-projects__card-location">Greensboro NC &mdash; 2024</p>
-					</div>
-				</article>
-				<article class="bollman-projects__card">
-					<img
-						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bd04b1bf56e96c8deb116b.jpg"
-						alt="Outdoor kitchen and pergola project completed in Winston-Salem NC by Bollman Landscape"
-						loading="lazy"
-						width="400"
-						height="300"
-					/>
-					<div
-						class="bollman-projects__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-projects__card-content">
-						<h3 class="bollman-projects__card-title">Outdoor Kitchen and Pergola</h3>
-						<p class="bollman-projects__card-location">Winston-Salem NC &mdash; 2025</p>
-					</div>
-				</article>
-				<article class="bollman-projects__card">
-					<img
-						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bceec87c805c46a37fbd0c.jpg"
-						alt="Stone stairway retaining wall project completed in Kernersville NC by Bollman Landscape"
-						loading="lazy"
-						width="400"
-						height="300"
-					/>
-					<div
-						class="bollman-projects__card-overlay"
-						aria-hidden="true"
-					></div>
-					<div class="bollman-projects__card-content">
-						<h3 class="bollman-projects__card-title">Stone Stairway Retaining Wall</h3>
-						<p class="bollman-projects__card-location">Kernersville NC &mdash; 2026</p>
-					</div>
-				</article>
+
+			<!-- Animated Image Tiles -->
+			<div class="bollman-tiles" id="bollman-tiles">
+				<div class="bollman-tiles__card bollman-tiles__card--left">
+					<img src="./assets/Family-pic-1.jpg" alt="Bollman family photo" loading="lazy" />
+				</div>
+				<div class="bollman-tiles__card bollman-tiles__card--middle">
+					<img src="./assets/Family-pic-2.jpg" alt="Bollman family photo" loading="lazy" />
+				</div>
+				<div class="bollman-tiles__card bollman-tiles__card--right">
+					<img src="./assets/Family-pic-3.jpg" alt="Bollman family photo" loading="lazy" />
+				</div>
+			</div>
+
+			<div class="bollman-legacy__inner">
+				<p class="bollman-legacy__text">
+					From our beginnings in New York to serving families across North Carolina, we've built our business the same way we build our projects: with integrity, attention to detail, and pride in doing things the right way.
+				</p>
+				<p class="bollman-legacy__text">
+					Because at the end of the day, this work is about family — ours and yours.
+				</p>
+
+				<a href="/about/" class="bollman-legacy__cta">
+					READ MORE
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+				</a>
 			</div>
 
 			<script>
 				(function () {
-					var cards = document.querySelectorAll(".bollman-projects__card");
-					var observer = new IntersectionObserver(
-						function (entries) {
-							entries.forEach(function (entry) {
-								if (entry.isIntersecting) {
-									var idx = Array.from(cards).indexOf(entry.target);
-									entry.target.style.transition =
-										"opacity 0.6s cubic-bezier(0.2,0,0,1) " +
-										idx * 0.12 +
-										"s, transform 0.6s cubic-bezier(0.2,0,0,1) " +
-										idx * 0.12 +
-										"s";
-									entry.target.style.opacity = "1";
-									entry.target.style.transform = "translateY(0)";
-									observer.unobserve(entry.target);
-								}
-							});
-						},
-						{ threshold: 0.1 }
-					);
-					cards.forEach(function (card) {
-						card.style.opacity = "0";
-						card.style.transform = "translateY(20px)";
-						observer.observe(card);
-					});
+					var tiles = document.getElementById('bollman-tiles');
+					var observer = new IntersectionObserver(function (entries) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								tiles.classList.add('bollman-tiles--revealed');
+								observer.unobserve(entry.target);
+							}
+						});
+					}, { threshold: 0.3 });
+					observer.observe(tiles);
 				})();
 			</script>
 		</section>
-		<!-- END SECTION 9: FEATURED PROJECTS -->
+		<!-- END SECTION 9: FAMILY LEGACY -->
 
 		<!-- ============================================================
      SECTION 10: CTA / CALL TO ACTION
