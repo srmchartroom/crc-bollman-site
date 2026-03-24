@@ -1169,8 +1169,6 @@
 					}
 					.bollman-emotional__cta {
 						padding: 14px 10px;
-						display: block;
-						text-align: center;
 					}
 				}
 				.bollman-emotional__heading {
@@ -1244,6 +1242,13 @@
 				.bollman-emotional__cta:hover {
 					box-shadow: 0 6px 28px rgba(192, 34, 64, 0.5);
 					transform: translateY(-2px);
+				}
+				@media (max-width: 768px) {
+					.bollman-emotional__cta {
+						display: flex;
+						justify-content: center;
+						width: 100%;
+					}
 				}
 			</style>
 
