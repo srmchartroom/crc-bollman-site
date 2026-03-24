@@ -519,7 +519,7 @@
 						height: 40px;
 					}
 					.bollman-nav__phone-bar {
-						display: block;
+						display: none;
 					}
 				}
 			</style>
@@ -862,6 +862,9 @@
 						padding: 14px 32px;
 						font-size: 14px;
 					}
+					.bollman-hero__expanded-content {
+						padding: 20px 24px;
+					}
 				}
 			</style>
 
@@ -1125,6 +1128,9 @@
 					display: block;
 				}
 				@media (max-width: 768px) {
+					.bollman-emotional {
+						padding: 50px 20px 80px;
+					}
 					.bollman-emotional__inner {
 						grid-template-columns: 1fr;
 						gap: 40px;
@@ -1759,6 +1765,12 @@
 				}
 				@media (max-width: 600px) {
 					.bollman-services2 { padding: 64px 16px; }
+					.bollman-services2__heading-line {
+						white-space: normal;
+					}
+					.bollman-services2__intro {
+						max-width: 100%;
+					}
 					.bollman-services2__cta-bar {
 						flex-direction: column;
 						text-align: center;
@@ -2849,6 +2861,7 @@
 					color: #4aa0a0;
 					margin: 0 0 12px;
 				}
+				.bollman-legacy__kicker br.mobile-break { display: none; }
 				.bollman-legacy__heading {
 					font-family: "Outfit", sans-serif;
 					font-size: clamp(28px, 3.5vw, 40px);
@@ -2956,42 +2969,50 @@
 				@media (max-width: 768px) {
 					.bollman-legacy { padding: 64px 20px; }
 					.bollman-legacy__inner { max-width: 80%; }
-					.bollman-tiles { height: 300px; }
-					.bollman-tiles__card { width: 200px; height: 200px; }
+					.bollman-legacy__kicker br.mobile-break { display: inline; }
+					.bollman-legacy__text { text-align: left; }
+					.bollman-tiles { height: 420px; width: 220px; margin: -20px auto 0; }
+					.bollman-tiles__card { width: 220px; height: 220px; }
 					.bollman-tiles--revealed .bollman-tiles__card--left {
-						transform: rotate(-8deg) translate(-140px, 10px);
+						transform: rotate(-8deg) translate(0px, -130px);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--middle {
+						transform: rotate(6deg) translate(0, 0);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--right {
-						transform: rotate(-6deg) translate(160px, 20px);
+						transform: rotate(-6deg) translate(0px, 140px);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--left:hover {
-						transform: rotate(1deg) translate(-150px, 0);
+						transform: rotate(1deg) translate(0px, -140px);
+					}
+					.bollman-tiles--revealed .bollman-tiles__card--middle:hover {
+						transform: rotate(0deg) translate(0, -10px);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--right:hover {
-						transform: rotate(3deg) translate(160px, 10px);
+						transform: rotate(3deg) translate(0px, 130px);
 					}
 				}
 				@media (max-width: 480px) {
-					.bollman-legacy__inner { max-width: 90%; }
-					.bollman-tiles { height: 220px; }
-					.bollman-tiles__card { width: 140px; height: 140px; }
+					.bollman-legacy__inner { max-width: 95%; }
+					.bollman-tiles { height: 360px; width: 180px; }
+					.bollman-tiles__card { width: 180px; height: 180px; }
 					.bollman-tiles--revealed .bollman-tiles__card--left {
-						transform: rotate(-8deg) translate(-90px, 8px);
+						transform: rotate(-8deg) translate(0px, -110px);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--right {
-						transform: rotate(-6deg) translate(110px, 16px);
+						transform: rotate(-6deg) translate(0px, 120px);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--left:hover {
-						transform: rotate(1deg) translate(-100px, 0);
+						transform: rotate(1deg) translate(0px, -120px);
 					}
 					.bollman-tiles--revealed .bollman-tiles__card--right:hover {
-						transform: rotate(3deg) translate(110px, 8px);
+						transform: rotate(3deg) translate(0px, 110px);
 					}
 				}
 			</style>
 
 			<div class="bollman-legacy__inner">
-				<p class="bollman-legacy__kicker">Built by Family. Made for Family.</p>
+				<p class="bollman-legacy__kicker">Built by Family.<br class="mobile-break"> Made for Family.</p>
 				<h2 class="bollman-legacy__heading" id="legacy-heading">Creating Lasting <span style="color:#4aa0a0">Outdoor Spaces</span> for 30+ Years.</h2>
 
 				<p class="bollman-legacy__text">
@@ -3352,10 +3373,31 @@
 					.bollman-footer__inner {
 						grid-template-columns: 1fr;
 						gap: 32px;
+						text-align: center;
+					}
+					.bollman-footer__brand {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+					}
+					.bollman-footer__brand-text {
+						max-width: 100%;
+					}
+					.bollman-footer__links li {
+						margin-bottom: 6px;
+					}
+					.bollman-footer__contact-item {
+						justify-content: center;
+					}
+					.bollman-footer__social {
+						justify-content: center;
 					}
 					.bollman-footer__bottom {
 						flex-direction: column;
 						text-align: center;
+					}
+					.bollman-footer__legal {
+						justify-content: center;
 					}
 				}
 			</style>
@@ -3544,6 +3586,17 @@
 				background: #ffffff;
 				color: #000000;
 				overflow-x: hidden;
+			}
+			@media (max-width: 768px) {
+				p,
+				.bollman-footer__links a,
+				.bollman-footer__brand-text,
+				.bollman-footer__contact-item,
+				.bollman-footer__copy,
+				.bollman-footer__legal a,
+				.bollman-footer__seo {
+					font-size: calc(1em + 1px);
+				}
 			}
 			img {
 				display: block;
