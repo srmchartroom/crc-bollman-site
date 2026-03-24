@@ -1335,6 +1335,168 @@
 		<!-- END SECTION 3C: EMOTIONAL COPY BLOCK -->
 
 		<!-- ============================================================
+     SECTION 3D: STATS / COUNTERS (moved from Section 7)
+     Animated number counters on dark background.
+     ============================================================ -->
+		<section
+			class="bollman-stats"
+			aria-label="Company statistics"
+		>
+			<style>
+				/* --- STATS SECTION STYLES --- */
+				.bollman-stats {
+					background: #2b3543;
+					padding: 72px 24px;
+					position: relative;
+					overflow: hidden;
+				}
+				.bollman-stats::before {
+					content: "";
+					position: absolute;
+					top: -50%;
+					right: -10%;
+					width: 500px;
+					height: 500px;
+					background: radial-gradient(circle, rgba(74, 160, 160, 0.08) 0%, transparent 70%);
+					pointer-events: none;
+				}
+				.bollman-stats__grid {
+					display: grid;
+					grid-template-columns: repeat(4, 1fr);
+					gap: 32px;
+					max-width: 1100px;
+					margin: 0 auto;
+					position: relative;
+				}
+				.bollman-stats__item {
+					text-align: center;
+				}
+				.bollman-stats__number {
+					font-family: "Outfit", sans-serif;
+					font-size: clamp(36px, 5vw, 56px);
+					font-weight: 800;
+					color: #ffffff;
+					line-height: 1;
+					margin-bottom: 8px;
+					font-variant-numeric: tabular-nums;
+				}
+				.bollman-stats__number .suffix {
+					font-size: 0.6em;
+					font-weight: 600;
+					color: #4aa0a0;
+				}
+				.bollman-stats__label {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					color: rgba(255, 255, 255, 0.55);
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					font-weight: 600;
+				}
+				@media (max-width: 768px) {
+					.bollman-stats__grid {
+						grid-template-columns: repeat(2, 1fr);
+						gap: 40px 24px;
+					}
+					.bollman-stats {
+						padding: 56px 20px;
+					}
+				}
+			</style>
+
+			<div class="bollman-stats__grid">
+				<div class="bollman-stats__item">
+					<div class="bollman-stats__number">
+						<span
+							class="bollman-stats__value"
+							data-target="30"
+							>0</span
+						><span class="suffix">+</span>
+					</div>
+					<div class="bollman-stats__label">Years Industry Experience</div>
+				</div>
+				<div class="bollman-stats__item">
+					<div class="bollman-stats__number">
+						<span
+							class="bollman-stats__value"
+							data-target="250"
+							data-suffix="K"
+							>0</span
+						><span class="suffix">K</span>
+					</div>
+					<div class="bollman-stats__label">Miles of Patio Pavers Installed</div>
+				</div>
+				<div class="bollman-stats__item">
+					<div class="bollman-stats__number">
+						<span
+							class="bollman-stats__value"
+							data-target="98"
+							>0</span
+						><span class="suffix">%</span>
+					</div>
+					<div class="bollman-stats__label">Customer Satisfaction Rate</div>
+				</div>
+				<div class="bollman-stats__item">
+					<div class="bollman-stats__number">
+						<span
+							class="bollman-stats__value"
+							data-target="700"
+							data-suffix="+"
+							>0</span
+						><span class="suffix">+</span>
+					</div>
+					<div class="bollman-stats__label">Projects Still Standing Strong</div>
+				</div>
+			</div>
+
+			<script>
+				(function () {
+					var statsGrid = document.querySelector(".bollman-stats__grid");
+					if (!statsGrid) return;
+					var counters = statsGrid.querySelectorAll(".bollman-stats__value");
+					var animated = false;
+
+					function animateCounters() {
+						if (animated) return;
+						animated = true;
+						counters.forEach(function (counter) {
+							var target = parseInt(counter.getAttribute("data-target"), 10);
+							var duration = 2000;
+							var startTime = null;
+							function update(timestamp) {
+								if (!startTime) startTime = timestamp;
+								var elapsed = timestamp - startTime;
+								var progress = Math.min(elapsed / duration, 1);
+								var eased = 1 - Math.pow(1 - progress, 3);
+								counter.textContent = Math.round(target * eased);
+								if (progress < 1) {
+									requestAnimationFrame(update);
+								} else {
+									counter.textContent = target;
+								}
+							}
+							requestAnimationFrame(update);
+						});
+					}
+
+					var observer = new IntersectionObserver(
+						function (entries) {
+							entries.forEach(function (entry) {
+								if (entry.isIntersecting && !animated) {
+									animateCounters();
+									observer.disconnect();
+								}
+							});
+						},
+						{ threshold: 0.2 }
+					);
+					observer.observe(statsGrid);
+				})();
+			</script>
+		</section>
+		<!-- END SECTION 3D: STATS / COUNTERS -->
+
+		<!-- ============================================================
      SECTION 4: ABOUT / INTRO
      The "Bollman Difference" — licensed GC differentiator copy.
      ============================================================ -->
@@ -2280,167 +2442,7 @@
 		</section>
 		<!-- END SECTION 6: EXPERTISE / DIFFERENTIATOR -->
 
-		<!-- ============================================================
-     SECTION 7: STATS / COUNTERS
-     Animated number counters on dark background.
-     ============================================================ -->
-		<section
-			class="bollman-stats"
-			aria-label="Company statistics"
-		>
-			<style>
-				/* --- STATS SECTION STYLES --- */
-				.bollman-stats {
-					background: #2b3543;
-					padding: 72px 24px;
-					position: relative;
-					overflow: hidden;
-				}
-				.bollman-stats::before {
-					content: "";
-					position: absolute;
-					top: -50%;
-					right: -10%;
-					width: 500px;
-					height: 500px;
-					background: radial-gradient(circle, rgba(74, 160, 160, 0.08) 0%, transparent 70%);
-					pointer-events: none;
-				}
-				.bollman-stats__grid {
-					display: grid;
-					grid-template-columns: repeat(4, 1fr);
-					gap: 32px;
-					max-width: 1100px;
-					margin: 0 auto;
-					position: relative;
-				}
-				.bollman-stats__item {
-					text-align: center;
-				}
-				.bollman-stats__number {
-					font-family: "Outfit", sans-serif;
-					font-size: clamp(36px, 5vw, 56px);
-					font-weight: 800;
-					color: #ffffff;
-					line-height: 1;
-					margin-bottom: 8px;
-					font-variant-numeric: tabular-nums;
-				}
-				.bollman-stats__number .suffix {
-					font-size: 0.6em;
-					font-weight: 600;
-					color: #4aa0a0;
-				}
-				.bollman-stats__label {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 14px;
-					color: rgba(255, 255, 255, 0.55);
-					text-transform: uppercase;
-					letter-spacing: 1px;
-					font-weight: 600;
-				}
-				@media (max-width: 768px) {
-					.bollman-stats__grid {
-						grid-template-columns: repeat(2, 1fr);
-						gap: 40px 24px;
-					}
-					.bollman-stats {
-						padding: 56px 20px;
-					}
-				}
-			</style>
-
-			<div class="bollman-stats__grid">
-				<div class="bollman-stats__item">
-					<div class="bollman-stats__number">
-						<span
-							class="bollman-stats__value"
-							data-target="30"
-							>0</span
-						><span class="suffix">+</span>
-					</div>
-					<div class="bollman-stats__label">Years Industry Experience</div>
-				</div>
-				<div class="bollman-stats__item">
-					<div class="bollman-stats__number">
-						<span
-							class="bollman-stats__value"
-							data-target="250"
-							data-suffix="K"
-							>0</span
-						><span class="suffix">K</span>
-					</div>
-					<div class="bollman-stats__label">Miles of Patio Pavers Installed</div>
-				</div>
-				<div class="bollman-stats__item">
-					<div class="bollman-stats__number">
-						<span
-							class="bollman-stats__value"
-							data-target="98"
-							>0</span
-						><span class="suffix">%</span>
-					</div>
-					<div class="bollman-stats__label">Customer Satisfaction Rate</div>
-				</div>
-				<div class="bollman-stats__item">
-					<div class="bollman-stats__number">
-						<span
-							class="bollman-stats__value"
-							data-target="700"
-							data-suffix="+"
-							>0</span
-						><span class="suffix">+</span>
-					</div>
-					<div class="bollman-stats__label">Projects Still Standing Strong</div>
-				</div>
-			</div>
-
-			<script>
-				(function () {
-					var statsGrid = document.querySelector(".bollman-stats__grid");
-					if (!statsGrid) return;
-					var counters = statsGrid.querySelectorAll(".bollman-stats__value");
-					var animated = false;
-
-					function animateCounters() {
-						if (animated) return;
-						animated = true;
-						counters.forEach(function (counter) {
-							var target = parseInt(counter.getAttribute("data-target"), 10);
-							var duration = 2000;
-							var startTime = null;
-							function update(timestamp) {
-								if (!startTime) startTime = timestamp;
-								var elapsed = timestamp - startTime;
-								var progress = Math.min(elapsed / duration, 1);
-								var eased = 1 - Math.pow(1 - progress, 3);
-								counter.textContent = Math.round(target * eased);
-								if (progress < 1) {
-									requestAnimationFrame(update);
-								} else {
-									counter.textContent = target;
-								}
-							}
-							requestAnimationFrame(update);
-						});
-					}
-
-					var observer = new IntersectionObserver(
-						function (entries) {
-							entries.forEach(function (entry) {
-								if (entry.isIntersecting && !animated) {
-									animateCounters();
-									observer.disconnect();
-								}
-							});
-						},
-						{ threshold: 0.2 }
-					);
-					observer.observe(statsGrid);
-				})();
-			</script>
-		</section>
-		<!-- END SECTION 7: STATS / COUNTERS -->
+		<!-- SECTION 7: STATS / COUNTERS — MOVED TO SECTION 3D -->
 
 		<!-- ============================================================
      SECTION 8: TESTIMONIALS — HORIZONTAL AUTO-SCROLL CAROUSEL
