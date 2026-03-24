@@ -2273,7 +2273,7 @@
 			<style>
 				.bollman-logo-slider {
 					background: #ffffff;
-					padding: 80px 24px 64px;
+					padding: 80px 24px 124px;
 					overflow: hidden;
 				}
 				.bollman-logo-slider__heading {
@@ -2313,24 +2313,6 @@
 				.bollman-logo-slider__mask {
 					position: relative;
 				}
-				.bollman-logo-slider__mask::before,
-				.bollman-logo-slider__mask::after {
-					content: '';
-					position: absolute;
-					top: 0;
-					bottom: 0;
-					width: 120px;
-					z-index: 2;
-					pointer-events: none;
-				}
-				.bollman-logo-slider__mask::before {
-					left: 0;
-					background: linear-gradient(to right, #ffffff, transparent);
-				}
-				.bollman-logo-slider__mask::after {
-					right: 0;
-					background: linear-gradient(to left, #ffffff, transparent);
-				}
 				@keyframes logoSlide {
 					0% { transform: translateX(0); }
 					100% { transform: translateX(-50%); }
@@ -2339,8 +2321,6 @@
 					.bollman-logo-slider { padding: 56px 16px 48px; }
 					.bollman-logo-slider__track { gap: 40px; }
 					.bollman-logo-slider__track img { height: 36px; max-width: 120px; }
-					.bollman-logo-slider__mask::before,
-					.bollman-logo-slider__mask::after { width: 48px; }
 				}
 			</style>
 
