@@ -1446,6 +1446,218 @@
 		<!-- END SECTION 5B: SERVICES 3-COL LAYOUT -->
 
 		<!-- ============================================================
+     SECTION: FEATURED PROJECTS
+     Three project showcase cards with location and year.
+     ============================================================ -->
+		<section
+			class="bollman-projects"
+			id="projects"
+			aria-labelledby="projects-heading"
+		>
+			<style>
+				/* --- FEATURED PROJECTS SECTION STYLES --- */
+				.bollman-projects {
+					background: #2b3543;
+					padding: 100px 24px 120px;
+				}
+				.bollman-projects__header {
+					text-align: center;
+					max-width: 780px;
+					margin: 0 auto 56px;
+				}
+				.bollman-projects__kicker {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 13px;
+					font-weight: 700;
+					letter-spacing: 3px;
+					text-transform: uppercase;
+					color: #4aa0a0;
+					margin: 0 0 12px;
+				}
+				.bollman-projects__heading {
+					font-family: "Outfit", sans-serif;
+					font-size: clamp(28px, 3.5vw, 40px);
+					font-weight: 700;
+					color: #ffffff;
+					margin: 0 0 16px;
+					text-wrap: balance;
+				}
+				.bollman-projects__sub {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 16px;
+					line-height: 1.25;
+					color: rgba(255, 255, 255, 0.65);
+					margin: 0;
+					text-wrap: pretty;
+				}
+				.bollman-projects__grid {
+					display: grid;
+					grid-template-columns: repeat(3, 1fr);
+					gap: 28px;
+					max-width: 1200px;
+					margin: 0 auto;
+				}
+				.bollman-projects__card {
+					position: relative;
+					border-radius: 12px;
+					overflow: hidden;
+					aspect-ratio: 4 / 3;
+					cursor: pointer;
+				}
+				.bollman-projects__card img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					transition-property: transform;
+					transition-duration: 0.7s;
+					transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+					outline: 1px solid rgba(0, 0, 0, 0.06);
+				}
+				.bollman-projects__card:hover img {
+					transform: scale(1.06);
+				}
+				.bollman-projects__card-overlay {
+					position: absolute;
+					inset: 0;
+					background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+					transition-property: background;
+					transition-duration: 0.4s;
+				}
+				.bollman-projects__card:hover .bollman-projects__card-overlay {
+					background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
+				}
+				.bollman-projects__card-content {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					padding: 28px;
+					z-index: 2;
+				}
+				.bollman-projects__card-title {
+					font-family: "Outfit", sans-serif;
+					font-size: 20px;
+					font-weight: 600;
+					color: #ffffff;
+					margin: 0 0 4px;
+				}
+				.bollman-projects__card-location {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 14px;
+					color: rgba(255, 255, 255, 0.65);
+				}
+				@media (max-width: 768px) {
+					.bollman-projects {
+						padding: 64px 20px;
+					}
+					.bollman-projects__grid {
+						grid-template-columns: 1fr;
+						max-width: 500px;
+					}
+				}
+			</style>
+
+			<div class="bollman-projects__header">
+				<p class="bollman-projects__kicker">Landscaping and Hardscaping</p>
+				<h2
+					class="bollman-projects__heading"
+					id="projects-heading"
+				>
+					Featured Projects
+				</h2>
+				<p class="bollman-projects__sub">
+					From full outdoor living environments to custom entertaining spaces and specialized structural elements, our
+					hardscaping and landscape design and build work features elevated style, seamless functionality and lasting
+					durability.
+				</p>
+			</div>
+			<div class="bollman-projects__grid">
+				<article class="bollman-projects__card">
+					<img
+						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bd05533147fdb4f5759a60.jpeg"
+						alt="Inground pool and paver patio project completed in Greensboro NC by Bollman Landscape"
+						loading="lazy"
+						width="400"
+						height="300"
+					/>
+					<div
+						class="bollman-projects__card-overlay"
+						aria-hidden="true"
+					></div>
+					<div class="bollman-projects__card-content">
+						<h3 class="bollman-projects__card-title">Inground Pool and Paver Patio</h3>
+						<p class="bollman-projects__card-location">Greensboro NC &mdash; 2024</p>
+					</div>
+				</article>
+				<article class="bollman-projects__card">
+					<img
+						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bd04b1bf56e96c8deb116b.jpg"
+						alt="Outdoor kitchen and pergola project completed in Winston-Salem NC by Bollman Landscape"
+						loading="lazy"
+						width="400"
+						height="300"
+					/>
+					<div
+						class="bollman-projects__card-overlay"
+						aria-hidden="true"
+					></div>
+					<div class="bollman-projects__card-content">
+						<h3 class="bollman-projects__card-title">Outdoor Kitchen and Pergola</h3>
+						<p class="bollman-projects__card-location">Winston-Salem NC &mdash; 2025</p>
+					</div>
+				</article>
+				<article class="bollman-projects__card">
+					<img
+						src="https://assets.cdn.filesafe.space/5KNcJcblwftDgsKpBJfp/media/69bceec87c805c46a37fbd0c.jpg"
+						alt="Stone stairway retaining wall project completed in Kernersville NC by Bollman Landscape"
+						loading="lazy"
+						width="400"
+						height="300"
+					/>
+					<div
+						class="bollman-projects__card-overlay"
+						aria-hidden="true"
+					></div>
+					<div class="bollman-projects__card-content">
+						<h3 class="bollman-projects__card-title">Stone Stairway Retaining Wall</h3>
+						<p class="bollman-projects__card-location">Kernersville NC &mdash; 2026</p>
+					</div>
+				</article>
+			</div>
+
+			<script>
+				(function () {
+					var cards = document.querySelectorAll(".bollman-projects__card");
+					var observer = new IntersectionObserver(
+						function (entries) {
+							entries.forEach(function (entry) {
+								if (entry.isIntersecting) {
+									var idx = Array.from(cards).indexOf(entry.target);
+									entry.target.style.transition =
+										"opacity 0.6s cubic-bezier(0.2,0,0,1) " +
+										idx * 0.12 +
+										"s, transform 0.6s cubic-bezier(0.2,0,0,1) " +
+										idx * 0.12 +
+										"s";
+									entry.target.style.opacity = "1";
+									entry.target.style.transform = "translateY(0)";
+									observer.unobserve(entry.target);
+								}
+							});
+						},
+						{ threshold: 0.1 }
+					);
+					cards.forEach(function (card) {
+						card.style.opacity = "0";
+						card.style.transform = "translateY(20px)";
+						observer.observe(card);
+					});
+				})();
+			</script>
+		</section>
+		<!-- END SECTION: FEATURED PROJECTS -->
+
+		<!-- ============================================================
      GLOBAL RESET & BASE STYLES
      Minimal global resets. Each section is self-contained.
      ============================================================ -->
