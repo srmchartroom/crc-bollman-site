@@ -1096,111 +1096,6 @@
 		<!-- SECTION 3: TRUSTED PARTNERS LOGO BAR — REMOVED -->
 
 		<!-- ============================================================
-     SECTION 3B: TEXT PARALLAX CONTENT SCROLL
-     Large dark image with eyebrow + title that parallax-scrolls away,
-     then image scales down as user scrolls into next section.
-     ============================================================ -->
-		<section class="tpcs" aria-label="The best room in the house just moved outside">
-			<style>
-				/* --- TEXT PARALLAX CONTENT SCROLL --- */
-				.tpcs {
-					position: relative;
-					height: 150vh;
-				}
-				.tpcs__sticky {
-					position: sticky;
-					top: 0;
-					width: 100%;
-					height: 100vh;
-					overflow: hidden;
-					will-change: transform;
-				}
-				.tpcs__image {
-					position: absolute;
-					inset: 0;
-					background-image: url('assets/final-cta-background-image.JPG');
-					background-size: cover;
-					background-position: center;
-				}
-				.tpcs__overlay {
-					position: absolute;
-					inset: 0;
-					background: rgba(0, 0, 0, 0.55);
-					will-change: opacity;
-				}
-				.tpcs__copy {
-					position: absolute;
-					inset: 0;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					color: #ffffff;
-					will-change: transform, opacity;
-					padding: 0 24px;
-				}
-				.tpcs__eyebrow {
-					font-family: 'Nunito Sans', sans-serif;
-					font-size: clamp(14px, 2.5vw, 20px);
-					letter-spacing: 0.15em;
-					text-transform: uppercase;
-					margin-bottom: 16px;
-					opacity: 0.85;
-				}
-				.tpcs__heading {
-					font-family: 'Outfit', sans-serif;
-					font-size: clamp(36px, 6vw, 80px);
-					font-weight: 700;
-					line-height: 1.1;
-					text-align: center;
-				}
-			</style>
-
-			<div class="tpcs__sticky" id="tpcs-sticky">
-				<div class="tpcs__image"></div>
-				<div class="tpcs__overlay" id="tpcs-overlay"></div>
-				<div class="tpcs__copy" id="tpcs-copy">
-					<p class="tpcs__eyebrow">The Best Room in the House</p>
-					<h2 class="tpcs__heading">Just Moved Outside.</h2>
-				</div>
-			</div>
-
-			<script>
-				(function () {
-					const section = document.querySelector('.tpcs');
-					const sticky = document.getElementById('tpcs-sticky');
-					const overlay = document.getElementById('tpcs-overlay');
-					const copy = document.getElementById('tpcs-copy');
-
-					function update() {
-						const rect = section.getBoundingClientRect();
-						const sectionH = section.offsetHeight;
-						/* progress 0 → 1 as section scrolls through viewport */
-						const raw = -rect.top / (sectionH - window.innerHeight);
-						const progress = Math.min(Math.max(raw, 0), 1);
-
-						/* Copy: visible at start, then translate up & fade out */
-						const yShift = -250 * progress;
-						const copyOpacity = 1 - progress;
-						copy.style.transform = 'translateY(' + yShift + 'px)';
-						copy.style.opacity = copyOpacity;
-
-						/* Overlay fades out as user scrolls away */
-						overlay.style.opacity = 1 - progress;
-
-						/* Image scales down as it scrolls off */
-						const scale = 1 - 0.15 * progress;
-						sticky.style.transform = 'scale(' + scale + ')';
-
-						requestAnimationFrame(update);
-					}
-					requestAnimationFrame(update);
-				})();
-			</script>
-		</section>
-		<!-- END SECTION 3B: TEXT PARALLAX CONTENT SCROLL -->
-
-		<!-- ============================================================
      SECTION 3C: EMOTIONAL COPY BLOCK
      "The right outdoor space changes more than the yard."
      ============================================================ -->
@@ -1503,6 +1398,111 @@
 		<!-- END SECTION 3D: STATS / COUNTERS -->
 
 		<!-- SECTION 4: ABOUT / INTRO — MOVED TO /about/ PAGE -->
+
+		<!-- ============================================================
+     SECTION 4B: TEXT PARALLAX CONTENT SCROLL
+     Large dark image with eyebrow + title that parallax-scrolls away,
+     then image scales down as user scrolls into next section.
+     ============================================================ -->
+		<section class="tpcs" aria-label="The best room in the house just moved outside">
+			<style>
+				/* --- TEXT PARALLAX CONTENT SCROLL --- */
+				.tpcs {
+					position: relative;
+					height: 150vh;
+				}
+				.tpcs__sticky {
+					position: sticky;
+					top: 0;
+					width: 100%;
+					height: 100vh;
+					overflow: hidden;
+					will-change: transform;
+				}
+				.tpcs__image {
+					position: absolute;
+					inset: 0;
+					background-image: url('assets/final-cta-background-image.JPG');
+					background-size: cover;
+					background-position: center;
+				}
+				.tpcs__overlay {
+					position: absolute;
+					inset: 0;
+					background: rgba(0, 0, 0, 0.55);
+					will-change: opacity;
+				}
+				.tpcs__copy {
+					position: absolute;
+					inset: 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					color: #ffffff;
+					will-change: transform, opacity;
+					padding: 0 24px;
+				}
+				.tpcs__eyebrow {
+					font-family: 'Nunito Sans', sans-serif;
+					font-size: clamp(14px, 2.5vw, 20px);
+					letter-spacing: 0.15em;
+					text-transform: uppercase;
+					margin-bottom: 16px;
+					opacity: 0.85;
+				}
+				.tpcs__heading {
+					font-family: 'Outfit', sans-serif;
+					font-size: clamp(36px, 6vw, 80px);
+					font-weight: 700;
+					line-height: 1.1;
+					text-align: center;
+				}
+			</style>
+
+			<div class="tpcs__sticky" id="tpcs-sticky">
+				<div class="tpcs__image"></div>
+				<div class="tpcs__overlay" id="tpcs-overlay"></div>
+				<div class="tpcs__copy" id="tpcs-copy">
+					<p class="tpcs__eyebrow">The Best Room in the House</p>
+					<h2 class="tpcs__heading">Just Moved Outside.</h2>
+				</div>
+			</div>
+
+			<script>
+				(function () {
+					const section = document.querySelector('.tpcs');
+					const sticky = document.getElementById('tpcs-sticky');
+					const overlay = document.getElementById('tpcs-overlay');
+					const copy = document.getElementById('tpcs-copy');
+
+					function update() {
+						const rect = section.getBoundingClientRect();
+						const sectionH = section.offsetHeight;
+						/* progress 0 → 1 as section scrolls through viewport */
+						const raw = -rect.top / (sectionH - window.innerHeight);
+						const progress = Math.min(Math.max(raw, 0), 1);
+
+						/* Copy: visible at start, then translate up & fade out */
+						const yShift = -250 * progress;
+						const copyOpacity = 1 - progress;
+						copy.style.transform = 'translateY(' + yShift + 'px)';
+						copy.style.opacity = copyOpacity;
+
+						/* Overlay fades out as user scrolls away */
+						overlay.style.opacity = 1 - progress;
+
+						/* Image scales down as it scrolls off */
+						const scale = 1 - 0.15 * progress;
+						sticky.style.transform = 'scale(' + scale + ')';
+
+						requestAnimationFrame(update);
+					}
+					requestAnimationFrame(update);
+				})();
+			</script>
+		</section>
+		<!-- END SECTION 4B: TEXT PARALLAX CONTENT SCROLL -->
 
 		<!-- ============================================================
      SECTION 5: SERVICES — 3-COLUMN LAYOUT WITH CENTER IMAGE
