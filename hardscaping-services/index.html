@@ -617,7 +617,7 @@
 					font-size: clamp(15px, 1.8vw, 18px);
 					color: rgba(255, 255, 255, 0.88);
 					line-height: 1.5;
-					margin: 28px 0 0;
+					margin: 40px 0 0;
 					text-wrap: pretty;
 					max-width: 740px;
 					padding: 0 24px;
@@ -741,7 +741,7 @@
 					<p class="hs-hero__sub">
 						With more than 30 years of hardscaping experience, BOLLMAN Landscape designs and builds outdoor living spaces with intention, structural integrity, and lasting craftsmanship for homeowners across the Piedmont Triad &mdash; from Summerfield to Sophia, Haw River to High Rock Lake, Belew's Creek to Bermuda Run, and everywhere in between.
 					</p>
-					<div style="margin-top: 40px; pointer-events: auto">
+					<div style="margin-top: 56px; pointer-events: auto">
 						<a href="/contact/" class="hs-hero__cta" id="hsHeroInitialCta">
 							Schedule a Consultation
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -885,18 +885,9 @@
 		<section class="hs-inform" aria-labelledby="hs-inform-heading">
 			<style>
 				.hs-inform {
-					background: #0a0f16;
+					background: #f1f1f7;
 					padding: 100px 24px;
 					position: relative;
-				}
-				.hs-inform::before {
-					content: "";
-					position: absolute;
-					inset: 0;
-					background:
-						radial-gradient(ellipse at 20% 50%, rgba(74, 160, 160, 0.04) 0%, transparent 60%),
-						radial-gradient(ellipse at 80% 20%, rgba(192, 34, 64, 0.03) 0%, transparent 50%);
-					pointer-events: none;
 				}
 				.hs-inform__inner {
 					max-width: 900px;
@@ -908,7 +899,7 @@
 					font-family: "Outfit", sans-serif;
 					font-size: clamp(28px, 4vw, 44px);
 					font-weight: 700;
-					color: #ffffff;
+					color: #2e3033;
 					line-height: 1.15;
 					margin: 0 0 32px;
 					text-wrap: balance;
@@ -917,7 +908,7 @@
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 17px;
 					line-height: 1.65;
-					color: rgba(255, 255, 255, 0.7);
+					color: rgba(0, 0, 0, 0.65);
 					margin: 0 0 24px;
 					text-wrap: pretty;
 				}
@@ -950,13 +941,13 @@
 				/* --- Circular Animated Testimonials Carousel --- */
 				.hs-testimonial-container {
 					width: 100%;
-					max-width: 56rem;
-					padding: 2rem;
+					max-width: 72rem;
+					padding: 2rem 4rem;
 					margin: 56px auto;
 				}
 				.hs-testimonial-grid {
 					display: grid;
-					gap: 5rem;
+					gap: 6rem;
 				}
 				.hs-image-container {
 					position: relative;
@@ -981,7 +972,7 @@
 					font-family: "Outfit", sans-serif;
 					font-size: 1.5rem;
 					font-weight: bold;
-					color: #ffffff;
+					color: #2e3033;
 					margin-bottom: 0.25rem;
 				}
 				.hs-testimonial-designation {
@@ -996,7 +987,7 @@
 				.hs-testimonial-quote {
 					font-family: "Nunito Sans", sans-serif;
 					font-size: 1.125rem;
-					color: rgba(255, 255, 255, 0.7);
+					color: rgba(0, 0, 0, 0.6);
 					line-height: 1.75;
 				}
 				.hs-arrow-buttons {
@@ -1009,7 +1000,7 @@
 					height: 1.75rem;
 					border-radius: 50%;
 					border: none;
-					background-color: rgba(255, 255, 255, 0.15);
+					background-color: #141414;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -1022,7 +1013,7 @@
 				.hs-arrow-button svg {
 					width: 1.25rem;
 					height: 1.25rem;
-					fill: #ffffff;
+					fill: #f1f1f7;
 					transition: transform 0.3s;
 				}
 				@media (min-width: 768px) {
@@ -1148,7 +1139,7 @@
 
 							var offset = (index - activeIndex + services.length) % services.length;
 							var zIndex = services.length - Math.abs(offset);
-							var opacity = 1;
+							var opacity = index === activeIndex ? 1 : 0.7;
 							var scale = index === activeIndex ? 1 : 0.85;
 
 							var translateX, translateY, rotateY;
@@ -1157,11 +1148,11 @@
 								translateY = '0%';
 								rotateY = 0;
 							} else if (offset === 1 || offset === -(services.length - 1)) {
-								translateX = '20%';
+								translateX = '28%';
 								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
 								rotateY = -15;
 							} else {
-								translateX = '-20%';
+								translateX = '-28%';
 								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
 								rotateY = 15;
 							}
@@ -1257,18 +1248,12 @@
 				.hs-prove__inner {
 					max-width: 1100px;
 					margin: 0 auto;
-					display: grid;
-					grid-template-columns: 1fr 1fr;
-					gap: 56px;
-					align-items: start;
 				}
-				.hs-prove__image {
-					width: 100%;
-					aspect-ratio: 1;
-					object-fit: cover;
-					border-radius: 0;
-					outline: 1px solid rgba(0, 0, 0, 0.06);
-					box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
+				/* Full-width intro row */
+				.hs-prove__intro {
+					text-align: center;
+					max-width: 820px;
+					margin: 0 auto 56px;
 				}
 				.hs-prove__heading {
 					font-family: "Outfit", sans-serif;
@@ -1290,6 +1275,29 @@
 				.hs-prove__text strong {
 					color: #2e3033;
 				}
+				/* Two-column middle row */
+				.hs-prove__middle {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 56px;
+					align-items: start;
+					margin-bottom: 56px;
+				}
+				.hs-prove__image {
+					width: 100%;
+					aspect-ratio: 1;
+					object-fit: cover;
+					border-radius: 0;
+					outline: 1px solid rgba(0, 0, 0, 0.06);
+					box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
+				}
+				.hs-prove__expect-label {
+					font-family: "Nunito Sans", sans-serif;
+					font-size: 16px;
+					line-height: 1.65;
+					color: rgba(0, 0, 0, 0.65);
+					margin: 0 0 20px;
+				}
 				/* Mobile image placement */
 				.hs-prove__image-mobile {
 					display: none;
@@ -1299,6 +1307,12 @@
 					outline: 1px solid rgba(0, 0, 0, 0.06);
 					box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
 					margin: 0 0 28px;
+				}
+				/* Full-width closing row */
+				.hs-prove__closing {
+					text-align: center;
+					max-width: 820px;
+					margin: 0 auto;
 				}
 
 				/* --- Accordion --- */
@@ -1412,7 +1426,7 @@
 					.hs-prove {
 						padding: 64px 20px;
 					}
-					.hs-prove__inner {
+					.hs-prove__middle {
 						grid-template-columns: 1fr;
 						gap: 0;
 					}
@@ -1426,21 +1440,26 @@
 			</style>
 
 			<div class="hs-prove__inner">
-				<div class="hs-prove__col-image">
-					<img class="hs-prove__image" src="../assets/outdoor-living/hardscaping-proof-square.jpg" alt="Bollman Landscape hardscaping project showcasing expert outdoor living construction" loading="lazy" width="540" height="540" />
-				</div>
-				<div class="hs-prove__col-content">
+				<!-- Full-width intro -->
+				<div class="hs-prove__intro">
 					<h2 class="hs-prove__heading" id="hs-prove-heading">A Better Approach to<br />Outdoor Living Construction</h2>
 					<p class="hs-prove__text">
 						Every property comes with its own constraints, opportunities, and rhythm. That is why BOLLMAN begins with the property itself &mdash; the grade, drainage, layout, architecture of the home, and the way you want to live in the space. From there, we help you make smart decisions about what belongs, what does not, and what is worth the investment.
 					</p>
+				</div>
 
-					<!-- Mobile image placement -->
-					<img class="hs-prove__image-mobile" src="../assets/outdoor-living/hardscaping-proof-square.jpg" alt="Bollman Landscape hardscaping project showcasing expert outdoor living construction" loading="lazy" width="540" height="540" />
+				<!-- Two-column middle: image left, expect text + accordion right -->
+				<div class="hs-prove__middle">
+					<div>
+						<img class="hs-prove__image" src="../assets/outdoor-living/hardscaping-proof-square.jpg" alt="Bollman Landscape hardscaping project showcasing expert outdoor living construction" loading="lazy" width="540" height="540" />
+					</div>
+					<div>
+						<!-- Mobile image placement -->
+						<img class="hs-prove__image-mobile" src="../assets/outdoor-living/hardscaping-proof-square.jpg" alt="Bollman Landscape hardscaping project showcasing expert outdoor living construction" loading="lazy" width="540" height="540" />
 
-					<p class="hs-prove__text" style="margin-bottom: 20px;">Here's what you can expect when you work with BOLLMAN.</p>
+						<p class="hs-prove__expect-label">Here's what you can expect when you work with BOLLMAN.</p>
 
-					<div class="hs-accordion" id="hsAccordion">
+						<div class="hs-accordion" id="hsAccordion">
 						<div class="hs-accordion__item">
 							<button class="hs-accordion__trigger" aria-expanded="false">
 								Honest guidance from the start
@@ -1495,8 +1514,13 @@
 								<div class="hs-accordion__body-inner">One team managing the process from concept through construction, so your project moves more efficiently and with less stress on your end.</div>
 							</div>
 						</div>
+						</div>
 					</div>
+				</div>
+				<!-- END two-column middle -->
 
+				<!-- Full-width closing -->
+				<div class="hs-prove__closing">
 					<p class="hs-prove__text">
 						Whether you are planning outdoor living space construction, exploring outdoor fireplace installation, building a patio and pool area, or looking for a hardscaping retaining wall solution that solves both structural and visual challenges, our work is guided by both design vision and technical judgment.
 					</p>
@@ -1505,7 +1529,7 @@
 					</p>
 
 					<!-- Trust / Credential Cards -->
-					<div class="hs-trust">
+					<div class="hs-trust" style="justify-content: center;">
 						<div class="hs-trust__card">
 							<svg class="hs-trust__card-icon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
 							<span class="hs-trust__card-text">NC Licensed<br />General Contractor</span>
@@ -1556,22 +1580,13 @@
 		<section class="hs-transform" aria-labelledby="hs-transform-heading">
 			<style>
 				.hs-transform {
-					background: #0a0f16;
+					background: #2e3033;
 					padding: 100px 24px;
 					position: relative;
 				}
-				.hs-transform::before {
-					content: "";
-					position: absolute;
-					inset: 0;
-					background:
-						radial-gradient(ellipse at 30% 60%, rgba(74, 160, 160, 0.04) 0%, transparent 60%),
-						radial-gradient(ellipse at 70% 20%, rgba(192, 34, 64, 0.03) 0%, transparent 50%);
-					pointer-events: none;
-				}
 				.hs-transform__header {
 					text-align: center;
-					max-width: 780px;
+					max-width: 920px;
 					margin: 0 auto 56px;
 					position: relative;
 				}
@@ -1594,9 +1609,9 @@
 				}
 				.hs-transform__grid {
 					display: grid;
-					grid-template-columns: repeat(2, 1fr);
-					gap: 24px;
-					max-width: 1100px;
+					grid-template-columns: repeat(4, 1fr);
+					gap: 20px;
+					max-width: 1200px;
 					margin: 0 auto;
 					position: relative;
 				}
@@ -1604,7 +1619,7 @@
 					position: relative;
 					border-radius: 12px;
 					overflow: hidden;
-					aspect-ratio: 4 / 5;
+					aspect-ratio: 3 / 5;
 					cursor: pointer;
 				}
 				.hs-transform__card-img {
@@ -1710,6 +1725,11 @@
 				}
 				.hs-transform__cta:active {
 					transform: scale(0.96);
+				}
+				@media (max-width: 900px) {
+					.hs-transform__grid {
+						grid-template-columns: repeat(2, 1fr);
+					}
 				}
 				@media (max-width: 600px) {
 					.hs-transform {
@@ -1821,16 +1841,17 @@
 					padding: 100px 24px;
 				}
 				.hs-convert__inner {
-					max-width: 1100px;
+					max-width: 1240px;
 					margin: 0 auto;
 					display: grid;
-					grid-template-columns: 1fr 1fr;
-					gap: 56px;
-					align-items: center;
+					grid-template-columns: 1.2fr 1fr;
+					gap: 48px;
+					align-items: start;
 				}
 				.hs-convert__image {
 					width: 100%;
-					height: auto;
+					height: 100%;
+					object-fit: cover;
 					border-radius: 0;
 					outline: 1px solid rgba(0, 0, 0, 0.06);
 					box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
