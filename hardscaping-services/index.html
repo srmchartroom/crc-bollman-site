@@ -101,6 +101,8 @@
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,400&display=swap"
 			rel="stylesheet"
 		/>
+		<!-- GSAP for carousel animations -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 	</head>
 	<body>
 		<!-- ============================================================
@@ -945,124 +947,90 @@
 					transform: scale(0.96);
 				}
 
-				/* --- Circular Carousel --- */
-				.hs-carousel {
-					max-width: 960px;
+				/* --- Circular Animated Testimonials Carousel --- */
+				.hs-testimonial-container {
+					width: 100%;
+					max-width: 56rem;
+					padding: 2rem;
 					margin: 56px auto;
-					background: #1a222c;
-					border-radius: 16px;
-					padding: 48px 40px;
+				}
+				.hs-testimonial-grid {
+					display: grid;
+					gap: 5rem;
+				}
+				.hs-image-container {
 					position: relative;
-					overflow: hidden;
+					width: 100%;
+					height: 24rem;
+					perspective: 1000px;
 				}
-				.hs-carousel__slide {
-					display: none;
-					align-items: center;
-					gap: 48px;
+				.hs-testimonial-image {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 1.5rem;
+					box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 				}
-				.hs-carousel__slide.active {
+				.hs-testimonial-content {
 					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
 				}
-				/* Image stack — left side */
-				.hs-carousel__images {
-					flex-shrink: 0;
-					width: 300px;
-					height: 340px;
-					position: relative;
-				}
-				.hs-carousel__img-back {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 240px;
-					height: 280px;
-					object-fit: cover;
-					border-radius: 12px;
-					clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
-					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-					opacity: 0.6;
-				}
-				.hs-carousel__img-front {
-					position: absolute;
-					bottom: 0;
-					right: 0;
-					width: 260px;
-					height: 300px;
-					object-fit: cover;
-					border-radius: 12px;
-					box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-					z-index: 2;
-				}
-				/* Text — right side */
-				.hs-carousel__content {
-					flex: 1;
-					text-align: left;
-				}
-				.hs-carousel__title {
+				.hs-testimonial-name {
 					font-family: "Outfit", sans-serif;
-					font-size: clamp(22px, 3vw, 30px);
-					font-weight: 700;
+					font-size: 1.5rem;
+					font-weight: bold;
 					color: #ffffff;
-					margin: 0 0 8px;
+					margin-bottom: 0.25rem;
 				}
-				.hs-carousel__subtitle {
+				.hs-testimonial-designation {
 					font-family: "Nunito Sans", sans-serif;
-					font-size: 14px;
-					font-weight: 600;
+					font-size: 0.875rem;
 					color: #4aa0a0;
+					margin-bottom: 2rem;
 					text-transform: uppercase;
 					letter-spacing: 1px;
-					margin: 0 0 20px;
+					font-weight: 600;
 				}
-				.hs-carousel__desc {
+				.hs-testimonial-quote {
 					font-family: "Nunito Sans", sans-serif;
-					font-size: 16px;
-					line-height: 1.65;
+					font-size: 1.125rem;
 					color: rgba(255, 255, 255, 0.7);
-					margin: 0;
+					line-height: 1.75;
 				}
-				/* Navigation arrows */
-				.hs-carousel__nav {
+				.hs-arrow-buttons {
 					display: flex;
-					justify-content: center;
-					gap: 16px;
-					margin-top: 32px;
+					gap: 1rem;
+					padding-top: 3rem;
 				}
-				.hs-carousel__btn {
-					width: 44px;
-					height: 44px;
+				.hs-arrow-button {
+					width: 1.75rem;
+					height: 1.75rem;
 					border-radius: 50%;
-					border: 2px solid rgba(255, 255, 255, 0.2);
-					background: transparent;
-					color: #ffffff;
-					font-size: 18px;
-					cursor: pointer;
+					border: none;
+					background-color: rgba(255, 255, 255, 0.15);
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					transition-property: border-color, background;
-					transition-duration: 0.25s;
+					cursor: pointer;
+					transition: background-color 0.3s;
 				}
-				.hs-carousel__btn:hover {
-					border-color: #4aa0a0;
-					background: rgba(74, 160, 160, 0.1);
+				.hs-arrow-button:hover {
+					background-color: #4aa0a0;
 				}
-				@media (max-width: 768px) {
-					.hs-carousel {
-						padding: 32px 24px;
+				.hs-arrow-button svg {
+					width: 1.25rem;
+					height: 1.25rem;
+					fill: #ffffff;
+					transition: transform 0.3s;
+				}
+				@media (min-width: 768px) {
+					.hs-testimonial-grid {
+						grid-template-columns: 1fr 1fr;
 					}
-					.hs-carousel__slide {
-						flex-direction: column;
-						gap: 28px;
-					}
-					.hs-carousel__images {
-						width: 100%;
-						max-width: 300px;
-						height: 280px;
-						margin: 0 auto;
-					}
-					.hs-carousel__content {
-						text-align: center;
+					.hs-arrow-buttons {
+						padding-top: 0;
 					}
 				}
 			</style>
@@ -1077,56 +1045,29 @@
 				</p>
 			</div>
 
-			<!-- Circular Image + Text Carousel -->
-			<div class="hs-carousel" id="hsCarousel">
-				<div class="hs-carousel__slide active" data-index="0">
-					<div class="hs-carousel__images">
-						<img class="hs-carousel__img-back" src="../assets/outdoor-living/carousel-fire-features.jpg" alt="Fire feature by Bollman Landscape" width="240" height="280" loading="lazy" />
-						<img class="hs-carousel__img-front" src="../assets/outdoor-living/carousel-fire-features.jpg" alt="Custom outdoor fireplace installation by Bollman Landscape" width="260" height="300" loading="lazy" />
+			<!-- Circular Animated Testimonials Carousel -->
+			<div class="hs-testimonial-container">
+				<div class="hs-testimonial-grid">
+					<div class="hs-image-container" id="hs-image-container"></div>
+					<div class="hs-testimonial-content">
+						<div>
+							<h3 class="hs-testimonial-name" id="hs-name"></h3>
+							<p class="hs-testimonial-designation" id="hs-designation"></p>
+							<p class="hs-testimonial-quote" id="hs-quote"></p>
+						</div>
+						<div class="hs-arrow-buttons">
+							<button class="hs-arrow-button" id="hs-prev-button" type="button" aria-label="Previous service">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+								</svg>
+							</button>
+							<button class="hs-arrow-button" id="hs-next-button" type="button" aria-label="Next service">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+								</svg>
+							</button>
+						</div>
 					</div>
-					<div class="hs-carousel__content">
-						<h3 class="hs-carousel__title">Fire Features</h3>
-						<p class="hs-carousel__subtitle">Hardscaping Services</p>
-						<p class="hs-carousel__desc">We design and build fire features that make outdoor spaces feel warmer, more inviting, and more usable throughout the year. That includes outdoor fireplace installation, pizza ovens, and built-in grills that feel integrated into the space from the start.</p>
-					</div>
-				</div>
-				<div class="hs-carousel__slide" data-index="1">
-					<div class="hs-carousel__images">
-						<img class="hs-carousel__img-back" src="../assets/outdoor-living/carousel-steps-walkways.jpg" alt="Stone walkway by Bollman Landscape" width="240" height="280" loading="lazy" />
-						<img class="hs-carousel__img-front" src="../assets/outdoor-living/carousel-steps-walkways.jpg" alt="Custom steps and walkways by Bollman Landscape" width="260" height="300" loading="lazy" />
-					</div>
-					<div class="hs-carousel__content">
-						<h3 class="hs-carousel__title">Steps + Walkways</h3>
-						<p class="hs-carousel__subtitle">Hardscaping Services</p>
-						<p class="hs-carousel__desc">We create steps, walkways, and transitions that help the property flow naturally from one area to the next. They are designed to improve movement, connect spaces clearly, and make the landscape feel intentional rather than pieced together.</p>
-					</div>
-				</div>
-				<div class="hs-carousel__slide" data-index="2">
-					<div class="hs-carousel__images">
-						<img class="hs-carousel__img-back" src="../assets/outdoor-living/carousel-garden-walls.jpg" alt="Garden wall by Bollman Landscape" width="240" height="280" loading="lazy" />
-						<img class="hs-carousel__img-front" src="../assets/outdoor-living/carousel-garden-walls.jpg" alt="Custom garden wall and masonry by Bollman Landscape" width="260" height="300" loading="lazy" />
-					</div>
-					<div class="hs-carousel__content">
-						<h3 class="hs-carousel__title">Garden Walls</h3>
-						<p class="hs-carousel__subtitle">Hardscaping Services</p>
-						<p class="hs-carousel__desc">We design and build garden walls, seat walls, architectural masonry features, and hardscaping retaining wall solutions that add both function and visual definition. These elements help solve grade changes, shape the space, and make the finished project feel more complete.</p>
-					</div>
-				</div>
-				<div class="hs-carousel__slide" data-index="3">
-					<div class="hs-carousel__images">
-						<img class="hs-carousel__img-back" src="../assets/outdoor-living/carousel-pool-decks.jpg" alt="Pool deck by Bollman Landscape" width="240" height="280" loading="lazy" />
-						<img class="hs-carousel__img-front" src="../assets/outdoor-living/carousel-pool-decks.jpg" alt="Custom pool deck and coping by Bollman Landscape" width="260" height="300" loading="lazy" />
-					</div>
-					<div class="hs-carousel__content">
-						<h3 class="hs-carousel__title">Pool Decks</h3>
-						<p class="hs-carousel__subtitle">Hardscaping Services</p>
-						<p class="hs-carousel__desc">We create pool decks and coping that feel connected to the full patio and pool environment, not treated as separate pieces. The result is a space that looks cohesive, moves naturally, and performs beautifully over time.</p>
-					</div>
-				</div>
-
-				<div class="hs-carousel__nav">
-					<button class="hs-carousel__btn" id="hsCarouselPrev" aria-label="Previous slide">&lsaquo;</button>
-					<button class="hs-carousel__btn" id="hsCarouselNext" aria-label="Next slide">&rsaquo;</button>
 				</div>
 			</div>
 
@@ -1142,24 +1083,162 @@
 
 			<script>
 				(function () {
-					var carousel = document.getElementById("hsCarousel");
-					var slides = carousel.querySelectorAll(".hs-carousel__slide");
-					var prevBtn = document.getElementById("hsCarouselPrev");
-					var nextBtn = document.getElementById("hsCarouselNext");
-					var current = 0;
+					var services = [
+						{
+							quote: "We design and build fire features that make outdoor spaces feel warmer, more inviting, and more usable throughout the year. That includes outdoor fireplace installation, pizza ovens, and built-in grills that feel integrated into the space from the start.",
+							name: "Fire Features",
+							designation: "Hardscaping Services",
+							src: "../assets/outdoor-living/carousel-fire-features.jpg"
+						},
+						{
+							quote: "We create steps, walkways, and transitions that help the property flow naturally from one area to the next. They are designed to improve movement, connect spaces clearly, and make the landscape feel intentional rather than pieced together.",
+							name: "Steps + Walkways",
+							designation: "Hardscaping Services",
+							src: "../assets/outdoor-living/carousel-steps-walkways.jpg"
+						},
+						{
+							quote: "We design and build garden walls, seat walls, architectural masonry features, and hardscaping retaining wall solutions that add both function and visual definition. These elements help solve grade changes, shape the space, and make the finished project feel more complete.",
+							name: "Garden Walls",
+							designation: "Hardscaping Services",
+							src: "../assets/outdoor-living/carousel-garden-walls.jpg"
+						},
+						{
+							quote: "We create pool decks and coping that feel connected to the full patio and pool environment, not treated as separate pieces. The result is a space that looks cohesive, moves naturally, and performs beautifully over time.",
+							name: "Pool Decks",
+							designation: "Hardscaping Services",
+							src: "../assets/outdoor-living/carousel-pool-decks.jpg"
+						}
+					];
 
-					function showSlide(index) {
-						slides[current].classList.remove("active");
-						current = (index + slides.length) % slides.length;
-						slides[current].classList.add("active");
+					var activeIndex = 0;
+					var imageContainer = document.getElementById('hs-image-container');
+					var nameElement = document.getElementById('hs-name');
+					var designationElement = document.getElementById('hs-designation');
+					var quoteElement = document.getElementById('hs-quote');
+					var prevButton = document.getElementById('hs-prev-button');
+					var nextButton = document.getElementById('hs-next-button');
+
+					function calculateGap(width) {
+						var minWidth = 1024;
+						var maxWidth = 1456;
+						var minGap = 60;
+						var maxGap = 86;
+						if (width <= minWidth) return minGap;
+						if (width >= maxWidth) return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
+						return minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth));
 					}
 
-					prevBtn.addEventListener("click", function () {
-						showSlide(current - 1);
+					function updateTestimonial(direction) {
+						activeIndex = (activeIndex + direction + services.length) % services.length;
+
+						var containerWidth = imageContainer.offsetWidth;
+						var gap = calculateGap(containerWidth);
+						var maxStickUp = gap * 0.8;
+
+						services.forEach(function (service, index) {
+							var img = imageContainer.querySelector('[data-index="' + index + '"]');
+							if (!img) {
+								img = document.createElement('img');
+								img.src = service.src;
+								img.alt = service.name + ' by Bollman Landscape';
+								img.classList.add('hs-testimonial-image');
+								img.dataset.index = index;
+								imageContainer.appendChild(img);
+							}
+
+							var offset = (index - activeIndex + services.length) % services.length;
+							var zIndex = services.length - Math.abs(offset);
+							var opacity = 1;
+							var scale = index === activeIndex ? 1 : 0.85;
+
+							var translateX, translateY, rotateY;
+							if (offset === 0) {
+								translateX = '0%';
+								translateY = '0%';
+								rotateY = 0;
+							} else if (offset === 1 || offset === -(services.length - 1)) {
+								translateX = '20%';
+								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
+								rotateY = -15;
+							} else {
+								translateX = '-20%';
+								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
+								rotateY = 15;
+							}
+
+							gsap.to(img, {
+								zIndex: zIndex,
+								opacity: opacity,
+								scale: scale,
+								x: translateX,
+								y: translateY,
+								rotateY: rotateY,
+								duration: 0.8,
+								ease: "power3.out"
+							});
+						});
+
+						gsap.to([nameElement, designationElement], {
+							opacity: 0,
+							y: -20,
+							duration: 0.3,
+							ease: "power2.in",
+							onComplete: function () {
+								nameElement.textContent = services[activeIndex].name;
+								designationElement.textContent = services[activeIndex].designation;
+								gsap.to([nameElement, designationElement], {
+									opacity: 1,
+									y: 0,
+									duration: 0.3,
+									ease: "power2.out"
+								});
+							}
+						});
+
+						gsap.to(quoteElement, {
+							opacity: 0,
+							y: -20,
+							duration: 0.3,
+							ease: "power2.in",
+							onComplete: function () {
+								quoteElement.innerHTML = services[activeIndex].quote.split(' ').map(function (word) {
+									return '<span class="hs-word">' + word + '</span>';
+								}).join(' ');
+								gsap.to(quoteElement, {
+									opacity: 1,
+									y: 0,
+									duration: 0.3,
+									ease: "power2.out"
+								});
+								gsap.from('.hs-word', {
+									opacity: 0,
+									y: 10,
+									stagger: 0.02,
+									duration: 0.2,
+									ease: "power2.out"
+								});
+							}
+						});
+					}
+
+					prevButton.addEventListener('click', function () { updateTestimonial(-1); });
+					nextButton.addEventListener('click', function () { updateTestimonial(1); });
+
+					/* Initial setup */
+					updateTestimonial(0);
+
+					/* Autoplay */
+					var autoplayInterval = setInterval(function () { updateTestimonial(1); }, 5000);
+
+					/* Stop autoplay on user interaction */
+					[prevButton, nextButton].forEach(function (button) {
+						button.addEventListener('click', function () {
+							clearInterval(autoplayInterval);
+						});
 					});
-					nextBtn.addEventListener("click", function () {
-						showSlide(current + 1);
-					});
+
+					/* Handle window resize */
+					window.addEventListener('resize', function () { updateTestimonial(0); });
 				})();
 			</script>
 		</section>
