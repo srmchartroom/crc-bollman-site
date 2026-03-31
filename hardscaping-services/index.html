@@ -890,7 +890,8 @@
 					position: relative;
 				}
 				.hs-inform__inner {
-					max-width: 900px;
+					max-width: 84rem;
+					padding: 0 2rem;
 					margin: 0 auto;
 					position: relative;
 					text-align: center;
@@ -977,13 +978,7 @@
 					margin-bottom: 0.25rem;
 				}
 				.hs-testimonial-designation {
-					font-family: "Nunito Sans", sans-serif;
-					font-size: 0.875rem;
-					color: #4aa0a0;
-					margin-bottom: 2rem;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-					font-weight: 600;
+					display: none;
 				}
 				.hs-testimonial-quote {
 					font-family: "Nunito Sans", sans-serif;
@@ -1001,7 +996,7 @@
 					height: 1.75rem;
 					border-radius: 50%;
 					border: none;
-					background-color: #141414;
+					background-color: #4aa0a0;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -1009,7 +1004,7 @@
 					transition: background-color 0.3s;
 				}
 				.hs-arrow-button:hover {
-					background-color: #4aa0a0;
+					background-color: #2e3033;
 				}
 				.hs-arrow-button svg {
 					width: 1.25rem;
@@ -1079,25 +1074,25 @@
 						{
 							quote: "We design and build fire features that make outdoor spaces feel warmer, more inviting, and more usable throughout the year. That includes outdoor fireplace installation, pizza ovens, and built-in grills that feel integrated into the space from the start.",
 							name: "Fire Features",
-							designation: "Hardscaping Services",
+							designation: "",
 							src: "../assets/outdoor-living/carousel-fire-features.jpg"
 						},
 						{
 							quote: "We create steps, walkways, and transitions that help the property flow naturally from one area to the next. They are designed to improve movement, connect spaces clearly, and make the landscape feel intentional rather than pieced together.",
 							name: "Steps + Walkways",
-							designation: "Hardscaping Services",
+							designation: "",
 							src: "../assets/outdoor-living/carousel-steps-walkways.jpg"
 						},
 						{
 							quote: "We design and build garden walls, seat walls, architectural masonry features, and hardscaping retaining wall solutions that add both function and visual definition. These elements help solve grade changes, shape the space, and make the finished project feel more complete.",
 							name: "Garden Walls",
-							designation: "Hardscaping Services",
+							designation: "",
 							src: "../assets/outdoor-living/carousel-garden-walls.jpg"
 						},
 						{
 							quote: "We create pool decks and coping that feel connected to the full patio and pool environment, not treated as separate pieces. The result is a space that looks cohesive, moves naturally, and performs beautifully over time.",
 							name: "Pool Decks",
-							designation: "Hardscaping Services",
+							designation: "",
 							src: "../assets/outdoor-living/carousel-pool-decks.jpg"
 						}
 					];
@@ -1148,14 +1143,22 @@
 								translateX = '0%';
 								translateY = '0%';
 								rotateY = 0;
-							} else if (offset === 1 || offset === -(services.length - 1)) {
+							} else if (offset === 1) {
 								translateX = '28%';
 								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
 								rotateY = -15;
-							} else {
+							} else if (offset === services.length - 1) {
 								translateX = '-28%';
 								translateY = '-' + (maxStickUp / (img.offsetHeight || 384) * 100) + '%';
 								rotateY = 15;
+							} else {
+								/* 4th image: centered, above, backmost */
+								translateX = '0%';
+								translateY = '-' + (maxStickUp * 1.4 / (img.offsetHeight || 384) * 100) + '%';
+								rotateY = 0;
+								zIndex = 0;
+								opacity = 0.5;
+								scale = 0.75;
 							}
 
 							gsap.to(img, {
@@ -1247,13 +1250,13 @@
 					padding: 100px 24px;
 				}
 				.hs-prove__inner {
-					max-width: 1100px;
+					max-width: 1300px;
 					margin: 0 auto;
 				}
 				/* Full-width intro row */
 				.hs-prove__intro {
 					text-align: center;
-					max-width: 820px;
+					max-width: 1000px;
 					margin: 0 auto 56px;
 				}
 				.hs-prove__heading {
@@ -1279,8 +1282,8 @@
 				/* Two-column middle row */
 				.hs-prove__middle {
 					display: grid;
-					grid-template-columns: 1fr 1fr;
-					gap: 56px;
+					grid-template-columns: 1.1fr 1fr;
+					gap: 72px;
 					align-items: start;
 					margin-bottom: 56px;
 				}
@@ -1297,7 +1300,8 @@
 					font-size: 16px;
 					line-height: 1.65;
 					color: rgba(0, 0, 0, 0.65);
-					margin: 0 0 36px;
+					font-weight: 700;
+					margin: 1.65em 0 36px;
 				}
 				/* Mobile image placement */
 				.hs-prove__image-mobile {
@@ -1312,7 +1316,7 @@
 				/* Full-width closing row */
 				.hs-prove__closing {
 					text-align: center;
-					max-width: 820px;
+					max-width: 1000px;
 					margin: 0 auto;
 				}
 
@@ -1458,7 +1462,7 @@
 						<!-- Mobile image placement -->
 						<img class="hs-prove__image-mobile" src="../assets/outdoor-living/hardscaping-proof-square.jpg" alt="Bollman Landscape hardscaping project showcasing expert outdoor living construction" loading="lazy" width="540" height="540" />
 
-						<p class="hs-prove__expect-label">Here's what you can expect when you work with BOLLMAN.</p>
+						<p class="hs-prove__expect-label">Here's what you can expect when you work with <strong>BOLLMAN</strong>.</p>
 
 						<div class="hs-accordion" id="hsAccordion">
 						<div class="hs-accordion__item">
@@ -1587,7 +1591,7 @@
 				}
 				.hs-transform__header {
 					text-align: center;
-					max-width: 920px;
+					max-width: 70%;
 					margin: 0 auto 56px;
 					position: relative;
 				}
@@ -1612,8 +1616,7 @@
 					display: grid;
 					grid-template-columns: repeat(4, 1fr);
 					gap: 20px;
-					max-width: 100%;
-					padding: 0 24px;
+					max-width: 80%;
 					margin: 0 auto;
 					position: relative;
 				}
@@ -1752,7 +1755,7 @@
 			</style>
 
 			<div class="hs-transform__header">
-				<h2 class="hs-transform__heading" id="hs-transform-heading">Hardscaping Services That Reshape the Way You Live Outdoors</h2>
+				<h2 class="hs-transform__heading" id="hs-transform-heading"><span style="color:#4aa0a0">Hardscaping Services</span> That Reshape the Way You Live Outdoors</h2>
 				<p class="hs-transform__sub">
 					Anyone can sell a backyard idea. Only BOLLMAN brings the design judgment, construction discipline, and technical understanding to build it the right way. See what happens when outdoor living is approached with the same care as the home itself: cleaner lines, stronger structure, better flow, and a finished result that feels personal, grounded, and built to last. Explore the specialties that bring it all together.
 				</p>
@@ -1846,8 +1849,8 @@
 					max-width: 1340px;
 					margin: 0 auto;
 					display: grid;
-					grid-template-columns: 1.2fr 1fr;
-					gap: 40px;
+					grid-template-columns: 1.3fr 1fr;
+					gap: 64px;
 					align-items: start;
 				}
 				.hs-convert__image {
@@ -1857,7 +1860,7 @@
 					border-radius: 0;
 					outline: 1px solid rgba(0, 0, 0, 0.06);
 					box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
-					margin-top: 16px;
+					margin-top: -8px;
 				}
 				.hs-convert__kicker {
 					font-family: "Nunito Sans", sans-serif;
@@ -1991,10 +1994,14 @@
 					background-position: center;
 					background-attachment: fixed;
 					background-repeat: no-repeat;
-					padding: 120px 24px;
+					padding: 160px 24px;
 					text-align: center;
 					position: relative;
 					overflow: hidden;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					min-height: 50vh;
 				}
 				.hs-cta-hook__inner {
 					max-width: 80%;
@@ -2016,8 +2023,9 @@
 				}
 				@media (max-width: 768px) {
 					.hs-cta-hook {
-						padding: 80px 20px;
+						padding: 100px 20px;
 						background-attachment: scroll;
+						min-height: 40vh;
 					}
 					.hs-cta-hook__inner {
 						padding: 40px 28px;
