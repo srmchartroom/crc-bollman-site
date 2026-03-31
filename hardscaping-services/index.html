@@ -786,7 +786,7 @@
 						mediaWrap.style.height = mediaHeight + "px";
 						mediaWrap.style.opacity = Math.min(1, scrollProgress / 0.2);
 
-						bgLayer.style.opacity = 1 - scrollProgress;
+						bgLayer.style.opacity = Math.max(0.1, 1 - scrollProgress);
 
 						var overlayOpacity = 0.5 - scrollProgress * 0.3;
 						mediaOverlay.style.opacity = Math.max(0, overlayOpacity);
@@ -967,6 +967,7 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
+					padding-left: 80px;
 				}
 				.hs-testimonial-name {
 					font-family: "Outfit", sans-serif;
