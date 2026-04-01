@@ -1849,9 +1849,12 @@
 					gap: 64px;
 					align-items: start;
 				}
+				.hs-convert__image-wrap {
+					margin-left: -48px;
+				}
 				.hs-convert__image {
 					width: 100%;
-					height: 100%;
+					height: auto;
 					object-fit: cover;
 					border-radius: 0;
 					outline: 1px solid rgba(0, 0, 0, 0.06);
@@ -1940,6 +1943,9 @@
 						grid-template-columns: 1fr;
 						gap: 0;
 					}
+					.hs-convert__image-wrap {
+						margin-left: 0;
+					}
 					.hs-convert__image {
 						display: none;
 					}
@@ -1950,8 +1956,8 @@
 			</style>
 
 			<div class="hs-convert__inner">
-				<div>
-					<img class="hs-convert__image" src="../assets/outdoor-living/convert-2-column-reference-image.avif" alt="Premium outdoor living space designed and built by Bollman Landscape in the Piedmont Triad" loading="lazy" width="540" height="400" />
+				<div class="hs-convert__image-wrap">
+					<img class="hs-convert__image" src="../assets/outdoor-living/convert-2-column-reference-image.avif" alt="Premium outdoor living space designed and built by Bollman Landscape in the Piedmont Triad" loading="lazy" width="594" height="440" />
 				</div>
 				<div>
 					<p class="hs-convert__kicker">Considering Hardscaping Services in the Triad?</p>
