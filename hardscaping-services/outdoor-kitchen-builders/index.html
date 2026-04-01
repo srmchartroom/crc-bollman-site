@@ -342,11 +342,10 @@
 				.ok-proof__text strong { color: #2e3033; }
 				.ok-proof__partnerships { font-family: "Outfit", sans-serif; font-size: 22px; font-weight: 700; color: #2e3033; margin: 48px 0 32px; text-align: center; }
 				.ok-proof__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto 48px; }
-				.ok-proof__card { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 320px; padding: 32px; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s cubic-bezier(0.2,0.8,0.2,1); }
+				.ok-proof__card { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 28px 32px; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s cubic-bezier(0.2,0.8,0.2,1); }
 				.ok-proof__card:hover { transform: scale(1.03) translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08); }
-				.ok-proof__card-title { font-family: "Outfit", sans-serif; font-size: 28px; font-weight: 600; color: #2e3033; margin: 0 0 8px; letter-spacing: -0.3px; }
-				.ok-proof__card-desc { font-family: "Nunito Sans", sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,0,0,0.55); max-width: 80%; margin: 0; }
-				.ok-proof__card-logo { position: absolute; bottom: 16px; right: 16px; width: 120px; height: 120px; object-fit: contain; opacity: 0.85; transition: transform 0.3s ease-out; }
+				.ok-proof__card-desc { font-family: "Nunito Sans", sans-serif; font-size: 14px; line-height: 1.55; color: rgba(0,0,0,0.55); margin: 0; }
+				.ok-proof__card-logo { width: 100px; height: 100px; object-fit: contain; opacity: 0.85; transition: transform 0.3s ease-out; }
 				.ok-proof__card:hover .ok-proof__card-logo { transform: scale(1.1); }
 				.ok-proof__cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; background: #c02240; color: #fff; font-family: "Nunito Sans", sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: transform 0.25s cubic-bezier(0.2,0,0,1), box-shadow 0.25s cubic-bezier(0.2,0,0,1); }
 				.ok-proof__cta:hover { box-shadow: 0 6px 28px rgba(192,34,64,0.5); transform: translateY(-2px); }
@@ -354,7 +353,7 @@
 				@media (max-width: 768px) {
 					.ok-proof { padding: 64px 20px; }
 					.ok-proof__cards { grid-template-columns: 1fr; max-width: 400px; }
-					.ok-proof__card { height: 280px; }
+					.ok-proof__card { padding: 24px; }
 				}
 			</style>
 			<div class="ok-proof__inner">
@@ -367,16 +366,16 @@
 			</div>
 			<div class="ok-proof__cards">
 				<div class="ok-proof__card">
-					<div><h3 class="ok-proof__card-title">BBQGuys</h3><p class="ok-proof__card-desc">Trusted outdoor kitchen solutions that pair quality appliances and proven systems with a polished finished look.</p></div>
-					<img class="ok-proof__card-logo" src="../../assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys logo" loading="lazy" width="120" height="120" />
+					<img class="ok-proof__card-logo" src="../../assets/partner-logos/BBQGuys-Logo.svg" alt="BBQGuys logo" loading="lazy" width="100" height="100" />
+					<p class="ok-proof__card-desc">Trusted outdoor kitchen solutions that pair quality appliances and proven systems with a polished finished look.</p>
 				</div>
 				<div class="ok-proof__card">
-					<div><h3 class="ok-proof__card-title">Breeo</h3><p class="ok-proof__card-desc">Refined fire features and outdoor furnishings that add comfort, character, and a more complete outdoor living experience.</p></div>
-					<img class="ok-proof__card-logo" src="../../assets/partner-logos/breeo-logo.webp" alt="Breeo logo" loading="lazy" width="120" height="120" />
+					<img class="ok-proof__card-logo" src="../../assets/partner-logos/breeo-logo.webp" alt="Breeo logo" loading="lazy" width="100" height="100" />
+					<p class="ok-proof__card-desc">Refined fire features and outdoor furnishings that add comfort, character, and a more complete outdoor living experience.</p>
 				</div>
 				<div class="ok-proof__card">
-					<div><h3 class="ok-proof__card-title">Solo</h3><p class="ok-proof__card-desc">Modern fire pit options that bring warmth, simplicity, and an easy natural gathering point to the backyard.</p></div>
-					<img class="ok-proof__card-logo" src="../../assets/partner-logos/solo-stove-logo.webp" alt="Solo Stove logo" loading="lazy" width="120" height="120" />
+					<img class="ok-proof__card-logo" src="../../assets/partner-logos/solo-stove-logo.webp" alt="Solo Stove logo" loading="lazy" width="100" height="100" />
+					<p class="ok-proof__card-desc">Modern fire pit options that bring warmth, simplicity, and an easy natural gathering point to the backyard.</p>
 				</div>
 			</div>
 			<div style="text-align:center">
